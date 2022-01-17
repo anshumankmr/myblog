@@ -1,9 +1,3 @@
-.center-text{
-    margin-left: auto;
-    margin-right: auto;
-    font-family:'Courier New', Courier, monospace;
-}
-.mat-toolbar {
-    background: teal;
-    color: #fff
- }
+.spacer {
+    flex: 1 1 auto;
+  }

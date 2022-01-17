@@ -10,13 +10,15 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AboutmeComponent } from './aboutme/aboutme.component';
 import { AppComponent } from './app.component';
+import { PostsComponent } from './posts/posts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    AboutmeComponent
+    AboutmeComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,

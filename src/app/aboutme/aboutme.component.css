@@ -1,39 +1,42 @@
-.main {
-    display: flex;
-    height: 400px;
-  }
-  
-  .left {
-    width: calc(50% - 5px);
-    background-color:rgb(231, 239, 225);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .right {
-    flex: auto;
-    background-color:rgb(231, 239, 225);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .separator {
-    width: 5px;
-    background-color: rgb(231, 239, 225);
-    cursor: col-resize;
-  }
-  .intro-card {
-    box-sizing: border-box;
-    background-color:rgb(231, 239, 225);
-    align-self: center;
-  }
-  
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
-  .portfolio{
-    border-radius: 50px;
-  }
+body { margin: 0;     font-family: 'Playfair Display', serif; }
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color:rgb(231, 239, 225);
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color:rgb(231, 239, 225)
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.mat-card {
+  background-color:rgb(231, 239, 225)
+}

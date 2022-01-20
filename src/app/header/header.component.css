@@ -1,11 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 .spacer {
     flex: 1 1 auto;
     text-align: center;
     font-size: 150%;
-    font-family: 'Courgette', cursive; 
+    font-family: 'Playfair Display', serif; 
+    z-index: 99999;
 }
 .mat-toolbar {
   background: rgb(231, 239, 225);
   color: black;
+  z-index: 99999;
+  font-family: 'Playfair Display', serif; 
+
+}
+.mat-toolbar-row{
+  z-index: 99999;
+}
+
+.toolbar {
+  font-family: 'Playfair Display', serif; 
+
 }

@@ -1,0 +1,39 @@
+.main {
+    display: flex;
+    height: 400px;
+  }
+  
+  .left {
+    width: calc(50% - 5px);
+    background-color:rgb(231, 239, 225);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .right {
+    flex: auto;
+    background-color:rgb(231, 239, 225);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .separator {
+    width: 5px;
+    background-color: rgb(231, 239, 225);
+    cursor: col-resize;
+  }
+  .intro-card {
+    box-sizing: border-box;
+    background-color:rgb(231, 239, 225);
+    align-self: center;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  .portfolio{
+    border-radius: 50px;
+  }

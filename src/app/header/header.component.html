@@ -1,21 +1,16 @@
-<!-- <mat-toolbar color="primary" class="mat-elevation-z4">
-    <span>
-      <span class="logo">
-        <img src="assets/favicon.ico" alt="Logo">
-      </span>
-      <span class="spacer">
-        
-      </span>
-    </span>
-    <span class="spacer"></span>
-</mat-toolbar> -->
+
 <mat-toolbar color="primary" class="mat-elevation-z4">
-    <button mat-icon-button>
-      <mat-icon>menu</mat-icon>
-    </button>
+  <mat-toolbar-row>
+    <span class="spacer"> <h1>{{ title }} </h1> </span> 
     <span class="logo">
-        <img src="assets/favicon.ico" alt="Logo">
-    </span>
-    <span class="spacer">{{ title }}</span>
+      <img src="assets/favicon.ico" alt="Logo">
+  </span>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <a mat-button routerLink="/aboutme" routerLinkActive='active'><span class="fa fa-home fa-lg"></span> About Me </a>
+    <a mat-button routerLink='/posts' routerLinkActive='active'><span class="fa fa-info fa-lg"></span> My Two Cents</a>
+    <a mat-button routerLink="/contactme" routerLinkActive='active'><span class="fa fa-address-card fa-lg"></span> Contact Me</a>
+  </mat-toolbar-row>
+
 </mat-toolbar>
   

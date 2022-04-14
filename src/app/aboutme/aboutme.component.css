@@ -1,50 +1,91 @@
-body { margin: 0;     font-family: 'Playfair Display', serif; }
-
-.split {
+body{
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   height: 100%;
-  width: 50%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  overflow-x: hidden;
-  padding-top: 20px;
+  background-color: rgb(231, 239, 225);
+  align-items: center;
 }
+.header-text {
+  font-family: 'Cedarville Cursive', cursive;
+  display: flex;
+  font-size: xxx-large;
+} 
+.heading {
+  display: flex;
+  justify-content: center;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+}
+.item{
+  display: flex;
+  flex-direction: column;
 
-/* Control the left side */
-.left {
-  left: 0;
-  background-color:rgb(231, 239, 225);
 }
-
-/* Control the right side */
-.right {
-  right: 0;
-  background-color:rgb(231, 239, 225)
+.large-item{
+  max-width:50%;
 }
-
-/* If you want the content centered horizontally and vertically */
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+.small-item{
+  max-width: 25%;
 }
-
-/* Style the image inside the centered container, if needed */
-.centered img {
-  width: 150px;
-  border-radius: 50%;
+.x-large-item{
+  width:75%;
 }
-
-.mat-card {
-  background-color:rgb(231, 239, 225)
-}
-.h1 {
-  font-family: 'Playfair Display', serif; 
+.sub-header{
+  font-style: italic;
+  justify-content: center;
+  display: flex;
   font-size:x-large;
 }
-.display-2 {
-  font-family: 'Playfair Display', serif; 
-  font-size: xxx-large;
+.text {
+  margin-left: 1%;
+  margin-right: 1%;
+  display: flex;
+  overflow-wrap: anywhere;
+}
+.topic {
+  font-family: sans-serif;
+  height: 20%;
+  font-size: large;
+  display: flex;
+  flex-direction: column;
+}
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+.sub-header-image {
+  width:50px;
+  height:50px;
+}
+.type1{
+  background-color: yellow;
+}
+.type2{
+  background-color: powderblue;
+}
+.type3{
+  background-color: greenyellow;
+}
+.type4{
+  background-color: blue;
+}
+.type5{
+  background-color: purple;
+}
+.left, .right {
+  flex: 1;
+  display: flex;
+}
+.center{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
 }

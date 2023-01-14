@@ -1,22 +1,25 @@
 .spacer {
-    flex: 1 1 auto;
-    text-align: center;
-    font-size: 150%;
-    font-family: 'Playfair Display', serif; 
-    z-index: 99999;
+  flex: 1 1 auto;
+  text-align: center;
+  font-size: 150%;
+  font-family: "Playfair Display", serif;
+  z-index: 99999;
 }
 .mat-toolbar {
   background: rgb(231, 239, 225);
   color: black;
   z-index: 99999;
-  font-family: 'Playfair Display', serif; 
-
+  font-family: "Playfair Display", serif;
 }
-.mat-toolbar-row{
+.mat-toolbar-row {
   z-index: 99999;
 }
 
 .toolbar {
-  font-family: 'Playfair Display', serif; 
-  
+  font-family: "Playfair Display", serif;
+}
+.mat-elevation-z4 {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
 }

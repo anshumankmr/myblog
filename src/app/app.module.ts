@@ -22,16 +22,16 @@ import { ContactmeComponent } from './contactme/contactme.component';
     AboutmeComponent,
     PostsComponent,
     IntroComponent,
-    ContactmeComponent
+    ContactmeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ScullyLibModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,4 +1,99 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0;     font-family: 'Playfair Display', serif; }
+html,
+body {
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.header-text {
+  font-family: "Cedarville Cursive", cursive;
+  display: flex;
+  font-size: xxx-large;
+}
+.heading {
+  display: flex;
+  justify-content: center;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  border: 1px;
+  border-color: black;
+  border-style: solid;
+}
+.large-item {
+  max-width: 50%;
+}
+.small-item {
+  max-width: 25%;
+}
+.x-large-item {
+  width: 75%;
+}
+.sub-header {
+  font-style: italic;
+  justify-content: center;
+  display: flex;
+  font-size: x-large;
+}
+.text {
+  margin-left: 1%;
+  margin-right: 1%;
+  display: flex;
+  overflow-wrap: anywhere;
+}
+.topic {
+  font-family: sans-serif;
+  height: 20%;
+  font-size: large;
+  display: flex;
+  flex-direction: column;
+}
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+.sub-header-image {
+  width: 50px;
+  height: 50px;
+}
+.type1 {
+  background-color: yellow;
+}
+.type2 {
+  background-color: powderblue;
+}
+.type3 {
+  background-color: greenyellow;
+}
+.type4 {
+  background-color: blue;
+}
+.type5 {
+  background-color: purple;
+}
+.left,
+.right {
+  flex: 1;
+  display: flex;
+}
+.center {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}

@@ -1,16 +1,16 @@
-
 <mat-toolbar color="primary" class="mat-elevation-z4">
   <mat-toolbar-row>
-    <span class="spacer"> {{ title }}</span> 
-    <span class="logo">
-      <img src="assets/favicon.ico" alt="Logo">
-  </span>
+    <span class="spacer">{{ title }}</span>
   </mat-toolbar-row>
-  <mat-toolbar-row>
-    <a mat-button routerLink="/aboutme" routerLinkActive='active'><span class="toolbar" > About Me</span>  </a>
-    <a mat-button routerLink='/posts' routerLinkActive='active'><span class="toolbar"> My Two Cents</span> </a>
-    <a mat-button routerLink="/contactme" routerLinkActive='active'><span class="toolbar"> Contact Me</span> </a>
+  <mat-toolbar-row style="justify-content: center">
+    <a mat-button routerLink="/aboutme" routerLinkActive="active"
+      ><span class="toolbar"> About Me</span>
+    </a>
+    <a mat-button routerLink="/posts" routerLinkActive="active"
+      ><span class="toolbar">My Two Cents</span>
+    </a>
+    <a mat-button routerLink="/contactme" routerLinkActive="active"
+      ><span class="toolbar"> Contact Me</span>
+    </a>
   </mat-toolbar-row>
-
 </mat-toolbar>
-  

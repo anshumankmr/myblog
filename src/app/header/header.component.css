@@ -2,22 +2,26 @@
   flex: 1 1 auto;
   text-align: center;
   font-size: 150%;
-  font-family: "Playfair Display", serif;
+  font-family: "Lato", sans-serif;
   z-index: 99999;
 }
 .mat-toolbar {
-  background: rgb(231, 239, 225);
-  color: black;
+  background: rgb(28, 29, 76);
+  background: radial-gradient(
+    circle,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+
   z-index: 99999;
-  font-family: "Playfair Display", serif;
 }
 .mat-toolbar-row {
   z-index: 99999;
 }
-
 .toolbar {
-  font-family: "Playfair Display", serif;
+  font-family: Lato;
 }
+
 .mat-elevation-z4 {
   align-items: center;
   display: flex;

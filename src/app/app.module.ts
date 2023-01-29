@@ -11,7 +11,6 @@ import { FooterComponent } from './footer/footer.component';
 import { AboutmeComponent } from './aboutme/aboutme.component';
 import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
-import { IntroComponent } from './intro/intro.component';
 import { ContactmeComponent } from './contactme/contactme.component';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { ContactmeComponent } from './contactme/contactme.component';
     FooterComponent,
     AboutmeComponent,
     PostsComponent,
-    IntroComponent,
     ContactmeComponent,
   ],
   imports: [

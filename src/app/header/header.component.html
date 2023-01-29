@@ -1,16 +1,27 @@
-<mat-toolbar color="primary" class="mat-elevation-z4">
-  <mat-toolbar-row>
-    <span class="text spacer">{{ title }}</span>
-  </mat-toolbar-row>
-  <mat-toolbar-row style="justify-content: center">
-    <a mat-button routerLink="/aboutme" routerLinkActive="active"
-      ><span class="text toolbar"> About Me</span>
-    </a>
-    <a mat-button routerLink="/posts" routerLinkActive="active"
-      ><span class="text toolbar">My Two Cents</span>
-    </a>
-    <a mat-button routerLink="/contactme" routerLinkActive="active"
-      ><span class="text toolbar"> Contact Me</span>
-    </a>
-  </mat-toolbar-row>
-</mat-toolbar>
+<section id="navbar">
+  <nav>
+    <ul class="horizontal-navbar-list">
+      <li>
+        <a href="/aboutme">
+          <span class="fa-solid fa-atom"></span>Anshuman Kumar</a
+        >
+      </li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/aboutme">About</a></li>
+      <li><a href="/contactme">Contact</a></li>
+      <li>
+        <a href="https://www.linkedin.com/in/anshumankumarcs/">
+          <span class="fa-brands fa-linkedin-in" aria-hidden="true"></span>
+          <span class="sr-only">LinkedIn</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/anshumankmr">
+          <span class="fa-brands fa-github" aria-hidden="true"></span>
+          <span class="sr-only">Github</span>
+        </a>
+      </li>
+      <li><a href="#resume" class="button">Resume</a></li>
+    </ul>
+  </nav>
+</section>

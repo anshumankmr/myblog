@@ -1,71 +1,216 @@
-/* You can add global styles to this file, and also import other style files */
-
-html,
+/* variables declared here - these are the colors for our pages, as well as the font stacks and sizes. */
+:root {
+  --black: #171321;
+  --dkblue: #0d314b;
+  --plum: #4b0d49;
+  --hotmag: #ff17e4;
+  --magenta: #e310cb;
+  --aqua: #86fbfb;
+  --white: #f7f8fa;
+  --font-size: 1.3rem;
+  --mono: "Oxygen mono", monospace;
+  --sans: Oxygen, sans-serif;
+}
+/* border box model: https://css-tricks.com/box-sizing/ */
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
 body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--white);
+  background-color: var(--black);
+  font-size: var(--font-size);
+}
+a {
+  color: var(--magenta);
+}
+a:hover {
+  color: var(--hotmag);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+/* intro styles */
+#intro {
+  padding-bottom: 4rem 1rem 10rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+#intro p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+#intro .name {
+  font-family: var(--mono);
+}
+.name span {
+  font-size: 4rem;
+  font-weight: normal;
+  color: var(--aqua);
+  display: block;
+}
+#intro h2 {
+  font-size: 4rem;
+  font-weight: normal;
+}
+/* contact element */
+.contact {
+  background-color: var(--plum);
+  display: flex;
+  padding: 3rem 0;
+  align-content: center;
+  justify-content: center;
+}
+.contact-me {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 400px;
+  text-align: center;
+}
+.contact-me-content {
+  display: flex;
+  /*     align-content:center; */
+  justify-content: center;
+  line-break: loose;
+  padding: 1em;
+  align-items: center;
+  font-size: 1em;
+  padding: 3rem 0;
+}
+
+#contact-me-button {
+  background-color: var(--magenta);
+}
+#contact-me-button a {
+  color: var(--white);
+  font-family: var(--sans);
+}
+
+/* navbar component */
+nav {
+  font: var(--mono);
+  font-size: 80%;
+  padding: 1rem;
+  border: 1px solid var(--white);
+}
+nav a {
+  color: var(--white);
+}
+nav h1 a {
+  font: var(--sans);
+}
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+nav ul > li {
+  display: inline-block;
+  margin: 1em;
+}
+nav a {
+  color: var(--white);
+  text-decoration: none;
+  display: block;
+}
+nav a:hover {
+  color: var(--magenta);
+}
+nav li:first-child {
+  flex-basis: 100%;
+  text-align: center;
+  font-size: 40px;
   margin: 0;
   padding: 0;
-  font-family: "Lato", sans-serif;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background: rgb(28, 29, 76);
-  background: radial-gradient(
-    circle,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(0, 0, 0, 1) 100%
-  );
-}
-.content {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
+  justify-content: space-between;
 }
 
-.row {
+nav [class*="fa-linkedin"] {
+  font-size: 150%;
+  color: var(--aqua);
+}
+nav [class*="fa-github"] {
+  font-size: 150%;
+  color: var(--aqua);
+}
+.button {
+  background-color: var(--magenta);
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+.button:hover {
+  color: var(--white);
+  background-color: var(--hotmag);
+}
+@media (min-width: 850px) {
+  /* 	Since this is later in the document, it will override any changes before */
+  nav {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  nav li:first-child {
+    flex-basis: auto;
+    text-align: left;
+    margin-right: auto;
+  }
+}
+/* footer styles */
+footer ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
   display: flex;
-  flex-direction: row;
-}
-.item {
-  display: flex;
-  flex-direction: column;
-  border: 1px;
-  border-color: black;
-  border-style: solid;
-}
-.large-item {
-  max-width: 50%;
-}
-.small-item {
-  max-width: 25%;
-}
-.x-large-item {
-  width: 75%;
-}
-.sub-header {
-  font-style: italic;
-  justify-content: center;
-  display: flex;
-  font-size: x-large;
-}
-
-.topic {
-  font-family: sans-serif;
-  height: 20%;
-  font-size: large;
-  display: flex;
-  flex-direction: column;
-}
-.image {
-  display: flex;
-  justify-content: center;
+  flex-flow: row wrap;
   align-items: center;
-  width: auto;
-  height: auto;
+  justify-content: center;
+  gap: 2em;
 }
-.text {
-  color: white;
+footer ul > li {
+  display: inline-block;
 }
-.dark-text {
-  color: black;
+footer li:first-child {
+  flex-basis: 100%;
+  text-align: center;
+  font-size: 25px;
+  margin: 0;
+  padding: 0;
+  justify-content: space-between;
+}
+footer li:last-child {
+  flex-basis: 100%;
+  text-align: center;
+  font-size: small;
+  margin: 0;
+  padding: 0;
+  justify-content: space-between;
+}
+footer [class*="fa-"] {
+  font-size: 150%;
+  color: var(--hotmag);
+}
+@media (min-width: 850px) {
+  /* 	Since this is later in the document, it will override any changes before */
+  footer {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 }

@@ -9,8 +9,8 @@
   display: flex;
   justify-content: center;
 }
-@media (min-width: 500px) {
+@media (min-height: 500px) {
   #intro {
-    height: 800x;
+    margin-bottom: 50%;
   }
 }

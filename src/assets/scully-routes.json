@@ -1,6 +1,1 @@
-[
-  { "route": "/aboutme" },
-  { "route": "/projects" },
-  { "route": "/contactme" },
-  { "route": "/" }
-]
+[{"route":"/"},{"route":"/projects"},{"route":"/contactme"}]

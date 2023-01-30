@@ -1,23 +1,8 @@
-html {
-    position: relative;
-    min-height: 100%;
-}
-
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  background-color: rgb(28, 29, 76);
+  background: radial-gradient(
+    circle,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
 }
-.center-text {
-    margin-top: 2%;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 60px;
-  background-color:#3f51b5;
-  color:white;
-}
-

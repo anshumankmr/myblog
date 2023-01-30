@@ -4,8 +4,8 @@ staticPort: 1668
 reloadPort: 2667
 hostName: localhost
 projectName: blog
-homeFolder: /home/anshuman/repos/angular-practice/my-blog/myblog
+homeFolder: C:\Users\Anshuman Kumar\Documents\GitHub\myblog
 distFolder: dist/blog
-outDir: /home/anshuman/repos/angular-practice/my-blog/myblog/dist/static
+outDir: C:\Users\Anshuman Kumar\Documents\GitHub\myblog\dist\static
 handle404: ''
 allowErrorCollect: false

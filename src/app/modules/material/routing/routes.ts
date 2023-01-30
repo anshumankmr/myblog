@@ -5,8 +5,8 @@ import { PostsComponent } from 'src/app/posts/posts.component';
 import { ContactmeComponent } from 'src/app/contactme/contactme.component';
 
 export const routes: Routes = [
-  { path: 'aboutme', component: AboutmeComponent },
+  { path: '', component: AboutmeComponent },
   { path: 'projects', component: PostsComponent },
   { path: 'contactme', component: ContactmeComponent },
-  { path: '**', redirectTo: '/aboutme', pathMatch: 'full' },
+  { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];

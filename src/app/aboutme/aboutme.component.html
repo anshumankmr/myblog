@@ -1,12 +1,9 @@
 <section id="intro">
-  <p class="name">Hi, my name is <span>Anshuman Kumar</span></p>
+  <p class="name" [innerHTML]="myNameIs"></p>
   <h2>I am a tech enthusiast.</h2>
-  <p>
+  <p class="about-me-text">
     I'm a developer specializing in HTML, CSS, user experience,Javascript,
     Python, React,Angular.
   </p>
-  <p>
-    Currently, I'm working for <a href="https://quantiphi.com"> Quantiphi</a> as
-    Software Developer.
-  </p>
+  <p [innerHTML]="aboutMe" class="about-me-text"></p>
 </section>

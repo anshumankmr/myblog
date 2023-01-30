@@ -6,12 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./aboutme.component.css'],
 })
 export class AboutmeComponent implements OnInit {
-  imageCaption =
-    'A Picture I took Near Baba Ka Mandir near Natu La Pass' +
-    '. You can view the rest of my Pictures ';
-  introductionText =
-    'Hi, I am Anshuman Kumar. I am Software Developer. My Passions Include Software Design, Cooking , Cycling';
-  introductionTitle = 'Welcome to my Blog';
+  myNameIs = 'Hi, my name is <span>Anshuman Kumar</span>';
+  aboutMe = `Currently, I'm working for <a href="https://quantiphi.com"> Quantiphi</a> as
+  Software Developer.I <3 Jam Stack. This site was built with Angular and Scully.I am proficient with NodeJS, Angular, 
+  Python, React, CSS.In my spare time, I love cycling and participating in marathons.
+  .For example, in 2022, I participated in the Vedanta Delhi Half Marathon.`;
   constructor() {}
 
   ngOnInit(): void {}

@@ -105,7 +105,6 @@ nav {
   font: var(--mono);
   font-size: 80%;
   padding: 1rem;
-  border: 1px solid var(--white);
 }
 nav a {
   color: var(--white);
@@ -155,7 +154,6 @@ nav [class*="fa-github"] {
 .button {
   background-color: var(--magenta);
   padding: 0.5rem;
-  border-radius: 5px;
 }
 .button:hover {
   color: var(--white);

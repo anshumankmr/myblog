@@ -6,7 +6,7 @@ import { ContactmeComponent } from 'src/app/contactme/contactme.component';
 
 export const routes: Routes = [
   { path: '', component: AboutmeComponent },
-  { path: 'projects', component: PostsComponent },
+  { path: 'blogs', component: PostsComponent },
   { path: 'contactme', component: ContactmeComponent },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];

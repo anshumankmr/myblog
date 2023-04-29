@@ -1,5 +1,5 @@
 .blog-component {
-  background-color: var(--dkblue);
+  background-color: var(--plum);
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
@@ -8,15 +8,20 @@
   flex-direction: column;
   display: flex;
   width: 50%;
-  background-color: var(--dkblue);
-
+  background-color: var(--black);
+  border-color: var(--white);
+  border-radius: 10px;
+  margin-bottom: 50px;
 }
-
+.mat-card:first-child {
+  margin-bottom: 20px !important;
+}
 .mat-card-header{
   background-color: var(--dkblue);
     padding:5px ;
     font-family: var(--sans);
     color: var(--aqua);
+    border-radius: 10px;
 }
 .mat-card-subtitle {
   background-color: var(--dkblue);
@@ -49,5 +54,8 @@
 }
 .mat-divider {
   background-color: var(--dkblue);
-
+}
+.mat-card-actions button{
+  font-family: var(--sans);
+  color: var(--white);
 }

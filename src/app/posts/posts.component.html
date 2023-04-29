@@ -1,4 +1,4 @@
-<body class="blog-component">
+<div class="blog-component">
   <mat-card *ngFor="let blog of blogs">
     <mat-card-header>
       <mat-card-title class="card-header-text"><h3>{{ blog.attributes.Title }}</h3></mat-card-title>
@@ -13,5 +13,4 @@
     </mat-card-actions>
     <mat-divider [inset]="true"></mat-divider>
   </mat-card>
-  
-</body>
+</div>

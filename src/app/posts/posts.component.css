@@ -26,6 +26,10 @@
     color: var(--aqua);
     border-radius: 10px;
 }
+.mat-mdc-card-title, .mat-mdc-card-subtitle {
+  font-family: var(--sans) !important;
+
+}
 .mat-mdc-card-subtitle {
   background-color: var(--dkblue);
     font-family: var(--sans);

@@ -15,6 +15,7 @@ import { AboutmeComponent } from './aboutme/aboutme.component';
 import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
 import { ContactmeComponent } from './contactme/contactme.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { ContactmeComponent } from './contactme/contactme.component';
     ScullyLibModule,
     MaterialModule,
     BrowserAnimationsModule,
+    MarkdownModule.forRoot(),
     MatCardModule,
     MatDividerModule
   ],

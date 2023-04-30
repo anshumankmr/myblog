@@ -16,10 +16,13 @@
 .mat-mdc-card:first-child {
   margin-bottom: 20px !important;
 }
+.mat-mdc-card:last-child {
+  margin-top: 20px !important;
+}
 .mat-mdc-card-header{
-  background-color: var(--dkblue);
+    background-color: var(--dkblue);
     padding:5px ;
-    font-family: var(--sans);
+    font-family: var(--sans) !important;
     color: var(--aqua);
     border-radius: 10px;
 }

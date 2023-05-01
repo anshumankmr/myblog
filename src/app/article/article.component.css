@@ -7,7 +7,7 @@
   .mat-mdc-card {
     flex-direction: column;
     display: flex;
-    width: 50%;
+    width: 80%;
     background-color: var(--black);
     border-color: var(--white);
     border-radius: 10px;

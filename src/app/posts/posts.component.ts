@@ -10,6 +10,7 @@ import { MarkdownService } from 'ngx-markdown';
 })
 export class PostsComponent {
   blogs: any[] = [];
+  loading: boolean = false;
   constructor(private http: HttpClient) {
     this.getBlogs();
   }
@@ -17,6 +18,7 @@ export class PostsComponent {
   getBlogs() {
     this.http.get('https://glass-approach-204914.uc.r.appspot.com/api/blogs').subscribe((data: any) => {
       this.blogs = data.data;
+      this.loading = true;
     });
   }
 }

@@ -1,11 +1,21 @@
 steps:
   - name: node
+    args:
+      - install
     entrypoint: npm
-    args: ['install']
   - name: node
+    args:
+      - run
+      - build
     entrypoint: npm
-    args: ['run', 'build']
-  - name: 'buildkite/puppeteer'
-    args: ["npx", "scully", "--scanRoutes"]
-  - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['cp','-r', './dist/static/*', 'gs://$_MY_BUCKET/']
+  - name: buildkite/puppeteer
+    args:
+      - npx
+      - scully
+      - '--scanRoutes'
+  - name: gcr.io/cloud-builders/gsutil
+    args:
+      - cp
+      - '-r'
+      - ./dist/static/*
+      - 'gs://$_MY_BUCKET/'

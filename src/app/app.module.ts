@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
 import { ContactmeComponent } from './contactme/contactme.component';
 import { MarkdownModule } from 'ngx-markdown';
+import { ArticleComponent } from './article/article.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { MarkdownModule } from 'ngx-markdown';
     AboutmeComponent,
     PostsComponent,
     ContactmeComponent,
+    ArticleComponent,
   ],
   imports: [
     BrowserModule,

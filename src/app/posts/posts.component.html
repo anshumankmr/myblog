@@ -22,7 +22,7 @@
     <mat-divider [inset]="true"></mat-divider>
   </mat-card>
 </div>
-<div class="blog-component" *ngIf="!this.loading">
+<div class="blog-component" *ngIf="!this.loading && !this.apiError">
   <div class="loader loader--style2" title="1">
     <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
        width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
@@ -37,5 +37,7 @@
       </path>
     </svg>
   </div>
-  
+  <div class="blog-component" *ngIf="!this.loading && this.apiError">
+    Sorry, we are facing some internal issues currently.
+  </div>
 </div>

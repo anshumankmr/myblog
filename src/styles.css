@@ -212,3 +212,7 @@ footer [class*="fa-"] {
     margin: 0 auto;
   }
 }
+mat-card-content  markdown  img {
+  height: auto !important;
+  width: 100% !important;
+}

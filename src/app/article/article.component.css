@@ -58,6 +58,8 @@
     margin-left: 0px;
     margin-right: 0px;
     padding: 0px;
+    display: flex;
+    flex-direction: row-reverse;
   }
   .mat-mdc-divider {
     background-color: var(--dkblue);

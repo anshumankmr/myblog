@@ -13,7 +13,7 @@ export class ArticleComponent {
   notFound: boolean = false;
   articleId:  string = '';
   queryString: string = '';
-  websiteUrl: string = 'https://www.anshumankumar.dev/';
+  websiteUrl: string = 'https://www.anshumankumar.dev';
   constructor(private http: HttpClient, private router: Router ) {
     this.articleId = this.router.url.split('/')[2];
     this.websiteUrl += this.router.url;

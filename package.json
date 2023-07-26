@@ -29,6 +29,7 @@
     "@scullyio/scully": "^2.1.41",
     "@scullyio/scully-plugin-puppeteer": "^2.1.41",
     "marked": "^4.3.0",
+    "ngx-cookie-service": "^16.0.0",
     "ngx-markdown": "^15.1.2",
     "rxjs": "~7.8.1",
     "tslib": "^2.5.0",

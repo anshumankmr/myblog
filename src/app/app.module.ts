@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material/material/material.module';
 import { MatCardModule } from '@angular/material/card';
 import {  MatDividerModule } from '@angular/material/divider';
+import { CookieService } from 'ngx-cookie-service';
 
 
 import { HeaderComponent } from './header/header.component';
@@ -39,7 +40,7 @@ import { ArticleComponent } from './article/article.component';
     MatCardModule,
     MatDividerModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

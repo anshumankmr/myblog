@@ -30,7 +30,7 @@ export class PostsComponent {
   }
   
   redirectTo( blog:any ){
-    this.cookieService.set('articleId', blog.attributes.articleId.toString());
+    localStorage.setItem('articleId', blog.attributes.articleId.toString());
     const slug = this.generateSlug(blog.attributes.Title);
     this.router.navigateByUrl(`/article/${slug}`);
     }

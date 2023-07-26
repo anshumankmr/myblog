@@ -16,9 +16,7 @@ export class ArticleComponent {
   queryString: string = '';
   websiteUrl: string = 'https://www.anshumankumar.dev';
   constructor(private http: HttpClient, private router: Router, private cookieService: CookieService ) {
-    // this.articleId = this.router.url.split('/')[2];
-    // this.websiteUrl += this.router.url;
-    this.articleId = this.cookieService.get('articleId');
+    this.articleId = localStorage.getItem('articleId') || '';
     
     if(!this.articleId){
       // Navigate to some error or fallback page or handle the absence of the cookie appropriately

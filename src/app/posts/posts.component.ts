@@ -32,7 +32,7 @@ export class PostsComponent {
   redirectTo( blog:any ){
     localStorage.setItem('articleId', blog.attributes.articleId.toString());
     const slug = this.generateSlug(blog.attributes.Title);
-    this.router.navigateByUrl(`/article/${slug}`);
+    this.router.navigateByUrl(`/article/${blog.attributes.date}/${slug}`);
     }
   getBlogs() {
     this.http.get('https://glass-approach-204914.uc.r.appspot.com/api/blogs').subscribe((data: any) => {

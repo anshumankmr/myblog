@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-article',
@@ -15,20 +15,19 @@ export class ArticleComponent {
   articleId:  string = '';
   queryString: string = '';
   websiteUrl: string = 'https://www.anshumankumar.dev';
-  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService ) {
-    this.articleId = localStorage.getItem('articleId') || '';
-    
-    if(!this.articleId){
-      // Navigate to some error or fallback page or handle the absence of the cookie appropriately
-      console.error("Article ID not found in cookie.");
-    } else {
-      this.websiteUrl += `/article/${this.articleId}`;
-      this.queryString = `https://glass-approach-204914.uc.r.appspot.com/api/blogs?filters[articleId][$eq]=${this.articleId}`;
-      this.getBlogs();
-    }
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+        this.articleId = params['articleId'] || '';
 
-    this.queryString = `https://glass-approach-204914.uc.r.appspot.com/api/blogs?filters[articleId][$eq]=${this.articleId}`;
-    this.getBlogs();
+        if (!this.articleId) {
+            // Navigate to some error or fallback page or handle the absence of the articleId appropriately
+            console.error("Article ID not found in query parameters.");
+        } else {
+            this.websiteUrl += `/article/${this.articleId}`;
+            this.queryString = `https://glass-approach-204914.uc.r.appspot.com/api/blogs?filters[articleId][$eq]=${this.articleId}`;
+            this.getBlogs();
+        }
+    });
   }
 
   getBlogs() {

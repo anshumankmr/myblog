@@ -9,6 +9,6 @@ export const routes: Routes = [
   { path: '', component: AboutmeComponent },
   { path: 'blogs', component: PostsComponent },
   { path: 'contactme', component: ContactmeComponent },
-  { path: 'article/:{{blog.time}}/:{{blog.articleId}}', component: ArticleComponent },
+  { path: 'article/:time/:slug', component: ArticleComponent },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];

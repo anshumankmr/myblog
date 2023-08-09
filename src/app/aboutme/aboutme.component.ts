@@ -6,11 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./aboutme.component.css'],
 })
 export class AboutmeComponent implements OnInit {
-  myNameIs = 'Hi, my name is <span>Anshuman Kumar</span>';
-  aboutMe = `Currently, I'm working for <a href="https://quantiphi.com"> Quantiphi</a> as
-  Software Developer. I <3 Jam Stack. This site was built with Angular and Scully.I am proficient with NodeJS, Angular, 
-  Python, React, CSS.In my spare time, I love cycling and participating in marathons. For example, in 2022, I participated in the Vedanta Delhi Half Marathon. I am also an amateur photography enthusiast.You can view some of my clicks here <a href="https://unsplash.com/@anshumankmr97" class="anchor-tag">here</a>. <br/>Proud to be featured on <a href="https://web.archive.org/web/20230613205935/https://1mb.club/" class="anchor-tag">1mb Club</a>.`;
-  constructor() {}
+  myNameIs = 'Hi, my name is <span>Anshuman Kumar</span>';aboutMe = `I'm a <strong>Software Developer</strong> at <a href="https://quantiphi.com" target="_blank" rel="noopener noreferrer" alt="Quantiphi - AI and Data Science Company">Quantiphi</a>, with strong proficiency in NodeJS, Angular, Python, React, and CSS. I have a passion for Jamstack architecture and I've utilized Angular and Scully to create engaging and high-performance websites.
+
+  In addition to my work as a Software Developer, I keep active by cycling and regularly participating in marathons, including the Vedanta Delhi Half Marathon in 2022. My other hobbies include amateur photography, and I love sharing my work on <a href="https://unsplash.com/@anshumankmr97" target="_blank" rel="noopener noreferrer" alt="my photography work on Unsplash">Unsplash</a>.
+  
+  My passion and expertise in creating lightweight and optimized websites have earned me a feature on the <a href="https://web.archive.org/web/20230613205935/https://1mb.club/" target="_blank" rel="noopener noreferrer" alt="1mb club website">1mb Club</a> website.`;
+    constructor() {}
 
   ngOnInit(): void {}
 }

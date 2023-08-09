@@ -3,7 +3,25 @@
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    min-height: 500px;
+    position: relative;
+}
+.spinner-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.loader svg {
+  width: 40px;
+  height: 40px;
+}
+@media screen and (min-width: 1024px) {
+  .loader svg {
+    width: 100px;
+    height: 100px;
   }
+}
   .mat-mdc-card {
     flex-direction: column;
     display: flex;

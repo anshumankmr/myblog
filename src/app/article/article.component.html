@@ -2,7 +2,7 @@
     <mat-card *ngFor="let blog of blogs">
       <mat-card-header>
         <mat-card-title class="card-header-text" routerLink="{{'/article/' + blog.attributes.articleId }}"><h3>{{ blog.attributes.Title }}</h3></mat-card-title>
-        <mat-card-subtitle><b>Published On</b>: {{ blog.attributes.date }}</mat-card-subtitle>
+        <mat-card-subtitle><h4>{{blog.attributes.Header}}</h4><b>Published On</b>: {{ blog.attributes.date }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <markdown>

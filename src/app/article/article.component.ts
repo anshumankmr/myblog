@@ -21,7 +21,8 @@ export class ArticleComponent {
 
         if (!this.articleId) {
             // Navigate to some error or fallback page or handle the absence of the articleId appropriately
-            console.error("Article ID not found in query parameters.");
+            this.notFound = true;
+            this.loading = true;
         } else {
             this.websiteUrl += `${this.router.url}${this.articleId}`;
             this.queryString = `https://glass-approach-204914.uc.r.appspot.com/api/blogs?filters[articleId][$eq]=${this.articleId}`;

@@ -14,10 +14,21 @@
           <i class="fa-brands fa-x-twitter"></i>
         </a></button>
         <button mat-button>
+          <a target="_blank" [attr.href]="'https://www.linkedin.com/shareArticle?mini=true&url=' + websiteUrl + '&title=' + blog.attributes.Title">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+        </button>
+        <button mat-button>
           <a target="_blank" [attr.href]="'https://www.facebook.com/sharer/sharer.php?u=' + websiteUrl + '&amp;src=sdkpreparse'">
             <i class="fa-brands fa-facebook-f"></i>
           </a>
-        </button>     </mat-card-actions>
+        </button>
+        <button mat-button>
+          <a target="_blank" [attr.href]="'https://www.reddit.com/submit?url=' + websiteUrl + '&title=' + blog.attributes.Title">
+            <i class="fa-brands fa-reddit"></i>
+          </a>
+        </button>
+      </mat-card-actions>
       <mat-divider [inset]="true"></mat-divider>
     </mat-card>
   </div>

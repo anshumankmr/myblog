@@ -7,6 +7,7 @@ import { ArticleComponent } from 'src/app/article/article.component';
 
 export const routes: Routes = [
   { path: '', component: AboutmeComponent },
+  { path: 'aboutme', component: AboutmeComponent },
   { path: 'blogs', component: PostsComponent },
   { path: 'contactme', component: ContactmeComponent },
   { path: 'article/:time/:slug', component: ArticleComponent },

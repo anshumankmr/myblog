@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AboutmeComponent implements OnInit {
   myNameIs = '👋 Hi, my name is <span>Anshuman Kumar</span>';
-  aboutMe = `I'm a <strong>Software Developer</strong> at <a href="https://quantiphi.com" target="_blank" rel="noopener noreferrer" alt="Quantiphi - AI and Data Science Company">Quantiphi</a>, specializing in creating efficient and user-friendly digital experiences. My skill set includes NodeJS, Angular, Python, React, and CSS, enabling me to build performant web applications.`;
+  aboutMe = `I'm a <strong>Consultant</strong> at <a href="https://www.deloitte.com/global/en.html" target="_blank" rel="noopener noreferrer" alt="Deloitte">Deloitte</a>, specializing in developing solutions using AI. My skill set includes NodeJS, Angular, Python, React, and Prompt Engineering, enabling me to build solutions using AI.`;
 
   constructor(private router: Router) {
     if (this.router.url === '/aboutme') {

@@ -1,4 +1,3 @@
-/* variables declared here - these are the colors for our pages, as well as the font stacks and sizes. */
 :root {
   --black: #171321;
   --dkblue: #0d314b;
@@ -10,16 +9,22 @@
   --font-size: 1.3rem;
   --mono: "Oxygen mono", monospace;
   --sans: Oxygen, sans-serif;
+  --heading-font-size: 3rem;
+  --text-font-size: 1.1rem;
+  --line-height: 1.6;
+  --padding: 1rem;
 }
-/* border box model: https://css-tricks.com/box-sizing/ */
+
 html {
   box-sizing: border-box;
 }
+
 *,
 *::before,
 *::after {
   box-sizing: inherit;
 }
+
 body {
   padding: 0;
   margin: 0;
@@ -27,65 +32,77 @@ body {
   color: var(--white);
   background-color: var(--black);
   font-size: var(--font-size);
+  line-height: var(--line-height);
 }
+
 a {
   color: var(--magenta);
 }
+
 a:hover {
   color: var(--hotmag);
   text-decoration: none;
 }
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   margin: 0;
 }
 
-/* intro styles */
 #intro {
-  padding-bottom: 4rem 1rem 10rem 1rem;
-  max-width: 1200px;
+  padding: var(--padding);
+  max-width: 800px;
   margin: 0 auto;
+  text-align: center;
 }
+
 #intro p {
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: var(--text-font-size);
 }
+
 #intro .name {
   font-family: var(--mono);
 }
+
 .name span {
-  font-size: 4rem;
+  font-size: var(--heading-font-size);
   font-weight: normal;
   color: var(--aqua);
   display: block;
 }
+
 #intro h2 {
-  font-size: 4rem;
+  font-size: var(--heading-font-size);
   font-weight: normal;
 }
-/* contact element */
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 1rem;
+}
+
 .contact {
   background-color: var(--plum);
   display: flex;
   padding: 3rem 0;
-  align-content: center;
+  align-items: center;
   justify-content: center;
 }
+
 .contact-me {
   display: flex;
-  align-content: center;
-  justify-content: center;
   flex-direction: column;
   width: 400px;
   text-align: center;
 }
+
 .contact-me-content {
   display: flex;
-  /*     align-content:center; */
   justify-content: center;
-  line-break: loose;
   padding: 1em;
   align-items: center;
   font-size: 1em;
@@ -95,124 +112,125 @@ h3 {
 #contact-me-button {
   background-color: var(--magenta);
 }
+
 #contact-me-button a {
-  color: var(--white);
+  color: var (--white);
   font-family: var(--sans);
 }
 
-/* navbar component */
 nav {
-  font: var(--mono);
+  font-family: var(--mono);
   font-size: 80%;
-  padding: 1rem;
+  padding: var(--padding);
 }
+
 nav a {
   color: var(--white);
 }
+
 nav h1 a {
-  font: var(--sans);
+  font-family: var(--sans);
 }
+
 nav ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
   display: flex;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 2em;
 }
+
 nav ul > li {
-  display: inline-block;
   margin: 1em;
 }
+
 nav a {
   color: var(--white);
   text-decoration: none;
   display: block;
 }
+
 nav a:hover {
   color: var(--magenta);
 }
+
 nav li:first-child {
   flex-basis: 100%;
   text-align: center;
   font-size: 40px;
-  margin: 0;
-  padding: 0;
-  justify-content: space-between;
 }
 
-nav [class*="fa-linkedin"] {
+nav [class*="fa-linkedin"], nav [class*="fa-github"] {
   font-size: 150%;
   color: var(--aqua);
 }
-nav [class*="fa-github"] {
-  font-size: 150%;
-  color: var(--aqua);
-}
+
 .button {
   background-color: var(--magenta);
   padding: 0.5rem;
 }
+
 .button:hover {
   color: var(--white);
   background-color: var(--hotmag);
 }
+
 @media (min-width: 850px) {
-  /* 	Since this is later in the document, it will override any changes before */
   nav {
     max-width: 1200px;
     margin: 0 auto;
   }
+
   nav li:first-child {
     flex-basis: auto;
     text-align: left;
     margin-right: auto;
   }
 }
-/* footer styles */
+
 footer ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
   display: flex;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 2em;
 }
+
 footer ul > li {
   display: inline-block;
 }
+
 footer li:first-child {
   flex-basis: 100%;
   text-align: center;
   font-size: 25px;
-  margin: 0;
-  padding: 0;
-  justify-content: space-between;
 }
+
 footer li:last-child {
   flex-basis: 100%;
   text-align: center;
   font-size: small;
-  margin: 0;
-  padding: 0;
-  justify-content: space-between;
 }
+
 footer [class*="fa-"] {
   font-size: 150%;
   color: var(--hotmag);
 }
+
 @media (min-width: 850px) {
-  /* 	Since this is later in the document, it will override any changes before */
   footer {
     max-width: 1200px;
     margin: 0 auto;
   }
 }
-mat-card-content  markdown  img {
+
+mat-card-content markdown img {
   height: auto !important;
   width: 100% !important;
 }

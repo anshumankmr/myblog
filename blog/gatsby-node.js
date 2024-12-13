@@ -1,125 +1,57 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/
- */
-
 const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const axios = require(`axios`) // You'll need to install axios: npm install axios
 
-// Define the template for blog post
 const blogPost = path.resolve(`./src/templates/blog-post.js`)
 
-/**
- * @type {import('gatsby').GatsbyNode['createPages']}
- */
-exports.createPages = async ({ graphql, actions, reporter }) => {
+exports.createPages = async ({ actions, reporter }) => {
   const { createPage } = actions
 
-  // Get all markdown blog posts sorted by date
-  const result = await graphql(`
-    {
-      allMarkdownRemark(sort: { frontmatter: { date: ASC } }, limit: 1000) {
-        nodes {
-          id
-          fields {
-            slug
-          }
-        }
-      }
-    }
-  `)
+  try {
+    // Fetch blogs from your REST API
+    const response = await axios.get('https://glass-approach-204914.uc.r.appspot.com/api/blogs')
+    const blogs = response.data.data
 
-  if (result.errors) {
-    reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
-      result.errors
+    // Sort blogs by date (matching your Angular custom_sort logic)
+    const sortedBlogs = blogs.sort((a, b) => 
+      new Date(a.attributes.date).getTime() - new Date(b.attributes.date).getTime()
     )
-    return
-  }
 
-  const posts = result.data.allMarkdownRemark.nodes
+    // Generate slug function matching your Angular implementation
+    const generateSlug = (title) => {
+      return title
+        .toLowerCase()
+        .replace(/[\s\(\)]+/g, '-')
+        .replace(/[^\w-]+/g, '')
+        .replace(/--+/g, '-')
+        .replace(/^-+/, '')
+        .replace(/-+$/, '')
+    }
 
-  // Create blog posts pages
-  // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
-  // `context` is available in the template as a prop and as a variable in GraphQL
-
-  if (posts.length > 0) {
-    posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id
-      const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+    // Create pages for each blog post
+    sortedBlogs.forEach((blog, index) => {
+      const previousBlogId = index === 0 ? null : sortedBlogs[index - 1].id
+      const nextBlogId = index === sortedBlogs.length - 1 ? null : sortedBlogs[index + 1].id
+      const slug = generateSlug(blog.attributes.Title)
 
       createPage({
-        path: post.fields.slug,
+        path: `/article/${blog.attributes.date}/${slug}`,
         component: blogPost,
         context: {
-          id: post.id,
-          previousPostId,
-          nextPostId,
+          id: blog.attributes.articleId,
+          previousBlogId,
+          nextBlogId,
+          blog: blog // Pass entire blog data to the template
         },
       })
     })
+
+  } catch (error) {
+    reporter.panicOnBuild(
+      `There was an error fetching blog posts from the API`,
+      error
+    )
   }
 }
 
-/**
- * @type {import('gatsby').GatsbyNode['onCreateNode']}
- */
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
-
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
-}
-
-/**
- * @type {import('gatsby').GatsbyNode['createSchemaCustomization']}
- */
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
-
-  // Explicitly define the siteMetadata {} object
-  // This way those will always be defined even if removed from gatsby-config.js
-
-  // Also explicitly define the Markdown frontmatter
-  // This way the "MarkdownRemark" queries will return `null` even when no
-  // blog posts are stored inside "content/blog" instead of returning an error
-  createTypes(`
-    type SiteSiteMetadata {
-      author: Author
-      siteUrl: String
-      social: Social
-    }
-
-    type Author {
-      name: String
-      summary: String
-    }
-
-    type Social {
-      twitter: String
-    }
-
-    type MarkdownRemark implements Node {
-      frontmatter: Frontmatter
-      fields: Fields
-    }
-
-    type Frontmatter {
-      title: String
-      description: String
-      date: Date @dateformat
-    }
-
-    type Fields {
-      slug: String
-    }
-  `)
-}
+// Remove the onCreateNode and createSchemaCustomization functions 
+// as we're now using REST API data directly

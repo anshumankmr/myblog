@@ -1,21 +1,18 @@
 steps:
-  - name: node
+  - name: node:18
     args:
       - install
+    dir: blog
     entrypoint: npm
-  - name: node
+  - name: node:18
     args:
       - run
       - build
+    dir: blog
     entrypoint: npm
-  - name: buildkite/puppeteer
-    args:
-      - npx
-      - scully
-      - '--scanRoutes'
   - name: gcr.io/cloud-builders/gsutil
     args:
       - cp
       - '-r'
-      - ./dist/static/*
+      - blog/public/*
       - 'gs://$_MY_BUCKET/'

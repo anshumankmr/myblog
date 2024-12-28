@@ -1,34 +1,13 @@
-/**
- * Bio component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/how-to/querying-data/use-static-query/
- */
-
-import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import React from "react"
 import { StaticImage } from "gatsby-plugin-image"
+import "./bio.css"
 
 const Bio = () => {
-  // const data = useStaticQuery(graphql`
-  //   query BioQuery {
-  //     site {
-  //       siteMetadata {
-  //         author {
-  //           name
-  //           summary
-  //         }
-  //         social {
-  //           twitter
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
-
-  // Set these values by editing "siteMetadata" in gatsby-config.js
-  const author = {name: "Anshuman Kumar"}
-  const social = "anshuman_kmr"
+  const author = {
+    name: "Anshuman Kumar",
+    summary: "who lives and works in Bengaluru, building useful things",
+  }
+  const social = { twitter: "anshuman_kmr" }
 
   return (
     <div className="bio">
@@ -36,7 +15,7 @@ const Bio = () => {
         className="bio-avatar"
         layout="fixed"
         formats={["auto", "webp", "avif"]}
-        src="../images/profile-pic.jpg"
+        src="https://storage.googleapis.com/www.anshumankumar.dev/assets/IMG_5144.JPG"
         width={50}
         height={50}
         quality={95}
@@ -44,10 +23,10 @@ const Bio = () => {
       />
       {author?.name && (
         <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}
-          {` `}
+          Written by <strong>{author.name}</strong> {author?.summary}
           <a href={`https://twitter.com/${social?.twitter || ``}`}>
-            You should follow me on Twitter
+            {" "}
+            You should follow him on Twitter
           </a>
         </p>
       )}

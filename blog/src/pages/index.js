@@ -1,128 +1,53 @@
-import * as React from "react"
-import { Link } from "gatsby"
-import axios from 'axios'
+import React from 'react';
+import { Link } from 'gatsby';
+import Layout from '../components/layout';
+import Header from '../components/header';
+import Seo from '../components/seo';
+import './landing.css';
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-
-const BlogPostTemplate = ({ location }) => {
-  const [post, setPost] = React.useState(null)
-  const [loading, setLoading] = React.useState(true)
-  const [error, setError] = React.useState(null)
-  const siteTitle = "Your Site Title"
-
-  React.useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        // Extract the date and title from the URL
-        const pathParts = location.pathname.split('/')
-        const date = pathParts[2] // Assuming URL structure is /article/date/title
-        const slug = pathParts[3]
-
-        const response = await axios.get('https://glass-approach-204914.uc.r.appspot.com/api/blogs')
-        const blogs = response.data.data
-
-        // Find the matching blog post
-        const matchedPost = blogs.find(blog => {
-          const blogDate = blog.attributes.date
-          const blogSlug = generateSlug(blog.attributes.Title)
-          return blogDate === date && blogSlug === slug
-        })
-
-        if (!matchedPost) {
-          throw new Error('Blog post not found')
-        }
-
-        setPost(matchedPost.attributes)
-      } catch (error) {
-        setError(error.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchPost()
-  }, [location.pathname])
-
-  if (loading) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <p>Loading blog post...</p>
-      </Layout>
-    )
-  }
-
-  if (error) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <p>Error: {error}</p>
-        <Link to="/">Go back to home</Link>
-      </Layout>
-    )
-  }
-
-  if (!post) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <p>Blog post not found</p>
-        <Link to="/">Go back to home</Link>
-      </Layout>
-    )
-  }
-
+const IndexPage = ({ location }) => {
   return (
-    <Layout location={location} title={siteTitle}>
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <header>
-          <h1 itemProp="headline">{post.Title}</h1>
-          <p>{post.date}</p>
-        </header>
-        <section
-          dangerouslySetInnerHTML={{ __html: post.Content }}
-          itemProp="articleBody"
-        />
-        <hr />
-        <footer>
-          <Bio />
-        </footer>
-      </article>
-      <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            <Link to="/" rel="prev">
-              ← Back to all posts
-            </Link>
-          </li>
-        </ul>
-      </nav>
-    </Layout>
-  )
-}
+    <>
+      <Header />
+      <Layout location={location}>
+        <div className="landing-container">
+          <section className="introduction">
+            <h1 className="headline">
+              AI Consultant, Code Enthusiast, and Life Explorer – Insights on Tech, Culture, and Everything In Between
+            </h1>
+            
+            <div className="bio-content">
+              <p>
+                Hey, I'm Anshuman Kumar, an AI Consultant based in Bengaluru. I work on building cutting-edge AI solutions, 
+                specializing in everything from Generative AI to ML-driven conversation agents.
+              </p>
+              
+              <p>
+                When I'm not architecting smart systems, you'll find me diving into the world of memes, movies, and random musings.
+              </p>
+              
+              <p>
+                On this blog, I share my thoughts on tech innovations, fitness (yes, I love cycling and marathons), 
+                and a bit of everything else that keeps life interesting. Join me as I explore the intersection of code, 
+                culture, and curiosity.
+              </p>
+            </div>
 
-// Function to generate a URL-friendly slug (same as in index.js)
-function generateSlug(title) {
-  return title
-    .toLowerCase()
-    .replace(/[\s\(\)]+/g, '-')
-    .replace(/[^\w-]+/g, '')
-    .replace(/--+/g, '-')
-    .replace(/^-+/, '')
-    .replace(/-+$/, '')
-}
+            <div className="cta-buttons">
+              <Link to="/blogs" className="primary-button">
+                Read the Blog
+              </Link>
+              <Link to="/about" className="secondary-button">
+                More About Me
+              </Link>
+            </div>
+          </section>
+        </div>
+      </Layout>
+    </>
+  );
+};
 
-export default BlogPostTemplate
+export default IndexPage;
 
-export const Head = () => <Seo title="Blog Post" />
+export const Head = () => <Seo title="Home" />;

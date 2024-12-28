@@ -7,6 +7,8 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
+const axios = require('axios');
+
 module.exports = {
   siteMetadata: {
     title: `Anshuman's Blog`,
@@ -75,34 +77,33 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.nodes.map(node => {
-                return Object.assign({}, node.frontmatter, {
-                  description: node.excerpt,
-                  date: node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + node.fields.slug,
-                  custom_elements: [{ "content:encoded": node.html }],
-                })
-              })
+            serialize: async ({ query: { site } }) => {
+              const response = await axios.get('https://glass-approach-204914.uc.r.appspot.com/api/blogs');
+              const blogs = response.data.data;
+
+              const sortedBlogs = blogs.sort((a, b) =>
+                new Date(b.attributes.date).getTime() - new Date(a.attributes.date).getTime()
+              );
+
+              return sortedBlogs.map(blog => ({
+                title: blog.attributes.Title,
+                description: blog.attributes.Excerpt || '',
+                date: blog.attributes.date,
+                url: `${site.siteMetadata.siteUrl}/article/${blog.attributes.date}/${generateSlug(blog.attributes.Title)}`,
+                guid: `${site.siteMetadata.siteUrl}/article/${blog.attributes.date}/${generateSlug(blog.attributes.Title)}`,
+              }));
             },
-            query: `{
-              allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
-                nodes {
-                  excerpt
-                  html
-                  fields {
-                    slug
-                  }
-                  frontmatter {
-                    title
-                    date
+            query: `
+              {
+                site {
+                  siteMetadata {
+                    siteUrl
                   }
                 }
               }
-            }`,
+            `,
             output: "/rss.xml",
-            title: "Gatsby Starter Blog RSS Feed",
+            title: "Anshuman's Blog RSS Feed",
           },
         ],
       },
@@ -122,4 +123,14 @@ module.exports = {
       },
     },
   ],
+};
+
+function generateSlug(title) {
+  return title
+    .toLowerCase()
+    .replace(/[\s\(\)]+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
 }

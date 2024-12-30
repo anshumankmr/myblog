@@ -315,7 +315,12 @@ a:focus {
 .blog-post-nav ul {
   margin: var(--spacing-0);
 }
-
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem 0;
+}
 .gatsby-highlight {
   margin-bottom: var(--spacing-8);
 }

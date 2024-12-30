@@ -11,28 +11,28 @@ const About = ({ location }) => {
       <Header />
       <Layout location={location}>
         <div className="about-container">
-          <section className="introduction">
-            <h1 className="headline">
-              AI Consultant, Code Enthusiast, and Life Explorer – Insights on Tech, Culture, and Everything In Between
-            </h1>
+          <h1 className="headline">
+            AI Consultant, Code Enthusiast, and Life Explorer – Insights on Tech, Culture, and Everything In Between
+          </h1>
 
-            <div className="bio-content">
-              <p>
-                Hey, I'm Anshuman Kumar, an AI Consultant based in Bengaluru. I work on building cutting-edge AI solutions, 
-                specializing in everything from Generative AI to ML-driven conversation agents.
-              </p>
+          <div className="bio-content">
+            <p>
+              Hey, I'm Anshuman Kumar, an AI Consultant based in Bengaluru. I work on building cutting-edge AI solutions, 
+              specializing in everything from Generative AI to ML-driven conversation agents.
+            </p>
 
-              <p>
-                When I'm not architecting smart systems, you'll find me diving into the world of memes, movies, and random musings.
-              </p>
+            <p>
+              When I'm not architecting smart systems, you'll find me diving into the world of memes, movies, and random musings.
+            </p>
 
-              <p>
-                On this blog, I share my thoughts on tech innovations, fitness (yes, I love cycling and marathons), 
-                and a bit of everything else that keeps life interesting. Join me as I explore the intersection of code, 
-                culture, and curiosity.
-              </p>
-            </div>
+            <p>
+              On this blog, I share my thoughts on tech innovations, fitness (yes, I love cycling and marathons), 
+              and a bit of everything else that keeps life interesting. Join me as I explore the intersection of code, 
+              culture, and curiosity.
+            </p>
+          </div>
 
+          <div>
             <h3>Personal Skills</h3>
             <ul>
               <li>AI/ML: Generative AI, Prompt Engineering, Machine Learning (Scikit-learn, Keras)</li>
@@ -61,12 +61,12 @@ const About = ({ location }) => {
               <li>Strong contributions to open-source projects, including automating code tasks like unit tests and code fixes.</li>
             </ul>
 
-            <div>
+            <div className="cta-buttons">
               <Link to="/contact" className="primary-button">
                 Get in Touch
               </Link>
             </div>
-          </section>
+          </div>
         </div>
       </Layout>
     </>

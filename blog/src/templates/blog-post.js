@@ -8,112 +8,142 @@ import Seo from "../components/seo"
 import Header from "../components/header"
 
 const BlogPostTemplate = ({ pageContext, location }) => {
-  const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const { id, previous, next } = pageContext;
+ const [post, setPost] = useState(null);
+ const [loading, setLoading] = useState(true);
+ const [error, setError] = useState(null);
+ const { id, previous, next } = pageContext;
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const response = await axios.get(
-          `https://glass-approach-204914.uc.r.appspot.com/api/blogs?filters[articleId][$eq]=${id}`
-        );
-        if (response.data.data.length > 0) {
-          setPost(response.data.data[0]);
-        } else {
-          setError("Post not found");
-        }
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+ useEffect(() => {
+   const fetchPost = async () => {
+     const cacheKey = `blog_${id}`;
+     const cached = localStorage.getItem(cacheKey);
+     
+     if (cached) {
+       const { data, timestamp } = JSON.parse(cached);
+       const isExpired = Date.now() - timestamp > 30 * 24 * 60 * 60 * 1000;
+       
+       if (!isExpired) {
+         setPost(data);
+         setLoading(false);
+         return;
+       }
+     }
 
-    fetchPost();
-  }, [id]);
+     try {
+       const response = await axios.get(
+         `https://glass-approach-204914.uc.r.appspot.com/api/blogs?filters[articleId][$eq]=${id}`
+       );
+       if (response.data.data.length > 0) {
+         const postData = response.data.data[0];
+         localStorage.setItem(cacheKey, JSON.stringify({
+           data: postData,
+           timestamp: Date.now()
+         }));
+         setPost(postData);
+       } else {
+         setError("Post not found");
+       }
+     } catch (err) {
+       setError(err.message);
+     } finally {
+       setLoading(false);
+     }
+   };
 
-  if (loading) return (
-    <>
-      <Header />
-      <Layout location={location}><p>Loading...</p></Layout>
-    </>
-  );
-  
-  if (error) return (
-    <>
-      <Header />
-      <Layout location={location}><p>Error: {error}</p></Layout>
-    </>
-  );
-  
-  if (!post) return (
-    <>
-      <Header />
-      <Layout location={location}><p>Post not found</p></Layout>
-    </>
-  );
+   fetchPost();
+ }, [id]);
 
-  return (
-    <>
-      <Header />
-      <Layout location={location} title={post.attributes.Title}>
-        <article
-          className="blog-post"
-          itemScope
-          itemType="http://schema.org/Article"
-        >
-          <header>
-            <h1 itemProp="headline">{post.attributes.Title}</h1>
-            <p>{new Date(post.attributes.date).toLocaleDateString()}</p>
-          </header>
-          <section className="blog-content" itemProp="articleBody">
-            <ReactMarkdown>{post.attributes.Content}</ReactMarkdown>
-          </section>
-          <hr />
-          <footer>
-            <Bio />
-          </footer>
-        </article>
-        <nav className="blog-post-nav">
-          <ul
-            style={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              justifyContent: `space-between`,
-              listStyle: `none`,
-              padding: 0,
-            }}
-          >
-            <li>
-              {previous && (
-                <Link to={previous.slug} rel="prev">
-                  ← {previous.title}
-                </Link>
-              )}
-            </li>
-            <li>
-              {next && (
-                <Link to={next.slug} rel="next">
-                  {next.title} →
-                </Link>
-              )}
-            </li>
-          </ul>
-        </nav>
-      </Layout>
-    </>
-  );
+ if (loading) return (
+   <>
+     <Header />
+     <Layout location={location}><p>Loading...</p></Layout>
+   </>
+ );
+ 
+ if (error) return (
+   <>
+     <Header />
+     <Layout location={location}><p>Error: {error}</p></Layout>
+   </>
+ );
+ 
+ if (!post) return (
+   <>
+     <Header />
+     <Layout location={location}><p>Post not found</p></Layout>
+   </>
+ );
+
+ return (
+   <>
+     <Header />
+     <Layout location={location} title={post.attributes.Title}>
+       <article
+         className="blog-post"
+         itemScope
+         itemType="http://schema.org/Article"
+       >
+         <header>
+           <h1 itemProp="headline">{post.attributes.Title}</h1>
+           <p>{new Date(post.attributes.date).toLocaleDateString()}</p>
+         </header>
+         <section 
+           className="blog-content" 
+           itemProp="articleBody"
+           style={{
+             '& img': {
+               maxWidth: '100%',
+               height: 'auto',
+               display: 'block',
+               margin: '1rem 0'
+             }
+           }}
+         >
+           <ReactMarkdown>{post.attributes.Content}</ReactMarkdown>
+         </section>
+         <hr />
+         <footer>
+           <Bio />
+         </footer>
+       </article>
+       <nav className="blog-post-nav">
+         <ul
+           style={{
+             display: `flex`,
+             flexWrap: `wrap`,
+             justifyContent: `space-between`,
+             listStyle: `none`,
+             padding: 0,
+           }}
+         >
+           <li>
+             {previous && (
+               <Link to={previous.slug} rel="prev">
+                 ← {previous.title}
+               </Link>
+             )}
+           </li>
+           <li>
+             {next && (
+               <Link to={next.slug} rel="next">
+                 {next.title} →
+               </Link>
+             )}
+           </li>
+         </ul>
+       </nav>
+     </Layout>
+   </>
+ );
 };
 
 export const Head = ({ pageContext }) => {
-  return (
-    <Seo
-      title={pageContext?.blog?.attributes?.Title || "Blog Post"}
-      description={pageContext?.blog?.attributes?.Content?.substring(0, 200) || ""}
-    />
-  );
+ return (
+   <Seo
+     title={pageContext?.blog?.attributes?.Title || "Blog Post"}
+     description={pageContext?.blog?.attributes?.Content?.substring(0, 200) || ""}
+   />
+ );
 };
 
 export default BlogPostTemplate;

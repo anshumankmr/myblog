@@ -20,7 +20,7 @@ const Header = () => {
           <a href="https://github.com" target="_blank" rel="noopener noreferrer">
             <FaGithub />
           </a>
-          <Link to="/assets/AnshumanKumarResumeDecember2024.pdf">Resume</Link>
+          <Link to="https://drive.google.com/file/d/1ioGDUrQ6299VEw7-2QaC4kcNxIuaGGai/view?usp=sharing">Resume</Link>
         </nav>
       </div>
     </header>

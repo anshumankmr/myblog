@@ -41,10 +41,15 @@ You can browse the blog posts directly in the repository or run a local server t
 
 3. Open your browser and navigate to `http://localhost:4000`.
 
+
 ## Contributing
 
-Contributions are welcome! If you have a blog post idea or want to improve the existing content, feel free to open an issue or submit a pull request.
+Contributions are welcome! If you want to improve the existing content, feel free to open an issue or submit a pull request.
 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+
+## Known Issues
+-> Route discovery is a bit tricky. New blogs don't automatically get indexed. 

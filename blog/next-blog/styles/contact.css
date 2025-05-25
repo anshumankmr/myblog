@@ -1,0 +1,50 @@
+/* contact.css */
+
+/* General Styles */
+.contact {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .contact-me {
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+  }
+  
+  .contact-me-content h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .contact-me p {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 20px 0;
+  }
+  
+  #contact-me-button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  #contact-me-button a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  #contact-me-button:hover {
+    background-color: #0056b3;
+  }
+  

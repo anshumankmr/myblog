@@ -1,0 +1,65 @@
+/* src/components/Header.css */
+
+header {
+    padding: 20px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .header-title h1 {
+    font-size: 3em;
+    margin: 0;
+  }
+  
+  .header-title .bio {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .bio-avatar {
+    margin-right: 10px;
+  }
+  
+  .bio p {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Increased gap between menu items for more space */
+    margin-top: 20px;
+    justify-content: center; /* Center the menu items horizontally */
+  }
+  
+  .menu a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu a:hover {
+    color: #007acc;
+  }
+  
+  .menu svg {
+    vertical-align: middle;
+  }
+  
+  /* Additional padding and margin for better spacing */
+  .menu a, .menu a:visited {
+    padding: 5px 10px;
+  }
+  
+  .header-title {
+    text-align: center; /* Center align the header title */
+  }
+  
+  /* Adjust profile picture */
+  .bio-avatar {
+    border-radius: 50%;
+  }

@@ -1,18 +1,56 @@
 steps:
-  - name: node:18
+  # 1. Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
     args:
-      - install
-    dir: blog
-    entrypoint: npm
-  - name: node:18
+      [
+        'build',
+        '-t',
+        'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest', # Tag with project ID and service name
+        '.', # Docker context
+        '-f',
+        'blog/next-blog/Dockerfile', # Path to the Dockerfile
+      ]
+    id: 'Build Docker Image'
+
+  # 2. Push the Docker image to Google Container Registry (GCR)
+  #    (Artifact Registry is preferred for new projects, but GCR is simpler for this example)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest']
+    id: 'Push to GCR'
+    waitFor: ['Build Docker Image']
+
+  # 3. Deploy to Google Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
     args:
-      - run
-      - build
-    dir: blog
-    entrypoint: npm
-  - name: gcr.io/cloud-builders/gsutil
-    args:
-      - cp
-      - '-r'
-      - blog/public/*
-      - 'gs://$_MY_BUCKET/'
+      [
+        'run',
+        'deploy',
+        '$_SERVICE_NAME', # Cloud Run service name (e.g., anshuman-blog)
+        '--image',
+        'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
+        '--region',
+        '$_DEPLOY_REGION', # e.g., us-central1, asia-southeast1
+        '--platform',
+        'managed', # Use 'managed' for serverless, 'gke' for Cloud Run on GKE
+        '--allow-unauthenticated', # Make the service publicly accessible
+        '--port', 
+        '3000', # Port Next.js app listens on (matches EXPOSE in Dockerfile)
+        # '--set-env-vars', 'KEY1=VALUE1,KEY2=VALUE2', # If you need to set environment variables
+      ]
+    id: 'Deploy to Cloud Run'
+    waitFor: ['Push to GCR']
+
+# Images to push to GCR (optional, but good practice)
+images:
+  - 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest'
+
+# Substitutions (define these in your Cloud Build trigger or pass them during manual build)
+# You can also hardcode them for simplicity if not using triggers, but variables are better.
+substitutions:
+  _SERVICE_NAME: 'anshuman-blog' # Replace with your desired Cloud Run service name
+  _DEPLOY_REGION: 'us-central1' # Replace with your desired GCP region
+  # _MY_BUCKET: 'your-bucket-name' # This is from the old config, no longer needed for Cloud Run app
+
+options:
+  logging: CLOUD_LOGGING_ONLY

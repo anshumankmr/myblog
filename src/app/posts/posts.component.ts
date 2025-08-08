@@ -1,19 +1,22 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
-export class PostsComponent {
+export class PostsComponent implements OnInit {
   blogs: any[] = [];
-  loading: boolean = false;
-  apiError: boolean = false;
-  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {
+  displayedBlogs: any[] = [];
+  displayCount = 5;
+  loading = false;
+  apiError = false;
+  constructor(private http: HttpClient, private router: Router) {}
+
+  ngOnInit(): void {
     this.getBlogs();
   }
   custom_sort(a:any, b: any) : number {
@@ -36,11 +39,25 @@ export class PostsComponent {
     }
   getBlogs() {
     this.http.get('https://glass-approach-204914.uc.r.appspot.com/api/blogs').subscribe((data: any) => {
-      this.blogs = data.data;
+      this.blogs = data.data.sort(this.custom_sort);
+      this.displayedBlogs = this.blogs.slice(0, this.displayCount);
       this.loading = true;
-      this.blogs = this.blogs.sort(this.custom_sort);
     }, err => {
       this.apiError = true;
     })
+  }
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2) {
+      this.loadMore();
+    }
+  }
+
+  private loadMore(): void {
+    if (this.displayCount < this.blogs.length) {
+      this.displayCount += 5;
+      this.displayedBlogs = this.blogs.slice(0, this.displayCount);
+    }
   }
 }

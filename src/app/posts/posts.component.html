@@ -1,5 +1,5 @@
 <div class="blog-component" *ngIf="this.loading">
-  <mat-card *ngFor="let blog of blogs">
+  <mat-card *ngFor="let blog of displayedBlogs">
     <mat-card-header>
       <mat-card-title class="card-header-text" (click)="redirectTo(blog)"><h3>{{ blog.attributes.Title }}</h3></mat-card-title>
       <mat-card-subtitle><b>Published On</b>: {{ blog.attributes.date }}</mat-card-subtitle>

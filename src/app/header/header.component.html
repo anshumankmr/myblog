@@ -1,27 +1,21 @@
 <section id="navbar">
-  <nav>
-    <ul class="horizontal-navbar-list">
-      <li>
-        <a href="/"> <span class="fa-solid fa-atom"></span>Anshuman Kumar</a>
-      </li>
-      <li><a href="/blogs">Blogs</a></li>
-      <li><a href="/aboutme">About</a></li>
-      <li><a href="/contactme">Contact</a></li>
-      <li>
-        <a href="https://www.linkedin.com/in/anshumankumarcs/">
-          <span class="fa-brands fa-linkedin-in" aria-hidden="true"></span>
-          <span class="sr-only">LinkedIn</span>
-        </a>
-      </li>
-      <li>
-        <a href="https://github.com/anshumankmr">
-          <span class="fa-brands fa-github" aria-hidden="true"></span>
-          <span class="sr-only">Github</span>
-        </a>
-      </li>
-      <li>
-        <a href="../../assets/AnshumanKumarResumeDecember2024.pdf" class="button">Resume</a>
-      </li>
-    </ul>
-  </nav>
+  <mat-toolbar class="navbar">
+    <a routerLink="/" class="brand">
+      <span class="fa-solid fa-atom"></span> Anshuman Kumar
+    </a>
+    <span class="spacer"></span>
+    <a mat-button routerLink="/blogs">Blogs</a>
+    <a mat-button routerLink="/aboutme">About</a>
+    <a mat-button routerLink="/contactme">Contact</a>
+    <a mat-icon-button href="https://www.linkedin.com/in/anshumankumarcs/" aria-label="LinkedIn">
+      <span class="fa-brands fa-linkedin-in" aria-hidden="true"></span>
+    </a>
+    <a mat-icon-button href="https://github.com/anshumankmr" aria-label="Github">
+      <span class="fa-brands fa-github" aria-hidden="true"></span>
+    </a>
+    <a mat-raised-button color="accent" href="../../assets/AnshumanKumarResumeDecember2024.pdf" class="resume-button">Resume</a>
+    <button mat-icon-button (click)="toggleTheme()" [attr.aria-label]="isDark ? 'Switch to light mode' : 'Switch to dark mode'">
+      <mat-icon>{{ isDark ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+  </mat-toolbar>
 </section>

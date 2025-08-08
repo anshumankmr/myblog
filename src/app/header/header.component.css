@@ -1,0 +1,31 @@
+.navbar {
+  background: linear-gradient(90deg, var(--dkblue), var(--plum));
+  color: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.brand {
+  font-family: var(--sans);
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.navbar a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: var(--magenta);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.resume-button {
+  margin-right: 1rem;
+}

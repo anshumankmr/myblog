@@ -14,7 +14,6 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AboutmeComponent } from './aboutme/aboutme.component';
 import { AppComponent } from './app.component';
-import { PostsComponent } from './posts/posts.component';
 import { ContactmeComponent } from './contactme/contactme.component';
 import { MarkdownModule } from 'ngx-markdown';
 import { ArticleComponent } from './article/article.component';
@@ -26,7 +25,6 @@ import { ArticleComponent } from './article/article.component';
     HeaderComponent,
     FooterComponent,
     AboutmeComponent,
-    PostsComponent,
     ContactmeComponent,
     ArticleComponent,
   ],

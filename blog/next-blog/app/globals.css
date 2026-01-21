@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body text-text dark:text-gray-200 antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-bold text-heading dark:text-white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-primary transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 border-2 border-accent text-accent font-medium rounded-lg hover:bg-accent hover:text-white transition-colors duration-200;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent;
+  }
+
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200;
+  }
+}
+
+/* Prism.js code highlighting overrides */
+pre[class*='language-'] {
+  @apply rounded-lg !important;
+}
+
+code[class*='language-'] {
+  @apply text-sm;
+}
+
+/* Loading skeleton animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  @apply bg-gray-200 dark:bg-gray-700 rounded;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.dark .skeleton {
+  background: linear-gradient(
+    90deg,
+    #374151 25%,
+    #4b5563 50%,
+    #374151 75%
+  );
+  background-size: 200% 100%;
+}
+
+/* Dark mode prose overrides */
+.dark .prose {
+  --tw-prose-body: #e5e7eb;
+  --tw-prose-headings: #ffffff;
+  --tw-prose-links: #3291ff;
+  --tw-prose-bold: #ffffff;
+  --tw-prose-code: #e5e7eb;
+  --tw-prose-pre-bg: #1f2937;
+}

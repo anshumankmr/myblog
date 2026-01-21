@@ -1,18 +1,18 @@
 steps:
-  - name: node:18
+  - name: node:22
     args:
       - install
-    dir: blog
+    dir: blog/next-blog
     entrypoint: npm
-  - name: node:18
+  - name: node:22
     args:
       - run
       - build
-    dir: blog
+    dir: blog/next-blog
     entrypoint: npm
   - name: gcr.io/cloud-builders/gsutil
     args:
       - cp
       - '-r'
-      - blog/public/*
+      - blog/next-blog/out/*
       - 'gs://$_MY_BUCKET/'

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - develop
 
 permissions:
   id-token: write   # required for OIDC token exchange

@@ -1,18 +1,55 @@
-# JAMStack (Angular + Scully + Neon + Google Cloud)
+# My Blog
 
-Written using:
+Welcome to my blog repository! This is where I share my thoughts, tutorials, and projects related to software development and technology.
 
-1) Angular
-2) Scully
-3) Hosted on GCP
-4) Backend: Strapi as a Headless CMS
+## Table of Contents
 
-Visit it here at [anshumankumar.dev](https://www.anshumankumar.dev/)
+- [Introduction](#introduction)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Introduction
+
+This blog covers a wide range of topics including programming languages, frameworks, tools, and best practices. Whether you are a beginner or an experienced developer, you will find something useful here.
 
 ## Getting Started
-1) git clone https://github.com/anshumankmr/myblog
-2) cd myblog
-3) npm install --legacy-peer-deps
+
+To get started with the blog, clone the repository:
+
+```bash
+git clone https://github.com/yourusername/myblog.git
+cd myblog
+```
+
+## Usage
+
+You can browse the blog posts directly in the repository or run a local server to view them in your browser. To run a local server, you can use a static site generator like Jekyll or Hugo.
+
+### Using Jekyll
+
+1. Install Jekyll:
+  ```bash
+  gem install jekyll bundler
+  ```
+
+2. Build and serve the site:
+  ```bash
+  bundle exec jekyll serve
+  ```
+
+3. Open your browser and navigate to `http://localhost:4000`.
 
 
-I have also written a blog about the solution architecture of this particular ... blog. The link is [here](https://www.anshumankumar.dev/article/2023-08-31/building-a-blog-with-cloud-and-coding?articleId=b005d32b-5eef-4804-a0ca-13f21c742daa). Please do check it out.
+## Contributing
+
+Contributions are welcome! If you want to improve the existing content, feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+
+## Known Issues
+-> Route discovery is a bit tricky. New blogs don't automatically get indexed. 

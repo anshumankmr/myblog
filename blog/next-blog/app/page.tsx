@@ -16,7 +16,7 @@ async function LatestIndex() {
   let posts: { id: string; title: string; date: string; excerpt: string; href: string }[] = [];
   try {
     const blogs = await getBlogs();
-    posts = blogs.slice(0, 4).map((b, i) => ({
+    posts = blogs.slice(0, 4).map((b) => ({
       id: b.id,
       title: b.attributes.Title,
       date: formatDate(b.attributes.date),
@@ -122,7 +122,7 @@ export default function Home() {
         borderTop: '1px solid var(--border-hairline)',
       }}>
         <Image
-          src="https://storage.cloud.google.com/www.anshumankumar.dev/profile_pic.jpg"
+          src="https://s3.us-east-1.amazonaws.com/www.anshumankumar.net/Image.jpeg"
           alt="Anshuman Kumar"
           width={160}
           height={200}

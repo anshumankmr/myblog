@@ -16,7 +16,7 @@ export default function Bio({ showTwitter = true }: BioProps) {
       borderBottom: '1px solid var(--border-hairline)',
     }}>
       <Image
-        src="https://storage.cloud.google.com/www.anshumankumar.dev/profile_pic.jpg"
+        src="https://s3.us-east-1.amazonaws.com/www.anshumankumar.net/Image.jpeg"
         alt="Anshuman Kumar"
         width={80}
         height={100}

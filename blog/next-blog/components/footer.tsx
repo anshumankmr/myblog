@@ -1,14 +1,53 @@
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const eyebrow: React.CSSProperties = {
+    margin: 0,
+    fontFamily: 'var(--font-ui)',
+    fontSize: 'var(--text-eyebrow)',
+    fontWeight: 500,
+    letterSpacing: 'var(--tracking-caps)',
+    textTransform: 'uppercase',
+    color: 'var(--text-meta)',
+  };
+
   return (
-    <footer className="bg-dark text-gray-400 py-8 mt-auto">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <p className="text-sm">
-          &copy; {currentYear} Anshuman Kumar. All rights reserved.
+    <footer
+      style={{
+        background: 'var(--surface-page)',
+        borderTop: '1px solid var(--border-hairline)',
+        padding: 'var(--space-16) 0 var(--space-12)',
+        marginTop: 'var(--space-24)',
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 'var(--container-wide)',
+          margin: '0 auto',
+          padding: '0 var(--space-8)',
+          display: 'grid',
+          gridTemplateColumns: '1fr auto 1fr',
+          alignItems: 'center',
+          gap: 'var(--space-6)',
+        }}
+      >
+        <p style={eyebrow}>
+          © {currentYear} · Anshuman Kumar
         </p>
-        <p className="text-xs mt-2 text-gray-500">
-          Built with Next.js and Tailwind CSS
+
+        <span
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontStyle: 'italic',
+            color: 'var(--text-muted)',
+            fontSize: '18px',
+          }}
+        >
+          fin.
+        </span>
+
+        <p style={{ ...eyebrow, textAlign: 'right' }}>
+          Bangalore · est. 2024
         </p>
       </div>
     </footer>

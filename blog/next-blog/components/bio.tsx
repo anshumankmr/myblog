@@ -6,26 +6,73 @@ interface BioProps {
 
 export default function Bio({ showTwitter = true }: BioProps) {
   return (
-    <div className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+    <div style={{
+      display: 'flex',
+      alignItems: 'flex-start',
+      gap: 'var(--space-6)',
+      padding: 'var(--space-6)',
+      background: 'var(--surface-sunken)',
+      borderTop: '1px solid var(--border-hairline)',
+      borderBottom: '1px solid var(--border-hairline)',
+    }}>
       <Image
         src="https://storage.cloud.google.com/www.anshumankumar.dev/profile_pic.jpg"
         alt="Anshuman Kumar"
         width={80}
-        height={80}
-        className="rounded-full"
+        height={100}
         unoptimized
+        style={{
+          width: '80px',
+          height: '100px',
+          objectFit: 'cover',
+          filter: 'grayscale(1) contrast(1.05)',
+          flexShrink: 0,
+        }}
       />
       <div>
-        <p className="font-heading font-bold text-heading dark:text-white">Anshuman Kumar</p>
-        <p className="text-text-light dark:text-gray-400 text-sm mt-1">
-          SWE III based in Bangalore, doing cool stuff with AI at scale.
+        <p style={{
+          margin: 0,
+          fontFamily: 'var(--font-ui)',
+          fontWeight: 600,
+          fontSize: 'var(--text-base)',
+          color: 'var(--text-heading)',
+        }}>
+          Anshuman Kumar
+        </p>
+        <p style={{
+          margin: 'var(--space-1) 0 0',
+          fontFamily: 'var(--font-ui)',
+          fontSize: 'var(--text-eyebrow)',
+          letterSpacing: 'var(--tracking-caps)',
+          textTransform: 'uppercase',
+          color: 'var(--text-meta)',
+        }}>
+          SWE III · Bangalore
+        </p>
+        <p style={{
+          margin: 'var(--space-3) 0 0',
+          fontFamily: 'var(--font-body)',
+          fontSize: 'var(--text-base)',
+          lineHeight: 'var(--leading-snug)',
+          color: 'var(--text-body)',
+        }}>
+          Building AI systems at scale. Writing about the things between the commits.
         </p>
         {showTwitter && (
           <a
             href="https://twitter.com/anshuman_kmr"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-accent hover:underline text-sm mt-1 inline-block"
+            style={{
+              display: 'inline-block',
+              marginTop: 'var(--space-2)',
+              fontFamily: 'var(--font-ui)',
+              fontSize: 'var(--text-eyebrow)',
+              letterSpacing: 'var(--tracking-caps)',
+              textTransform: 'uppercase',
+              color: 'var(--accent)',
+              textDecoration: 'none',
+            }}
           >
             @anshuman_kmr
           </a>

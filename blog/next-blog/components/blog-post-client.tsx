@@ -7,7 +7,7 @@ import useSWR from 'swr';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { getBlogByArticleId, blogsFetcher, type Blog } from '@/lib/api';
-import { formatDate, getDatePath, generateSlug } from '@/lib/utils';
+import { formatDate } from '@/lib/utils';
 import Bio from '@/components/bio';
 
 function BlogPostSkeleton() {
@@ -77,9 +77,7 @@ function BlogPostContent() {
   }
 
   const getPostUrl = (post: Blog) => {
-    const datePath = getDatePath(post.attributes.date);
-    const slug = generateSlug(post.attributes.Title);
-    return `/article/${datePath}/${slug}/?id=${post.attributes.articleId}`;
+    return `/article/?id=${post.attributes.articleId}`;
   };
 
   return (

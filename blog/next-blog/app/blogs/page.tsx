@@ -2,7 +2,7 @@
 
 import useSWR from 'swr';
 import { blogsFetcher, type Blog } from '@/lib/api';
-import { formatDate, getExcerpt } from '@/lib/utils';
+import { formatDate, getDatePath, generateSlug, getExcerpt } from '@/lib/utils';
 import Bio from '@/components/bio';
 import { PostListItem } from '@/components/blog/PostListItem';
 
@@ -80,7 +80,9 @@ export default function BlogsPage() {
         <ol style={{ margin: 0, padding: 0, listStyle: 'none', borderTop: '1px solid var(--ink-900)' }}>
           {blogs.map((blog, index) => {
             const { Title, date, Content, articleId } = blog.attributes;
-            const href = `/article/?id=${articleId}`;
+            const datePath = getDatePath(date);
+            const slug = generateSlug(Title);
+            const href = `/article/${datePath}/${slug}/?id=${articleId}`;
             const excerpt = getExcerpt(Content);
             return (
               <PostListItem

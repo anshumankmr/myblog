@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getBlogs } from '@/lib/api';
-import { formatDate, getExcerpt } from '@/lib/utils';
+import { formatDate, getDatePath, generateSlug, getExcerpt } from '@/lib/utils';
 
 const eyebrow: React.CSSProperties = {
   fontFamily: 'var(--font-ui)',
@@ -21,7 +21,7 @@ async function LatestIndex() {
       title: b.attributes.Title,
       date: formatDate(b.attributes.date),
       excerpt: getExcerpt(b.attributes.Content),
-      href: `/article/?id=${b.attributes.articleId}`,
+      href: `/article/${getDatePath(b.attributes.date)}/${generateSlug(b.attributes.Title)}/?id=${b.attributes.articleId}`,
     }));
   } catch {
     return null;

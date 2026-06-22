@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getBlogs } from '@/lib/api';
-import { formatDate, getDatePath, generateSlug, getExcerpt } from '@/lib/utils';
+import { getAllPosts } from '@/lib/content';
+import { formatDate, getExcerpt } from '@/lib/utils';
 
 const eyebrow: React.CSSProperties = {
   fontFamily: 'var(--font-ui)',
@@ -12,20 +12,14 @@ const eyebrow: React.CSSProperties = {
   color: 'var(--text-meta)',
 };
 
-async function LatestIndex() {
-  let posts: { id: string; title: string; date: string; excerpt: string; href: string }[] = [];
-  try {
-    const blogs = await getBlogs();
-    posts = blogs.slice(0, 4).map((b) => ({
-      id: b.id,
-      title: b.attributes.Title,
-      date: formatDate(b.attributes.date),
-      excerpt: getExcerpt(b.attributes.Content),
-      href: `/article/${getDatePath(b.attributes.date)}/${generateSlug(b.attributes.Title)}/?id=${b.attributes.articleId}`,
-    }));
-  } catch {
-    return null;
-  }
+function LatestIndex() {
+  const posts = getAllPosts().slice(0, 4).map((p) => ({
+    id: p.articleId,
+    title: p.title,
+    date: formatDate(p.date),
+    excerpt: getExcerpt(p.content),
+    href: `/article/${p.date}/${p.slug}/`,
+  }));
 
   if (!posts.length) return null;
 

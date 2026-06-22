@@ -28,6 +28,10 @@ jobs:
         working-directory: blog/next-blog
         run: npm ci
 
+      - name: Fetch content from Strapi
+        working-directory: blog/next-blog
+        run: node scripts/fetch-content.mjs
+
       - name: Build
         working-directory: blog/next-blog
         run: npm run build

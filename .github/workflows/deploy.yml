@@ -5,6 +5,8 @@ on:
     branches:
       - master
       - develop
+  repository_dispatch:
+    types: [strapi-publish]
 
 permissions:
   id-token: write   # required for OIDC token exchange

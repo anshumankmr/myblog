@@ -45,7 +45,7 @@ const IndexPage = ({ location }) => {
           return;
         }
 
-        const response = await axios.get('https://glass-approach-204914.uc.r.appspot.com/api/blogs');
+        const response = await axios.get('https://anshumankmr.github.io/generated/content.json');
         const sortedPosts = response.data.data.sort((a, b) => 
           new Date(b.attributes.date) - new Date(a.attributes.date)
         );

@@ -7,7 +7,7 @@ exports.createPages = async ({ actions, reporter }) => {
   const { createPage } = actions
 
   try {
-    const response = await axios.get('https://glass-approach-204914.uc.r.appspot.com/api/blogs')
+    const response = await axios.get('https://anshumankmr.github.io/generated/content.json')
     const blogs = response.data.data
     
     const sortedBlogs = blogs.sort((a, b) => 

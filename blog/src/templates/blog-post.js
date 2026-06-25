@@ -29,12 +29,14 @@ const BlogPostTemplate = ({ pageContext, location }) => {
        }
      }
 
-     try {
-       const response = await axios.get(
-         `https://glass-approach-204914.uc.r.appspot.com/api/blogs?filters[articleId][$eq]=${id}`
-       );
-       if (response.data.data.length > 0) {
-         const postData = response.data.data[0];
+      try {
+        const response = await axios.get(
+          'https://anshumankmr.github.io/generated/content.json'
+        );
+        const postData = response.data.data.find(
+          p => p.attributes.articleId === id
+        );
+        if (postData) {
          localStorage.setItem(cacheKey, JSON.stringify({
            data: postData,
            timestamp: Date.now()

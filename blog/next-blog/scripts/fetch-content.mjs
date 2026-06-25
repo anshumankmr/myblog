@@ -1,7 +1,7 @@
 import { writeFileSync, mkdirSync, readdirSync, unlinkSync } from 'fs';
 import { join } from 'path';
 
-const API_BASE = 'https://glass-approach-204914.uc.r.appspot.com/api';
+const API_BASE = 'https://anshumankmr.github.io/generated';
 const OUT_DIR = new URL('../content/blogs', import.meta.url).pathname;
 
 function generateSlug(title) {
@@ -19,8 +19,8 @@ function getDatePath(dateString) {
 }
 
 async function main() {
-  const res = await fetch(`${API_BASE}/blogs`);
-  if (!res.ok) throw new Error(`Strapi returned ${res.status}`);
+  const res = await fetch(`${API_BASE}/content.json`);
+  if (!res.ok) throw new Error(`Failed to fetch content: ${res.status}`);
   const { data: blogs } = await res.json();
 
   mkdirSync(OUT_DIR, { recursive: true });
@@ -46,7 +46,7 @@ async function main() {
     writeFileSync(join(OUT_DIR, `${datePath}-${slug}.md`), fm + '\n' + Content, 'utf8');
   }
 
-  console.log(`✓ Fetched ${blogs.length} posts from Strapi → content/blogs/`);
+  console.log(`✓ Fetched ${blogs.length} posts → content/blogs/`);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

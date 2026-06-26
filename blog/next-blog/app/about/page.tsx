@@ -87,7 +87,7 @@ export default function AboutPage() {
         paddingBottom: 'var(--space-12)',
       }}>
         <Image
-          src="https://s3.us-east-1.amazonaws.com/www.anshumankumar.net/Image.jpeg"
+          src="https://avatars.githubusercontent.com/u/24219264?v=4"
           alt="Anshuman Kumar"
           width={260}
           height={340}

@@ -116,7 +116,7 @@ export default function Home() {
         borderTop: '1px solid var(--border-hairline)',
       }}>
         <Image
-          src="https://s3.us-east-1.amazonaws.com/www.anshumankumar.net/Image.jpeg"
+          src="https://avatars.githubusercontent.com/u/24219264?v=4"
           alt="Anshuman Kumar"
           width={160}
           height={200}

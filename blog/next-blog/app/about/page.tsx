@@ -103,7 +103,7 @@ export default function AboutPage() {
         <div>
           <p style={{
             margin: 0,
-            fontFamily: 'var(--font-body)',
+            fontFamily: 'var(--font-ui)',
             fontSize: 'var(--text-xl)',
             lineHeight: 'var(--leading-snug)',
             color: 'var(--text-heading)',
@@ -124,7 +124,7 @@ export default function AboutPage() {
           </p>
           <p style={{
             margin: 'var(--space-5) 0 0',
-            fontFamily: 'var(--font-body)',
+            fontFamily: 'var(--font-ui)',
             fontSize: 'var(--text-lg)',
             lineHeight: 'var(--leading-relaxed)',
             color: 'var(--text-body)',
@@ -155,7 +155,7 @@ export default function AboutPage() {
                 color: 'var(--text-heading)',
               }}>{s.category}</span>
               <span style={{
-                fontFamily: 'var(--font-body)',
+                fontFamily: 'var(--font-ui)',
                 fontSize: 'var(--text-base)',
                 color: 'var(--text-body)',
                 lineHeight: 'var(--leading-snug)',
@@ -173,7 +173,7 @@ export default function AboutPage() {
               breakInside: 'avoid',
               padding: 'var(--space-3) 0',
               borderBottom: '1px solid var(--border-hairline)',
-              fontFamily: 'var(--font-body)',
+              fontFamily: 'var(--font-ui)',
               fontSize: 'var(--text-base)',
               color: 'var(--text-body)',
             }}>{h}</li>
@@ -199,7 +199,7 @@ export default function AboutPage() {
                 fontVariantNumeric: 'tabular-nums',
               }}>{a.yr}</span>
               <span style={{
-                fontFamily: 'var(--font-body)',
+                fontFamily: 'var(--font-ui)',
                 fontSize: 'var(--text-lg)',
                 lineHeight: 'var(--leading-snug)',
                 color: 'var(--text-body)',

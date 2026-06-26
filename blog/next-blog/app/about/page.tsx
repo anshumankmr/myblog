@@ -19,7 +19,7 @@ const eyebrow: React.CSSProperties = {
 const skills = [
   { category: 'AI/ML',          items: 'Generative AI, Prompt Engineering, Machine Learning (Scikit-learn, Keras)' },
   { category: 'Cloud',          items: 'AWS, GCP, Vertex AI, Kubernetes' },
-  { category: 'Bot Development',items: 'Dialogflow, RASA' },
+  { category: 'Bot Development',items: '' },
   { category: 'Languages',      items: 'Python, JavaScript' },
   { category: 'CI/CD',          items: 'GitLab CI, GitHub Actions' },
   { category: 'Databases',      items: 'Postgres, MySQL, Firestore' },

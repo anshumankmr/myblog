@@ -1,3 +1,6 @@
+# CMS content — generated at build time, not committed
+content/blogs/
+
 # Dependencies
 node_modules/
 

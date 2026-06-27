@@ -1,91 +1,65 @@
-'use client';
-
-import Link from 'next/link';
-import useSWR from 'swr';
-import { blogsFetcher, type Blog } from '@/lib/api';
-import { formatDate, getDatePath, generateSlug, getExcerpt } from '@/lib/utils';
+import { getAllPosts } from '@/lib/content';
+import { formatDate, getExcerpt } from '@/lib/utils';
 import Bio from '@/components/bio';
+import { PostListItem } from '@/components/blog/PostListItem';
 
-function BlogSkeleton() {
-  return (
-    <div className="space-y-6">
-      {[1, 2, 3].map((i) => (
-        <article key={i} className="border-b border-gray-200 pb-6">
-          <div className="skeleton h-7 w-3/4 mb-2" />
-          <div className="skeleton h-4 w-32 mb-3" />
-          <div className="skeleton h-4 w-full mb-2" />
-          <div className="skeleton h-4 w-2/3" />
-        </article>
-      ))}
-    </div>
-  );
-}
-
-function BlogCard({ blog }: { blog: Blog }) {
-  const { Title, date, Content, articleId } = blog.attributes;
-  const datePath = getDatePath(date);
-  const slug = generateSlug(Title);
-  const href = `/article/${datePath}/${slug}/?id=${articleId}`;
-  const excerpt = getExcerpt(Content);
-
-  return (
-    <article className="border-b border-gray-200 pb-6 last:border-0">
-      <Link href={href} className="group block">
-        <h2 className="text-xl sm:text-2xl font-heading font-bold text-heading group-hover:text-accent transition-colors">
-          {Title}
-        </h2>
-      </Link>
-      <time className="text-sm text-text-light block mt-1">
-        {formatDate(date)}
-      </time>
-      <p className="mt-3 text-text-light leading-relaxed">{excerpt}</p>
-      <Link
-        href={href}
-        className="inline-block mt-3 text-accent hover:text-primary font-medium transition-colors"
-      >
-        Read more &rarr;
-      </Link>
-    </article>
-  );
-}
+const eyebrow: React.CSSProperties = {
+  fontFamily: 'var(--font-ui)',
+  fontSize: 'var(--text-eyebrow)',
+  fontWeight: 500,
+  letterSpacing: 'var(--tracking-caps)',
+  textTransform: 'uppercase',
+  color: 'var(--text-meta)',
+};
 
 export default function BlogsPage() {
-  const { data: blogs, error, isLoading } = useSWR<Blog[]>(
-    'blogs',
-    blogsFetcher,
-    {
-      revalidateOnFocus: true,
-      refreshInterval: 300000, // 5 minutes
-    }
-  );
+  const posts = getAllPosts();
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl sm:text-4xl font-heading font-bold text-heading mb-8">
-        All Posts
+    <div style={{ maxWidth: 'var(--container-wide)', margin: '0 auto', padding: 'var(--space-16) var(--space-8) var(--space-24)' }}>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+        <span style={{ width: '40px', height: '1px', background: 'var(--ink-400)', display: 'inline-block' }} />
+        <span style={eyebrow}>The Index · {posts.length} essays</span>
+      </div>
+
+      <h1 style={{
+        margin: 'var(--space-6) 0 var(--space-16)',
+        fontFamily: 'var(--font-display)',
+        fontStyle: 'italic',
+        fontWeight: 400,
+        fontSize: 'clamp(56px, 9vw, 120px)',
+        lineHeight: 'var(--leading-display)',
+        letterSpacing: '-0.02em',
+        color: 'var(--text-display)',
+      }}>
+        All the writing,<br />
+        chronological.
       </h1>
 
-      {isLoading && <BlogSkeleton />}
-
-      {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
-          <p>Failed to load blog posts. Please try again later.</p>
-        </div>
-      )}
-
-      {blogs && blogs.length > 0 && (
-        <div className="space-y-8">
-          {blogs.map((blog) => (
-            <BlogCard key={blog.id} blog={blog} />
+      {posts.length > 0 && (
+        <ol style={{ margin: 0, padding: 0, listStyle: 'none', borderTop: '1px solid var(--ink-900)' }}>
+          {posts.map((post, index) => (
+            <PostListItem
+              key={post.articleId}
+              n={index + 1}
+              title={post.title}
+              date={formatDate(post.date)}
+              excerpt={getExcerpt(post.content)}
+              href={`/article/${post.date}/${post.slug}/`}
+              last={index === posts.length - 1}
+            />
           ))}
-        </div>
+        </ol>
       )}
 
-      {blogs && blogs.length === 0 && (
-        <p className="text-text-light">No blog posts yet. Check back soon!</p>
+      {posts.length === 0 && (
+        <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', fontSize: 'var(--text-lg)' }}>
+          No essays yet. Check back soon.
+        </p>
       )}
 
-      <div className="mt-12">
+      <div style={{ marginTop: 'var(--space-16)' }}>
         <Bio />
       </div>
     </div>

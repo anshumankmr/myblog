@@ -1,4 +1,4 @@
-const API_BASE = 'https://glass-approach-204914.uc.r.appspot.com/api';
+const API_BASE = 'https://anshumankmr.github.io/generated';
 
 export interface BlogAttributes {
   articleId: string;
@@ -8,7 +8,7 @@ export interface BlogAttributes {
 }
 
 export interface Blog {
-  id: string;
+  id: number;
   attributes: BlogAttributes;
 }
 
@@ -16,12 +16,8 @@ export interface BlogsResponse {
   data: Blog[];
 }
 
-export interface BlogResponse {
-  data: Blog[];
-}
-
-export async function getBlogs(): Promise<Blog[]> {
-  const response = await fetch(`${API_BASE}/blogs`);
+async function fetchAll(): Promise<Blog[]> {
+  const response = await fetch(`${API_BASE}/content.json`);
   if (!response.ok) {
     throw new Error('Failed to fetch blogs');
   }
@@ -33,17 +29,15 @@ export async function getBlogs(): Promise<Blog[]> {
   );
 }
 
+export async function getBlogs(): Promise<Blog[]> {
+  return fetchAll();
+}
+
 export async function getBlogByArticleId(
   articleId: string
 ): Promise<Blog | null> {
-  const response = await fetch(
-    `${API_BASE}/blogs?filters[articleId][$eq]=${articleId}`
-  );
-  if (!response.ok) {
-    throw new Error('Failed to fetch blog');
-  }
-  const data: BlogResponse = await response.json();
-  return data.data[0] || null;
+  const blogs = await fetchAll();
+  return blogs.find(b => b.attributes.articleId === articleId) || null;
 }
 
 export const fetcher = async (url: string) => {

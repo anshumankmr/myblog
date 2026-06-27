@@ -2,90 +2,276 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   COLORS — "Notes by Anshuman" design system
+   Warm paper page, warm near-black ink, faded-terracotta accent.
+   ============================================================ */
+:root {
+  --paper-50:   #FDFBF6;
+  --paper-100:  #FAF7F0;
+  --paper-200:  #F4EFE3;
+  --paper-300:  #E8E0CD;
+
+  --ink-1000:   #0E0C0A;
+  --ink-900:    #171513;
+  --ink-800:    #2A2622;
+  --ink-600:    #5C564E;
+  --ink-500:    #75706A;
+  --ink-400:    #9C968D;
+  --ink-300:    #BFB8AB;
+  --ink-200:    #DAD3C2;
+  --ink-100:    #E3DDD1;
+  --ink-50:     #EFEADD;
+
+  --accent:        #A14B2A;
+  --accent-strong: #7E3A20;
+  --accent-soft:   rgba(161, 75, 42, 0.10);
+  --accent-tint:   rgba(161, 75, 42, 0.20);
+
+  --code-bg:        #1B1916;
+  --code-fg:        #EFEADD;
+  --code-inline-bg: var(--paper-200);
+
+  --surface-page:    var(--paper-100);
+  --surface-card:    var(--paper-50);
+  --surface-sunken:  var(--paper-200);
+  --surface-chrome:  transparent;
+
+  --text-display:    var(--ink-1000);
+  --text-heading:    var(--ink-900);
+  --text-body:       var(--ink-800);
+  --text-muted:      var(--ink-500);
+  --text-meta:       var(--ink-600);
+  --text-on-accent:  var(--paper-50);
+
+  --link:            var(--accent);
+  --link-hover:      var(--accent-strong);
+
+  --border-hairline: var(--ink-100);
+  --border-subtle:   var(--ink-200);
+  --border-strong:   var(--ink-300);
+
+  --focus-ring:      var(--accent);
+
+  /* ---- Typography (Next.js injects --font-display, --font-ui, --font-body vars) ---- */
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-eyebrow: 0.6875rem;
+  --text-meta:    0.8125rem;
+  --text-base:    1.0625rem;
+  --text-lg:      1.1875rem;
+  --text-xl:      1.375rem;
+  --text-2xl:     1.75rem;
+  --text-3xl:     2.5rem;
+  --text-4xl:     4rem;
+  --text-5xl:     6.25rem;
+
+  --leading-display:  0.95;
+  --leading-tight:    1.05;
+  --leading-snug:     1.25;
+  --leading-normal:   1.5;
+  --leading-relaxed:  1.7;
+
+  --tracking-tighter: -0.03em;
+  --tracking-tight:   -0.015em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.08em;
+  --tracking-caps:    0.22em;
+
+  /* ---- Spacing ---- */
+  --space-0:  0;
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  --radius-sm:   0.25rem;
+  --radius-md:   0.375rem;
+  --radius-lg:   0.5rem;
+  --radius-xl:   0.75rem;
+  --radius-full: 9999px;
+
+  --container-prose: 48rem;
+  --container-text:  56rem;
+  --container-wide:  72rem;
+  --container-sm:    42rem;
+  --header-height:   4.5rem;
+
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast:   150ms;
+  --dur-normal: 200ms;
+}
+
+/* ============================================================
+   DARK THEME — "midnight paper"
+   ============================================================ */
+.dark {
+  --surface-page:    #0F0E0C;
+  --surface-card:    #161412;
+  --surface-sunken:  #1A1815;
+  --surface-chrome:  transparent;
+
+  --text-display:    #F4EFE3;
+  --text-heading:    #F1ECDF;
+  --text-body:       #DAD3C2;
+  --text-muted:      #8B847B;
+  --text-meta:       #A09A8F;
+
+  --link:            #D4825A;
+  --link-hover:      #E89770;
+
+  --border-hairline: #2A2724;
+  --border-subtle:   #3A3631;
+  --border-strong:   #4A453E;
+
+  --code-inline-bg:  #1F1D1A;
+  --accent:          #D4825A;
+  --accent-strong:   #E89770;
+  --accent-soft:     rgba(212, 130, 90, 0.10);
+  --accent-tint:     rgba(212, 130, 90, 0.20);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply font-body text-text dark:text-gray-200 antialiased;
+    font-family: var(--font-ui);
+    color: var(--text-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-heading font-bold text-heading dark:text-white;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-ui);
+    color: var(--text-heading);
+  }
+
+  a {
+    color: var(--link);
+    transition: color var(--dur-normal) var(--ease-standard);
+  }
+
+  a:hover {
+    color: var(--link-hover);
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-primary transition-colors duration-200;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.5rem;
+    background: var(--accent);
+    color: var(--text-on-accent);
+    font-family: var(--font-ui);
+    font-size: var(--text-eyebrow);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--dur-normal) var(--ease-standard),
+                border-color var(--dur-normal) var(--ease-standard);
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+    color: var(--text-on-accent);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 border-2 border-accent text-accent font-medium rounded-lg hover:bg-accent hover:text-white transition-colors duration-200;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.5rem;
+    background: transparent;
+    color: var(--accent);
+    font-family: var(--font-ui);
+    font-size: var(--text-eyebrow);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--dur-normal) var(--ease-standard),
+                color var(--dur-normal) var(--ease-standard);
   }
 
-  .gradient-text {
-    @apply bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent;
+  .btn-secondary:hover {
+    background: var(--accent);
+    color: var(--text-on-accent);
   }
 
-  .card {
-    @apply bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200;
+  .eyebrow {
+    font-family: var(--font-ui);
+    font-size: var(--text-eyebrow);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-meta);
   }
-}
-
-/* Prism.js code highlighting overrides */
-pre[class*='language-'] {
-  @apply rounded-lg !important;
-}
-
-code[class*='language-'] {
-  @apply text-sm;
 }
 
 /* Loading skeleton animation */
 @keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .skeleton {
-  @apply bg-gray-200 dark:bg-gray-700 rounded;
-  background: linear-gradient(
-    90deg,
-    #f0f0f0 25%,
-    #e0e0e0 50%,
-    #f0f0f0 75%
-  );
+  background: linear-gradient(90deg, var(--paper-200) 25%, var(--paper-300) 50%, var(--paper-200) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
 }
 
 .dark .skeleton {
-  background: linear-gradient(
-    90deg,
-    #374151 25%,
-    #4b5563 50%,
-    #374151 75%
-  );
+  background: linear-gradient(90deg, #1F1D1A 25%, #2A2724 50%, #1F1D1A 75%);
   background-size: 200% 100%;
 }
 
-/* Dark mode prose overrides */
+/* Prism.js code highlighting overrides */
+pre[class*='language-'] {
+  border-radius: 0 !important;
+  background: var(--code-bg) !important;
+  border: 1px solid var(--ink-900);
+}
+
+code[class*='language-'] {
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+}
+
+/* Prose overrides for article pages */
+.prose {
+  --tw-prose-body: var(--text-body);
+  --tw-prose-headings: var(--text-heading);
+  --tw-prose-links: var(--accent);
+  --tw-prose-bold: var(--text-heading);
+  --tw-prose-code: var(--text-body);
+  --tw-prose-pre-bg: var(--code-bg);
+}
+
 .dark .prose {
-  --tw-prose-body: #e5e7eb;
-  --tw-prose-headings: #ffffff;
-  --tw-prose-links: #3291ff;
-  --tw-prose-bold: #ffffff;
-  --tw-prose-code: #e5e7eb;
-  --tw-prose-pre-bg: #1f2937;
+  --tw-prose-body: #DAD3C2;
+  --tw-prose-headings: #F1ECDF;
+  --tw-prose-links: #D4825A;
+  --tw-prose-bold: #F1ECDF;
+  --tw-prose-code: #DAD3C2;
+  --tw-prose-pre-bg: #1B1916;
 }

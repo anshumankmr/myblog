@@ -15,7 +15,7 @@ const Bio = () => {
         className="bio-avatar"
         layout="fixed"
         formats={["auto", "webp", "avif"]}
-        src="https://storage.googleapis.com/www.anshumankumar.dev/assets/IMG_5144.JPG"
+        src="https://avatars.githubusercontent.com/u/24219264?v=4"
         width={50}
         height={50}
         quality={95}

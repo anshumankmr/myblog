@@ -1,112 +1,215 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import Image from 'next/image';
+import { Button } from '@/components/ui/Button';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'Learn more about Anshuman Kumar - SWE III based in Bangalore, doing cool stuff with AI at scale.',
+  description: 'Learn more about Anshuman Kumar.',
+};
+
+const eyebrow: React.CSSProperties = {
+  fontFamily: 'var(--font-ui)',
+  fontSize: 'var(--text-eyebrow)',
+  fontWeight: 500,
+  letterSpacing: 'var(--tracking-caps)',
+  textTransform: 'uppercase',
+  color: 'var(--text-meta)',
 };
 
 const skills = [
-  { category: 'AI/ML', items: 'Generative AI, Prompt Engineering, Machine Learning (Scikit-learn, Keras)' },
-  { category: 'Cloud', items: 'AWS, GCP, Vertex AI, Kubernetes' },
-  { category: 'Bot Development', items: 'Dialogflow, RASA' },
-  { category: 'Languages', items: 'Python, JavaScript' },
-  { category: 'CI/CD', items: 'GitLab CI, GitHub Actions' },
-  { category: 'Databases', items: 'Postgres, MySQL, Firestore' },
+  { category: 'AI/ML',          items: 'Generative AI, Prompt Engineering, Machine Learning (Scikit-learn, Keras)' },
+  { category: 'Cloud',          items: 'AWS, GCP, Vertex AI, Kubernetes' },
+  { category: 'Languages',      items: 'Python, JavaScript' },
+  { category: 'CI/CD',          items: 'GitLab CI, GitHub Actions' },
+  { category: 'Databases',      items: 'Postgres, MySQL, Firestore' },
 ];
 
 const hobbies = [
-  'Cycling',
-  'Running (Marathons)',
-  'Exploring new tech innovations',
-  'Watching and analyzing movies (especially horror and thriller genres)',
-  'Memes and pop culture',
+  'Cycling', 'Running (Marathons)', 'Exploring new tech innovations',
+  'Watching and analysing films (horror & thriller)', 'Memes and pop culture',
 ];
 
 const achievements = [
-  'Third prize at Jovian Hackathon 2023 for developing an open-source solution to automate coding tasks.',
-  'Successfully built and deployed multiple AI-based systems, including Generative AI-based Conversation Agents at Deloitte.',
-  'Participated in various marathons, including the Vedanta Delhi Half Marathon (2022) and Bangalore Half Marathon (2023).',
-  'Developed a COVID-19 unemployment insurance chatbot to support customers during a critical period, improving accessibility.',
-  'Strong contributions to open-source projects, including automating code tasks like unit tests and code fixes.',
+  { yr: '2023', text: 'Third prize at Jovian Hackathon for an open-source solution to automate coding tasks.' },
+  { yr: '2023', text: 'Ran the Bangalore Half Marathon.' },
+  { yr: '2022', text: 'Ran the Vedanta Delhi Half Marathon.' },
+  { yr: '2021', text: 'Shipped a COVID-19 unemployment-insurance chatbot during a critical period.' },
+  { yr: 'now',  text: 'Building and deploying AI systems — including Generative AI conversation agents.' },
 ];
+
+function Section({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <section style={{
+      padding: 'var(--space-12) 0',
+      borderTop: '1px solid var(--border-hairline)',
+      display: 'grid',
+      gridTemplateColumns: '180px 1fr',
+      gap: 'var(--space-12)',
+      alignItems: 'start',
+    }}>
+      <span style={{ ...eyebrow, paddingTop: '6px' }}>{label}</span>
+      <div>{children}</div>
+    </section>
+  );
+}
 
 export default function AboutPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl sm:text-4xl font-heading font-bold text-heading mb-6">
-        <span className="gradient-text">About Me</span>
+    <div style={{ maxWidth: 'var(--container-wide)', margin: '0 auto', padding: 'var(--space-16) var(--space-8) var(--space-24)' }}>
+
+      {/* Eyebrow */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-8)' }}>
+        <span style={{ width: '40px', height: '1px', background: 'var(--ink-400)', display: 'inline-block' }} />
+        <span style={eyebrow}>Colophon</span>
+      </div>
+
+      <h1 style={{
+        margin: 0,
+        fontFamily: 'var(--font-display)',
+        fontStyle: 'italic',
+        fontWeight: 400,
+        fontSize: 'clamp(56px, 9vw, 128px)',
+        lineHeight: 'var(--leading-display)',
+        letterSpacing: '-0.02em',
+        color: 'var(--text-display)',
+      }}>
+        About<br />the author.
       </h1>
 
-      <div className="prose prose-lg max-w-none mb-12">
-        <p className="text-lg text-text-light dark:text-gray-300 leading-relaxed">
-          Hey, I&apos;m Anshuman Kumar, a SWE III based in Bangalore working at
-          a leading ITAM+Finops company. I do cool stuff with AI at scale,
-          building cutting-edge solutions from Generative AI to ML-driven
-          conversation agents.
-        </p>
-        <p className="text-lg text-text-light dark:text-gray-300 leading-relaxed">
-          When I&apos;m not architecting smart systems, you&apos;ll find me
-          diving into the world of memes, movies, and random musings.
-        </p>
-        <p className="text-lg text-text-light dark:text-gray-300 leading-relaxed">
-          On this blog, I share my thoughts on tech innovations, fitness (yes, I
-          love cycling and marathons), and a bit of everything else that keeps
-          life interesting. Join me as I explore the intersection of code,
-          culture, and curiosity.
-        </p>
+      {/* Portrait + lede */}
+      <div style={{
+        marginTop: 'var(--space-16)',
+        display: 'grid',
+        gridTemplateColumns: '260px 1fr',
+        gap: 'var(--space-12)',
+        alignItems: 'start',
+        paddingBottom: 'var(--space-12)',
+      }}>
+        <Image
+          src="https://avatars.githubusercontent.com/u/24219264?v=4"
+          alt="Anshuman Kumar"
+          width={260}
+          height={340}
+          unoptimized
+          style={{
+            width: '260px',
+            height: '340px',
+            objectFit: 'cover',
+            filter: 'grayscale(1) contrast(1.05)',
+            background: 'var(--surface-sunken)',
+          }}
+        />
+        <div>
+          <p style={{
+            margin: 0,
+            fontFamily: 'var(--font-ui)',
+            fontSize: 'var(--text-xl)',
+            lineHeight: 'var(--leading-snug)',
+            color: 'var(--text-heading)',
+          }}>
+            <span style={{
+              float: 'left',
+              fontFamily: 'var(--font-display)',
+              fontStyle: 'italic',
+              fontWeight: 400,
+              fontSize: '96px',
+              lineHeight: '0.85',
+              paddingRight: '12px',
+              paddingTop: '6px',
+              color: 'var(--text-display)',
+            }}>I</span>
+            &apos;m a software engineer in Bangalore, working at scale on AI systems at an ITAM &amp; FinOps company.
+            The day job is generative AI and ML-driven conversation agents — the language models behind the conversations, the plumbing that makes them reliable.
+          </p>
+          <p style={{
+            margin: 'var(--space-5) 0 0',
+            fontFamily: 'var(--font-ui)',
+            fontSize: 'var(--text-lg)',
+            lineHeight: 'var(--leading-relaxed)',
+            color: 'var(--text-body)',
+          }}>
+            The rest of the time I&apos;m on a road bike or a marathon route, watching old films, or writing the pieces you&apos;ll find here.
+            This site is the quiet place between the commits.
+          </p>
+        </div>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2">
-        <section className="card p-6">
-          <h2 className="text-xl font-heading font-bold text-heading mb-4 flex items-center gap-2">
-            <span className="text-2xl">💻</span> Technical Skills
-          </h2>
-          <ul className="space-y-3">
-            {skills.map((skill) => (
-              <li key={skill.category} className="text-text-light dark:text-gray-300">
-                <span className="font-semibold text-heading dark:text-white">
-                  {skill.category}:
-                </span>{' '}
-                {skill.items}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="card p-6">
-          <h2 className="text-xl font-heading font-bold text-heading mb-4 flex items-center gap-2">
-            <span className="text-2xl">🎯</span> Hobbies
-          </h2>
-          <ul className="space-y-2">
-            {hobbies.map((hobby) => (
-              <li key={hobby} className="text-text-light dark:text-gray-300 flex items-start gap-2">
-                <span className="text-accent mt-1">•</span>
-                {hobby}
-              </li>
-            ))}
-          </ul>
-        </section>
-      </div>
-
-      <section className="mt-8 card p-6">
-        <h2 className="text-xl font-heading font-bold text-heading mb-4 flex items-center gap-2">
-          <span className="text-2xl">🏆</span> Achievements
-        </h2>
-        <ul className="space-y-3">
-          {achievements.map((achievement, index) => (
-            <li key={index} className="text-text-light dark:text-gray-300 flex items-start gap-3">
-              <span className="text-accent font-bold">{index + 1}.</span>
-              {achievement}
+      {/* Stack */}
+      <Section label="Stack">
+        <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
+          {skills.map((s) => (
+            <li key={s.category} style={{
+              display: 'grid',
+              gridTemplateColumns: '180px 1fr',
+              gap: 'var(--space-6)',
+              alignItems: 'baseline',
+              paddingBottom: 'var(--space-4)',
+              borderBottom: '1px solid var(--border-hairline)',
+            }}>
+              <span style={{
+                fontFamily: 'var(--font-display)',
+                fontStyle: 'italic',
+                fontWeight: 400,
+                fontSize: 'var(--text-xl)',
+                color: 'var(--text-heading)',
+              }}>{s.category}</span>
+              <span style={{
+                fontFamily: 'var(--font-ui)',
+                fontSize: 'var(--text-base)',
+                color: 'var(--text-body)',
+                lineHeight: 'var(--leading-snug)',
+              }}>{s.items}</span>
             </li>
           ))}
         </ul>
-      </section>
+      </Section>
 
-      <div className="mt-10 text-center">
-        <Link href="/contact" className="btn-primary">
-          Get in Touch
-        </Link>
+      {/* Off the clock */}
+      <Section label="Off the clock">
+        <ul style={{ margin: 0, padding: 0, listStyle: 'none', columns: 2, columnGap: 'var(--space-12)' }}>
+          {hobbies.map((h) => (
+            <li key={h} style={{
+              breakInside: 'avoid',
+              padding: 'var(--space-3) 0',
+              borderBottom: '1px solid var(--border-hairline)',
+              fontFamily: 'var(--font-ui)',
+              fontSize: 'var(--text-base)',
+              color: 'var(--text-body)',
+            }}>{h}</li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* Marginalia */}
+      <Section label="Marginalia">
+        <ol style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+          {achievements.map((a, i) => (
+            <li key={i} style={{
+              display: 'grid',
+              gridTemplateColumns: '64px 1fr',
+              gap: 'var(--space-6)',
+              alignItems: 'baseline',
+              padding: 'var(--space-4) 0',
+              borderBottom: i === achievements.length - 1 ? 'none' : '1px solid var(--border-hairline)',
+            }}>
+              <span style={{
+                ...eyebrow,
+                color: 'var(--accent)',
+                fontVariantNumeric: 'tabular-nums',
+              }}>{a.yr}</span>
+              <span style={{
+                fontFamily: 'var(--font-ui)',
+                fontSize: 'var(--text-lg)',
+                lineHeight: 'var(--leading-snug)',
+                color: 'var(--text-body)',
+              }}>{a.text}</span>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      <div style={{ marginTop: 'var(--space-16)', textAlign: 'center' }}>
+        <Button variant="primary" href="/contact">Get in touch</Button>
       </div>
     </div>
   );

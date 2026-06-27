@@ -14,7 +14,7 @@ const Header = () => {
           <Link to="/blogs">Blogs</Link>
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/anshumankumarcs/" target="_blank" rel="noopener noreferrer">
             <FaLinkedin />
           </a>
           <a href="https://github.com" target="_blank" rel="noopener noreferrer">

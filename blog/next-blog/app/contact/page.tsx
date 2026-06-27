@@ -24,7 +24,7 @@ const contacts = [
   },
   {
     name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/anshuman-kumar-work/',
+    href: 'https://www.linkedin.com/in/anshumankumarcs/',
     icon: FaLinkedin,
     description: 'Connect on LinkedIn',
   },

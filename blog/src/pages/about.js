@@ -37,7 +37,6 @@ const About = ({ location }) => {
             <ul>
               <li>AI/ML: Generative AI, Prompt Engineering, Machine Learning (Scikit-learn, Keras)</li>
               <li>Cloud: AWS, GCP, Vertex AI, Kubernetes</li>
-              <li>Bot Development: </li>
               <li>Languages: Python, JavaScript</li>
               <li>CI/CD: GitLab CI, GitHub Actions</li>
               <li>Databases: Postgres, MySQL, Firestore</li>

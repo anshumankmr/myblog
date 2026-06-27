@@ -40,4 +40,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy blog/next-blog/out --project-name=myblog
+          command: pages deploy blog/next-blog/out --project-name=myblog --branch=master

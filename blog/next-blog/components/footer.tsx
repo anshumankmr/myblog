@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Script from "next/script"
 import { FaGithub, FaLinkedin, FaTwitter, FaRss } from "react-icons/fa"
 
 export default function Footer() {
@@ -38,6 +39,11 @@ export default function Footer() {
           </a>
         </div>
       </div>
+      <div id="wcb" className="carbonbadge wcb-d pb-6" />
+      <Script
+        src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js"
+        strategy="lazyOnload"
+      />
     </footer>
   )
 }

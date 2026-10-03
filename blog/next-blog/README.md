@@ -1,6 +1,6 @@
 # Anshuman's blog
 
-The active blog is a statically exported Next.js app deployed to Cloudflare Pages.
+The active blog is a statically exported Next.js app served by Cloudflare Pages.
 The older Gatsby app in `../src` is retained for reference.
 
 ## Local development
@@ -12,76 +12,104 @@ node scripts/fetch-content.mjs
 npm run dev
 ```
 
-The visual system comes from **Anshuman's Blog Design System**: IBM Plex Serif,
-Sans, and Mono; one blue accent; a 720px column; simple hairlines; light and dark
-mode. The imported tokens are in `app/design-system/`. Fonts use `next/font` and
-are self-hosted in the build. `--font-size-meta` deliberately replaces the source
-system's duplicate `--text-meta` size token so it cannot overwrite the meta color.
-
-## Activity and calories
-
-About (`/about/`) embeds the supplied Strava activity summary and a MyFitnessPal
-calorie widget for `anshuman_kmr`. Dates follow **Asia/Kolkata**, regardless of a
-visitor's timezone. Visitors can select a diary date and recheck its totals.
-
-The Strava widget stays an iframe and needs no API credentials. Its light
-appearance is unchanged. In dark mode, a CSS filter on `.dark .strava-widget`
-darkens the rendered embed and shifts its text to light colors. The iframe is
-cross-origin, so its internal CSS cannot inherit the blog theme; filtering also
-changes its rendered brand colors slightly. The profile link remains available.
-
-The root-level `functions/api/nutrition.js` is a Cloudflare Pages Function, backed
-by `server/myfitnesspal.mjs`. It reads only the public diary and exposes the total
-food calories, date, source link, and check timestamp. It does not expose meals,
-exercise entries, diary notes, or account credentials. Successful results cache
-for 15 minutes; unavailable results cache for 2 minutes. “Check again” revalidates
-the widget against that cache. Empty days are shown as empty; a verified zero is
-only shown when logged entries actually total zero.
-
-### How the public diary is read
-
-The original [`fitnessforlife/mfp`](https://github.com/fitnessforlife/mfp) scrapes
-`#food` and its `tfoot` from the printable diary. The current MyFitnessPal page is
-client-rendered and its HTML alone contains no food totals. This integration uses
-its anonymous printable-report request (`authenticate_diary_key` with an empty
-key and food-only flags), plus the older food-table parser when available. Totals
-come from food-entry nutritional energy, rounded per entry to match the printable
-page; kilojoules are converted to kcal.
-
-**Live verification limitation (October 3, 2026):** the printable page confirms
-this diary is public, but MyFitnessPal's report endpoint returned a security
-challenge (HTTP 403) from the development machine. No live calorie total could be
-verified. The widget displays an unavailable message with a direct diary link
-when this happens. The endpoint is ready for an ordinary public response, but
-live reliability depends on MyFitnessPal accepting requests from Cloudflare.
-No credentials or challenge-bypass mechanism are used. If this remains blocked
-in production, a supported export or owner-provided data feed will be needed.
-
-### Preview with the Pages Function
-
-`npm run dev` previews Next.js only; the live calorie endpoint runs in Cloudflare
-Pages. To preview both locally, build first, then run Wrangler **from the repo
-root**, where the `functions/` directory and `wrangler.jsonc` live:
+The fetch reads the published `content.json` and `notes.json` feeds from
+`anshumankmr.github.io/generated`. Before the new notes feed is deployed, a 404
+is treated as an empty notes collection. Other content-fetch failures stop the
+build. To preview the content repo's local generated data:
 
 ```sh
-cd blog/next-blog
-npm run build
-cd ../..
-npx wrangler pages dev blog/next-blog/out
+BLOG_CONTENT_DIR=/Users/anshumankmr/Documents/anshumankmr.github.io/generated node scripts/fetch-content.mjs
 ```
 
-The checked-in `_routes.json` routes only `/api/nutrition` through the Function;
-all pages and assets stay static. The existing GitHub deploy workflow runs from
-the root and includes the Function automatically. No additional secrets are
-required. The change has not been deployed.
+Generated posts, notes, and activity snapshots in `content/` are ignored by Git.
+`content/now.json` is authored and committed: update its date and entries whenever
+you update the Now page. The initial entries use existing facts from About.
 
-## Verification
+## Design and pages
+
+The visual system comes from **Anshuman's Blog Design System**: IBM Plex Serif,
+Sans, Mono, and Sans Devanagari; one blue accent; a 720px column; hairlines; light
+and dark mode. The header reads **अंशुमन कुमार**, with the accessible name
+“Anshuman Kumar”. Fonts use `next/font` and are self-hosted. The legacy site title
+“Les Pensées d'Anshuman” remains in metadata. `--font-size-meta` replaces the
+source system's duplicate size token so it cannot overwrite the meta color.
+
+- `/blogs/`: long-form posts grouped by year. A frontmatter `description` takes
+  priority over a Markdown-free excerpt ending at a sentence or word boundary.
+- `/notes/`: untitled short Markdown posts in flat grey blocks. Timestamps show
+  Asia/Kolkata time and link to stable `/notes/{slug}/` addresses. The two latest
+  notes appear on the homepage. No sample notes are published.
+- `/now/`: dated updates, the supplied Strava latest-rides iframe, recently
+  watched films from `jabwemetguy` on Letterboxd, and verified calorie totals.
+- `/rss.xml`: posts and notes, newest first, with stable permalink GUIDs. The
+  footer and alternate-feed metadata link to it.
+- `/resume.pdf`: the supplied **Anshuman Kumar CV September 2026.pdf**.
+
+Article and note previews have their own title, description, canonical URL, and
+PNG image. `next/og` renders the images during export with local Plex fonts in
+`assets/fonts/` (OFL license included). Markdown is parsed and sanitized on the
+server; Shiki's `github-dark` highlighting runs during the build. Neither the
+Markdown renderer nor Shiki ships in browser JavaScript. Article footers link to
+the original source file's GitHub editor.
+
+## Writing notes
+
+The content store and MCP server also need these changes deployed:
+
+1. `anshumankmr.github.io`: generates `generated/notes.json` from `notes/*.md`.
+   `draft_notes/` is excluded. Its workflow rebuilds when published notes change.
+2. `strapi-cms-app`: adds `create_note`, `list_notes`, `get_note`, `update_note`,
+   `publish_note`, `unpublish_note`, and `delete_note`, with the existing
+   owner-only OAuth policy.
+3. `myblog`: fetches and renders the generated notes during its deployment build.
+
+`create_note(content="A short thought.")` creates a draft. `publish_note(note_id)`
+publishes it. For a direct published note, use `create_note(content=..., draft=false)`.
+Then wait for the content workflow and call `rebuild_blog`. Updating a note's body
+or timestamp keeps its slug unchanged. The MCP server defaults timestamps to
+Asia/Kolkata; an explicit timestamp must include its timezone. Multiple notes in
+the same minute get distinct addresses. The content repo's `notes/README.md`
+documents the Markdown format if you prefer writing files directly.
+
+## Activity
+
+The Strava iframe uses the supplied `/latest-rides/` URL, is 300×454px, lazy-loaded,
+and fits the page on mobile. It updates independently of blog builds and needs
+no API credentials. The profile link remains usable if the embed fails. Its
+cross-origin content cannot inherit our theme, so dark mode uses the existing CSS
+filter; this also shifts Strava's rendered brand colours slightly.
+
+Letterboxd RSS and MyFitnessPal are fetched during the content step. Their data
+refreshes on the next blog rebuild, not on a visitor's request. Unavailable
+feeds/diary data are omitted without loading or error placeholders. The Now
+page shows when the snapshot was checked. Letterboxd uses only dated watches;
+list entries are excluded, and half-star ratings are supported.
+
+The existing public diary reader in `server/myfitnesspal.mjs` returns verified
+food calories only. Empty, private, malformed, or blocked responses never become
+zero totals. MyFitnessPal returned a security challenge during local verification
+on 2026-10-03, so calories are currently omitted. The existing Pages Function
+`functions/api/nutrition.js` remains available for previous consumers; the blog's
+new pages do not request it from the browser.
+
+## Checks
 
 ```sh
-# From the repository root
+# Repository root
 node --test tests/myfitnesspal.test.mjs
 
+# Active app
 cd blog/next-blog
+npm test
 npx tsc --noEmit
 npm run build
+```
+
+The deployment workflow runs the diary and app tests before building. The content
+repo has a generator test, and the MCP repo covers note lifecycle and OAuth
+rejection before any GitHub requests. Preview the static export with any static
+server, or preview the existing nutrition Function from the repository root:
+
+```sh
+npx wrangler pages dev blog/next-blog/out
 ```

@@ -7,9 +7,10 @@ import { FaLinkedin, FaGithub, FaBars, FaTimes } from "react-icons/fa"
 import { ThemeToggle } from "./theme-toggle"
 
 const navLinks = [
-  { href: "/about", label: "About" },
   { href: "/blogs", label: "Posts" },
-  { href: "/contact", label: "Contact" },
+  { href: "/notes", label: "Notes" },
+  { href: "/now", label: "Now" },
+  { href: "/about", label: "About" },
 ]
 const externalLinks = [
   {
@@ -19,8 +20,7 @@ const externalLinks = [
   },
   { href: "https://github.com/anshumankmr", label: "GitHub", icon: FaGithub },
 ]
-const resumeLink =
-  "https://drive.google.com/file/d/1NqI9eAmIsQxXPN__C8vZnRq5hw-5U63q/view?usp=drive_link"
+const resumeLink = "/resume.pdf"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -60,16 +60,18 @@ export default function Header() {
         <Link
           href="/"
           className="wordmark"
+          lang="hi"
+          aria-label="Anshuman Kumar"
+          title="Anshuman Kumar"
           onClick={() => setIsMenuOpen(false)}
         >
-          Anshuman Kumar
+          अंशुमन कुमार
         </Link>
         <nav
           aria-label="Main navigation"
           className="hidden md:flex items-center gap-4"
         >
           {links}
-          {socials}
           <a
             href={resumeLink}
             target="_blank"

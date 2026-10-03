@@ -1,13 +1,13 @@
-import type { Metadata } from "next"
 import { getAllPosts } from "@/lib/content"
-import { getExcerpt } from "@/lib/utils"
+import { pageMetadata } from "@/lib/metadata"
 import Bio from "@/components/bio"
 import { PostListItem } from "@/components/blog/PostListItem"
 
-export const metadata: Metadata = { title: "Posts" }
+export const metadata = pageMetadata("Posts", "Long-form writing by Anshuman Kumar, mostly about tech.", "/blogs/")
 
 export default function BlogsPage() {
   const posts = getAllPosts()
+  const years = [...new Set(posts.map(post => post.date.slice(0, 4)))]
   return (
     <div className="page-container">
       <h1>Posts</h1>
@@ -15,19 +15,24 @@ export default function BlogsPage() {
         {posts.length} posts, mostly about tech. Occasionally not.
       </p>
       {posts.length ? (
-        <ol className="post-list mt-8">
-          {posts.map((post, index) => (
+        years.map(year => {
+          const yearPosts = posts.filter(post => post.date.startsWith(year))
+          return <section key={year} className="mt-8" aria-labelledby={`year-${year}`}>
+          <h2 id={`year-${year}`} className="meta mb-3">{year}</h2>
+          <ol className="post-list">
+          {yearPosts.map((post, index) => (
             <PostListItem
               key={post.articleId}
               title={post.title}
               date={post.date}
               dateTime={post.date}
-              excerpt={getExcerpt(post.content)}
+              excerpt={post.description}
               href={`/article/${post.date}/${post.slug}/`}
-              last={index === posts.length - 1}
+              last={index === yearPosts.length - 1}
             />
           ))}
-        </ol>
+          </ol></section>
+        })
       ) : (
         <p className="mt-8 text-text-meta">No posts yet. Check back soon.</p>
       )}

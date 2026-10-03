@@ -1,5 +1,7 @@
 # CMS content — generated at build time, not committed
 content/blogs/
+content/notes/
+content/activity.json
 
 # Dependencies
 node_modules/

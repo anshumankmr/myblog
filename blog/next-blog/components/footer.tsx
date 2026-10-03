@@ -1,4 +1,5 @@
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
+import Link from "next/link"
+import { FaGithub, FaLinkedin, FaTwitter, FaRss } from "react-icons/fa"
 
 export default function Footer() {
   return (
@@ -6,16 +7,18 @@ export default function Footer() {
       <div className="page-container !py-6 flex items-center justify-between gap-4 flex-wrap">
         <p className="meta">© {new Date().getFullYear()} Anshuman Kumar</p>
         <div className="flex items-center gap-4">
+          <Link href="/contact" className="meta">Contact</Link>
           <a href="https://anshumankumar.net" className="meta">
             anshumankumar.net
           </a>
+          <a href="/rss.xml" aria-label="RSS feed" title="RSS feed"><FaRss aria-hidden="true" /></a>
           <a
             href="https://github.com/anshumankmr"
             aria-label="GitHub"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaGithub />
+            <FaGithub aria-hidden="true" />
           </a>
           <a
             href="https://www.linkedin.com/in/anshumankumarcs/"
@@ -23,7 +26,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaLinkedin />
+            <FaLinkedin aria-hidden="true" />
           </a>
           <a
             href="https://twitter.com/anshuman_kmr"
@@ -31,7 +34,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaTwitter />
+            <FaTwitter aria-hidden="true" />
           </a>
         </div>
       </div>

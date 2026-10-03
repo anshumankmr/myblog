@@ -35,6 +35,10 @@ jobs:
       - name: Test public diary reader
         run: node --test tests/myfitnesspal.test.mjs
 
+      - name: Test notes, RSS, Markdown, and activity readers
+        working-directory: blog/next-blog
+        run: npm test
+
       - name: Build
         working-directory: blog/next-blog
         run: npm run build

@@ -23,6 +23,7 @@
   --font-body:    var(--font-ui);
   --font-mono:    var(--font-plex-mono), 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --font-heading: var(--font-display);
+  --font-devanagari: var(--font-plex-devanagari), 'IBM Plex Sans Devanagari', var(--font-ui);
 
   /* ---- Weights ---- */
   --fw-light:    300; /* @kind other */

@@ -1,9 +1,10 @@
 import type { Metadata } from "next"
-import { IBM_Plex_Serif, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google"
+import { IBM_Plex_Serif, IBM_Plex_Sans, IBM_Plex_Mono, IBM_Plex_Sans_Devanagari } from "next/font/google"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/metadata"
 
 const plexSerif = IBM_Plex_Serif({
   subsets: ["latin"],
@@ -23,6 +24,9 @@ const plexMono = IBM_Plex_Mono({
   variable: "--font-plex-mono",
   display: "swap",
 })
+const plexDevanagari = IBM_Plex_Sans_Devanagari({
+  subsets: ["devanagari"], weight: "600", variable: "--font-plex-devanagari", display: "swap",
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://anshumankumar.net"),
@@ -30,8 +34,11 @@ export const metadata: Metadata = {
     default: "Les Pensées d'Anshuman",
     template: "%s | Les Pensées d'Anshuman",
   },
-  description:
-    "Personal blog by Anshuman Kumar. Writing about tech, life, and everything in between.",
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+    types: { "application/rss+xml": [{ url: "/rss.xml", title: SITE_TITLE }] },
+  },
   authors: [{ name: "Anshuman Kumar" }],
   openGraph: {
     title: "Les Pensées d'Anshuman",
@@ -41,6 +48,7 @@ export const metadata: Metadata = {
     siteName: "Les Pensées d'Anshuman",
     locale: "en_US",
     type: "website",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Anshuman Kumar" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -60,7 +68,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${plexSerif.variable} ${plexSans.variable} ${plexMono.variable}`}
+      className={`${plexSerif.variable} ${plexSans.variable} ${plexMono.variable} ${plexDevanagari.variable}`}
       suppressHydrationWarning
     >
       <body

@@ -1,14 +1,11 @@
 import type { Metadata } from "next"
+import { pageMetadata } from "@/lib/metadata"
 
 export const metadata: Metadata = {
-  title: "Keystone Privacy Policy",
-  description: "Privacy policy for the Keystone browser extension.",
+  ...pageMetadata("Keystone Privacy Policy", "Privacy policy for the Keystone browser extension.", "/privacy/keystone/"),
   robots: {
     index: false,
     follow: false,
-  },
-  alternates: {
-    canonical: "/privacy/keystone",
   },
 }
 

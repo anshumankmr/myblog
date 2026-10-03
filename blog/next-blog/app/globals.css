@@ -207,9 +207,9 @@
     gap: 16px;
   }
   .wordmark {
-    font-family: var(--font-display);
+    font-family: var(--font-devanagari);
     color: var(--text-heading);
-    font-size: 17px;
+    font-size: 19px;
     font-weight: 600;
     white-space: nowrap;
   }
@@ -252,6 +252,37 @@
     font-size: 20px;
     line-height: 1.5;
   }
+  .section-guide {
+    margin-top: 44px;
+    border-top: 1px solid var(--border-hairline);
+  }
+  .guide-row {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 16px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border-hairline);
+  }
+  .guide-label {
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--text-heading);
+  }
+  .guide-row:hover .guide-label { color: var(--link); }
+  .guide-description { color: var(--text-meta); font-size: 16px; }
+  .notes-list { display: flex; flex-direction: column; gap: 12px; }
+  .note { padding: 16px 18px; border-radius: 6px; background: var(--surface-sunken); }
+  .note-body { font-size: 17px; line-height: 1.6; }
+  .note-body > :first-child { margin-top: 0; }
+  .note-body > :last-child { margin-bottom: 0; }
+  .note-timestamp { display: inline-block; margin-top: 10px; font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+  .activity-heading { font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--text-meta); }
+  .activity-list { margin-top: 12px; border-top: 1px solid var(--border-hairline); }
+  .activity-list > li { border-bottom: 1px solid var(--border-hairline); }
+  .activity-row { display: grid; grid-template-columns: 90px minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding: 12px 0; }
+  .activity-name { font-family: var(--font-display); font-weight: 500; color: var(--text-heading); }
+  .activity-row:hover .activity-name { color: var(--link); }
   .bio {
     display: flex;
     gap: 16px;
@@ -390,6 +421,7 @@
   .dark .strava-widget {
     filter: invert(0.94) hue-rotate(180deg);
   }
+  .strava-rides { height: 454px; }
   .nutrition-controls {
     display: flex;
     align-items: center;
@@ -470,9 +502,15 @@
 .prose pre {
   overflow-x: auto;
   font-size: 13px;
+  font-family: var(--font-mono);
+  border-radius: 6px;
 }
+.prose pre code { font-family: inherit; }
 
 @media (max-width: 600px) {
+  .activity-row { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; }
+  .activity-row time { grid-column: 1 / -1; }
+  .guide-row { grid-template-columns: 64px minmax(0, 1fr) auto; gap: 12px; }
   .post-row-heading {
     display: block;
   }

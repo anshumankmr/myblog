@@ -1,13 +1,10 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { Button } from "@/components/ui/Button"
-import Fitness from "@/components/fitness"
+import Link from "next/link"
+import { pageMetadata } from "@/lib/metadata"
 
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "A little about Anshuman Kumar: software engineer at Flexera, runner, cyclist, and fan of board games, cooking, coffee, and films.",
-}
+export const metadata: Metadata = pageMetadata("About", "A little about Anshuman Kumar: software engineer at Flexera, runner, cyclist, and fan of board games, cooking, coffee, and films.", "/about/")
 
 const skills = [
   {
@@ -166,10 +163,6 @@ export default function AboutPage() {
           className="highlight-timeline"
           aria-label="Highlights, newest first"
         >
-          <li className="timeline-future">
-            <span className="timeline-marker" aria-hidden="true" />
-            <span className="meta">More to come</span>
-          </li>
           {highlights.map(highlight => (
             <li key={highlight.name} className="timeline-entry">
               <span className="timeline-marker" aria-hidden="true" />
@@ -216,7 +209,7 @@ export default function AboutPage() {
           ))}
         </ol>
       </Section>
-      <Fitness />
+      <p className="section"><Link href="/now">What I&apos;m up to now →</Link></p>
       <div className="section">
         <Button href="/contact">Get in touch</Button>
       </div>

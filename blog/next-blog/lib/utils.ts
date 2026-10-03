@@ -8,35 +8,18 @@ export function generateSlug(title: string): string {
 }
 
 export function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  return getDatePath(dateString);
 }
 
 export function getDatePath(dateString: string): string {
-  const date = new Date(dateString);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
+  return dateString.slice(0, 10);
 }
 
-export function getExcerpt(content: string, maxLength: number = 160): string {
-  const plainText = content
-    .replace(/#{1,6}\s/g, '')
-    .replace(/\*\*/g, '')
-    .replace(/\*/g, '')
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-    .replace(/`{1,3}[^`]*`{1,3}/g, '')
-    .replace(/\n+/g, ' ')
-    .trim();
-
-  if (plainText.length <= maxLength) {
-    return plainText;
-  }
-
-  return plainText.slice(0, maxLength).trim() + '...';
+export function formatNoteTimestamp(publishedAt: string): string {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+  }).formatToParts(new Date(publishedAt));
+  const part = (type: string) => parts.find(p => p.type === type)?.value;
+  return `${part('year')}-${part('month')}-${part('day')} · ${part('hour')}:${part('minute')} IST`;
 }

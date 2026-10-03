@@ -1,10 +1,8 @@
 import type { Metadata } from "next"
 import { FaEnvelope, FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa"
+import { pageMetadata } from "@/lib/metadata"
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: "Get in touch with Anshuman Kumar.",
-}
+export const metadata: Metadata = pageMetadata("Contact", "Get in touch with Anshuman Kumar.", "/contact/")
 
 const contacts = [
   {

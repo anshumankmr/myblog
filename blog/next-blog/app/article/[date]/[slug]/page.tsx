@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import ReactMarkdown from "react-markdown"
-import remarkGfm from "remark-gfm"
 import Link from "next/link"
 import { getAllPosts, getPost } from "@/lib/content"
 import { formatDate } from "@/lib/utils"
 import Bio from "@/components/bio"
+import { renderMarkdown } from "@/lib/markdown"
+import { pageMetadata } from "@/lib/metadata"
 
 type Params = { date: string; slug: string }
 
@@ -20,7 +20,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { date, slug } = await params
   const post = getPost(date, slug)
-  return { title: post?.title ?? "Post not found" }
+  if (!post) return { title: "Post not found", robots: { index: false } }
+  const metadata = pageMetadata(post.title, post.description, `/article/${post.date}/${post.slug}/`, `/og/${post.articleId}`)
+  return { ...metadata, openGraph: { ...metadata.openGraph, type: "article", publishedTime: `${post.date}T00:00:00+05:30`, authors: ["Anshuman Kumar"] } }
 }
 
 export default async function BlogPostPage({
@@ -31,6 +33,7 @@ export default async function BlogPostPage({
   const { date, slug } = await params
   const post = getPost(date, slug)
   if (!post) notFound()
+  const html = await renderMarkdown(post.content)
   const posts = getAllPosts()
   const idx = posts.findIndex(p => p.slug === post.slug && p.date === post.date)
   const prevPost = idx < posts.length - 1 ? posts[idx + 1] : null
@@ -48,11 +51,10 @@ export default async function BlogPostPage({
             {formatDate(post.date)}
           </time>
         </header>
-        <div className="prose max-w-none">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {post.content}
-          </ReactMarkdown>
-        </div>
+        <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: html }} />
+        {post.sourcePath && (
+          <a className="meta inline-block mt-8" href={`https://github.com/anshumankmr/anshumankmr.github.io/edit/master/${post.sourcePath.split('/').map(encodeURIComponent).join('/')}`} target="_blank" rel="noopener noreferrer">Edit on GitHub →</a>
+        )}
       </article>
       <div className="section">
         <Bio />

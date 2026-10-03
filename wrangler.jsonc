@@ -1,0 +1,6 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "myblog",
+  "pages_build_output_dir": "./blog/next-blog/out",
+  "compatibility_date": "2026-10-03"
+}

@@ -1,0 +1,72 @@
+/* ============================================================
+   TYPOGRAPHY — Anshuman's Blog
+
+   ONE superfamily, three cuts. The whole type system is a single
+   decision: "I used IBM Plex."
+
+     · IBM Plex Serif — headings, post titles, the hero. Contemplative,
+       a little bookish, but shipped by a tech company rather than a
+       fashion magazine. This is what gives the blog a voice.
+     · IBM Plex Sans  — nav, meta, labels, body prose. Neutral workhorse.
+     · IBM Plex Mono  — dates, code, small technical meta.
+
+   Why this and not a system stack: the system stack had no voice at
+   all. Why this and not a display serif + a grotesque + a text serif:
+   that is three decisions and reads as art-directed. One family with
+   an obvious internal logic is what a careful engineer actually does.
+   ============================================================ */
+
+:root {
+  /* ---- Families ---- */
+  --font-display: var(--font-plex-serif), 'IBM Plex Serif', Georgia, Cambria, 'Times New Roman', serif;
+  --font-ui:      var(--font-plex-sans), 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-body:    var(--font-ui);
+  --font-mono:    var(--font-plex-mono), 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-heading: var(--font-display);
+
+  /* ---- Weights ---- */
+  --fw-light:    300; /* @kind other */
+  --fw-regular:  400; /* @kind other */
+  --fw-medium:   500; /* @kind other */
+  --fw-semibold: 600; /* @kind other */
+  --fw-bold:     700; /* @kind other */
+
+  /* ---- Type scale ----
+     Headings sit in the serif at 500/600. The hero is 48px — enough
+     presence to carry a page, nowhere near the 156px display setting
+     that made this feel art-directed.
+  */
+  --text-eyebrow: 0.75rem;   /* 12px — small labels */
+  --font-size-meta: 0.8125rem; /* 13px — dates (mono) */
+  --text-base:    1rem;      /* 16px — body default */
+  --text-lg:      1.0625rem; /* 17px — article prose */
+  --text-xl:      1.25rem;   /* 20px — lead paragraph */
+  --text-2xl:     1.4375rem; /* 23px — post titles, h3 */
+  --text-3xl:     1.75rem;   /* 28px — section h2 */
+  --text-4xl:     2.25rem;   /* 36px — page h1 */
+  --text-5xl:     3rem;      /* 48px — home h1, the largest size used */
+  --text-6xl:     3rem;      /* alias; nothing goes bigger */
+
+  /* legacy mirrors */
+  --text-xs:   0.75rem;
+  --text-sm:   var(--font-size-meta);
+
+  /* ---- Line heights ---- */
+  --leading-display:  1.1;
+  --leading-tight:    1.2;
+  --leading-snug:     1.3;
+  --leading-normal:   1.5;
+  --leading-relaxed:  1.7;  /* article prose */
+
+  /* ---- Tracking ---- */
+  --tracking-tighter: -0.02em;
+  --tracking-tight:   -0.01em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.02em;
+  --tracking-caps:    0.07em;  /* small labels — restrained */
+
+  /* ---- Semantic aliases ---- */
+  --display-family: var(--font-display);
+  --body-family:    var(--font-body);
+  --ui-family:      var(--font-ui);
+}

@@ -17,7 +17,7 @@ module.exports = {
       summary: `I live and work in Bengaluru, occasionally doing useful things.`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://www.anshumankumar.dev/`,
+    siteUrl: `https://anshumankumar.net/`,
     social: {
       twitter: `anshuman_kmr`,
     },

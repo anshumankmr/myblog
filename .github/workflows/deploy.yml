@@ -32,6 +32,9 @@ jobs:
         working-directory: blog/next-blog
         run: node scripts/fetch-content.mjs
 
+      - name: Test public diary reader
+        run: node --test tests/myfitnesspal.test.mjs
+
       - name: Build
         working-directory: blog/next-blog
         run: npm run build

@@ -1,27 +1,31 @@
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes } from "react"
 
 type CardProps = {
-  interactive?: boolean;
-  hoverLift?: boolean;
-  padding?: string;
-  children: React.ReactNode;
-  className?: string;
-} & HTMLAttributes<HTMLDivElement>;
+  interactive?: boolean
+  hoverLift?: boolean
+  padding?: string
+  children: React.ReactNode
+  className?: string
+} & HTMLAttributes<HTMLDivElement>
 
 export function Card({
   interactive = false,
-  hoverLift = true,
-  padding = 'p-6',
+  hoverLift = false,
+  padding = "p-6",
   children,
-  className = '',
+  className = "",
   ...props
 }: CardProps) {
-  const base = interactive ? 'card-interactive' : 'card';
-  const lift = !interactive && hoverLift ? 'hover:shadow-lg' : '';
+  const base = "rounded-md bg-surface-sunken"
+  const hover = interactive ? "hover:bg-accent-soft transition-colors" : ""
+  void hoverLift
 
   return (
-    <div className={`${base} ${lift} ${padding} ${className}`.trim()} {...props}>
+    <div
+      className={`${base} ${hover} ${padding} ${className}`.trim()}
+      {...props}
+    >
       {children}
     </div>
-  );
+  )
 }

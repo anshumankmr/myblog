@@ -6,6 +6,8 @@ on:
       - master
       - develop
   workflow_dispatch:
+  repository_dispatch:
+    types: [content-updated]
 
 permissions:
   contents: read

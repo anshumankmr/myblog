@@ -120,6 +120,17 @@ export default function AboutPage() {
         catches my attention. This is where those interests end up.
       </p>
       <p className="mt-5">
+        Proudly featured on {" "}
+        <a
+          href="https://web.archive.org/web/20230613205935/https://1mb.club/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          1mb.club
+        </a>
+        , for keeping this site lightweight and fast.
+      </p>
+      <p className="mt-5">
         Feel free to slide into my{" "}
         <a
           href="https://www.strava.com/athletes/34639203"

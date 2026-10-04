@@ -586,3 +586,11 @@
     transition: none !important;
   }
 }
+
+/* Slow, deliberate light/dark switch: the toggle wraps the theme change in a
+   view transition, so the whole page cross-fades as one snapshot. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 1000ms;
+  animation-timing-function: ease;
+}

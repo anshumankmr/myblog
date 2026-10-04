@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/notes", label: "Notes" },
   { href: "/now", label: "Now" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ]
 const externalLinks = [
   {

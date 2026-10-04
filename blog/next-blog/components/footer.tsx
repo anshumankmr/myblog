@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Script from "next/script"
-import { FaGithub, FaLinkedin, FaTwitter, FaRss, FaHackerNews } from "react-icons/fa"
+import { FaGithub, FaLinkedin, FaTwitter, FaRss, FaHackerNews, FaSpotify, FaSteam, FaPlaystation, FaGoodreadsG } from "react-icons/fa"
 import { PERSON, SITE_URL } from "@/lib/identity"
 
 export default function Footer() {
@@ -45,6 +45,38 @@ export default function Footer() {
             rel="me noopener noreferrer"
           >
             <FaHackerNews aria-hidden="true" />
+          </a>
+          <a
+            href={PERSON.profiles.spotify}
+            aria-label="Spotify"
+            target="_blank"
+            rel="me noopener noreferrer"
+          >
+            <FaSpotify aria-hidden="true" />
+          </a>
+          <a
+            href={PERSON.profiles.steam}
+            aria-label="Steam"
+            target="_blank"
+            rel="me noopener noreferrer"
+          >
+            <FaSteam aria-hidden="true" />
+          </a>
+          <a
+            href={PERSON.profiles.playstation}
+            aria-label="PlayStation"
+            target="_blank"
+            rel="me noopener noreferrer"
+          >
+            <FaPlaystation aria-hidden="true" />
+          </a>
+          <a
+            href={PERSON.profiles.goodreads}
+            aria-label="Goodreads"
+            target="_blank"
+            rel="me noopener noreferrer"
+          >
+            <FaGoodreadsG aria-hidden="true" />
           </a>
         </div>
       </div>

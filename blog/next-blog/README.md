@@ -44,7 +44,8 @@ source system's duplicate size token so it cannot overwrite the meta color.
   unavailable. The two latest notes appear on the homepage. No sample notes
   are published.
 - `/now/`: dated updates, the supplied Strava latest-rides iframe, recently
-  watched films from `jabwemetguy` on Letterboxd, and verified calorie totals.
+  watched films from `jabwemetguy` on Letterboxd, books from `anshuman_kmr` on
+  Goodreads, and verified calorie totals.
 - `/rss.xml`: posts and notes, newest first, with stable permalink GUIDs. The
   footer and alternate-feed metadata link to it.
 - `/resume.pdf`: the supplied **Anshuman Kumar CV September 2026.pdf**.
@@ -144,11 +145,20 @@ no API credentials. The profile link remains usable if the embed fails. Its
 cross-origin content cannot inherit our theme, so dark mode uses the existing CSS
 filter; this also shifts Strava's rendered brand colours slightly.
 
-Letterboxd RSS and MyFitnessPal are fetched during the content step. Their data
-refreshes on the next blog rebuild, not on a visitor's request. Unavailable
+Letterboxd RSS, Goodreads RSS, and MyFitnessPal are fetched during the content
+step. Their data refreshes on the next blog rebuild, not on a visitor's request. Unavailable
 feeds/diary data are omitted without loading or error placeholders. The Now
 page shows when the snapshot was checked. Letterboxd uses only dated watches;
 list entries are excluded, and half-star ratings are supported.
+
+Goodreads uses public account `53014278` from the supplied widget and the `read`
+shelf RSS feed. The four displayed books follow the shelf feed's order, with
+small covers, authors, and the user's own ratings. Zero means unrated and is
+omitted. Finish dates appear only when `user_read_at` is present; shelf-added
+dates are never presented as finish dates. Empty or unavailable feeds omit the
+section, while Goodreads profile links remain in Contact and the footer. The
+profile also joins the existing Person `sameAs` data. No Goodreads widget script
+or API key is required.
 
 The existing public diary reader in `server/myfitnesspal.mjs` returns verified
 food calories only. Empty, private, malformed, or blocked responses never become

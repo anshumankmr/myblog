@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync, unlinkSync } from 
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
-import { fetchFilms } from './activity.mjs';
+import { fetchFilms, fetchBooks } from './activity.mjs';
 import { diaryDate, readNutrition } from '../../../server/myfitnesspal.mjs';
 
 const API_BASE = 'https://anshumankmr.github.io/generated';
@@ -24,8 +24,8 @@ function writeEntries(directory, entries) {
 }
 
 async function main() {
-  const [postsFeed, notesFeed, films, nutrition] = await Promise.all([
-    getFeed('content.json'), getFeed('notes.json', true), fetchFilms(), readNutrition(diaryDate()),
+  const [postsFeed, notesFeed, films, books, nutrition] = await Promise.all([
+    getFeed('content.json'), getFeed('notes.json', true), fetchFilms(), fetchBooks(), readNutrition(diaryDate()),
   ]);
   const posts = postsFeed.data.map(({ attributes: attrs }) => {
     const slug = attrs.Title.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim();
@@ -45,9 +45,9 @@ async function main() {
   writeEntries('blogs', posts);
   writeEntries('notes', notes);
   writeFileSync(join(CONTENT_DIR, 'activity.json'), JSON.stringify({
-    fetchedAt: new Date().toISOString(), films,
+    fetchedAt: new Date().toISOString(), films, books,
     nutrition: nutrition.status === 'ok' ? nutrition : null,
   }, null, 2));
-  console.log(`Fetched ${posts.length} posts, ${notes.length} notes, ${films.length} films.`);
+  console.log(`Fetched ${posts.length} posts, ${notes.length} notes, ${films.length} films, ${books.length} books.`);
 }
 main().catch(error => { console.error(error.message); process.exit(1); });

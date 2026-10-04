@@ -299,6 +299,14 @@
   .activity-row { display: grid; grid-template-columns: 90px minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding: 12px 0; }
   .activity-name { font-family: var(--font-display); font-weight: 500; color: var(--text-heading); }
   .activity-row:hover .activity-name { color: var(--link); }
+  .book-row { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 14px 0; }
+  .book-cover { width: 40px; height: 60px; object-fit: contain; border-radius: var(--radius-sm); }
+  .book-cover-placeholder { display: grid; place-items: center; background: var(--surface-sunken); color: var(--text-muted); }
+  .book-details { min-width: 0; overflow-wrap: anywhere; }
+  .book-row:hover .activity-name { color: var(--link); }
+  .book-author { display: block; margin-top: 2px; font-size: 14px; color: var(--text-meta); }
+  .book-read-date { display: block; margin-top: 4px; font-size: 11px; }
+  .book-rating { align-self: start; margin-top: 3px; white-space: nowrap; }
   .bio {
     display: flex;
     gap: 16px;
@@ -543,6 +551,9 @@
 .dark .note-body audio { color-scheme: dark; }
 
 @media (max-width: 600px) {
+  .book-row { gap: 4px 12px; }
+  .book-rating { grid-column: 2 / -1; margin-top: 0; }
+  .book-cover { grid-row: span 2; align-self: start; }
   .note-header { flex-direction: column; gap: 4px; }
   .note { grid-template-columns: 36px minmax(0, 1fr); gap: 10px; }
   .note-avatar img { width: 36px; height: 36px; }

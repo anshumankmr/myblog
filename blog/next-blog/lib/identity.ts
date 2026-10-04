@@ -12,5 +12,9 @@ export const PERSON = {
     linkedin: 'https://www.linkedin.com/in/anshumankumarcs/',
     twitter: 'https://twitter.com/anshuman_kmr',
     hackerNews: 'https://news.ycombinator.com/user?id=anshumankmr',
+    goodreads: 'https://www.goodreads.com/anshuman_kmr',
+    spotify: 'https://open.spotify.com/user/anshumankmr80',
+    steam: 'https://steamcommunity.com/id/anshuman97/',
+    playstation: 'https://my.playstation.com/profile/Anshumankmr',
   },
 } as const;

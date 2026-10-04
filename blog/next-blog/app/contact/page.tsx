@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { FaEnvelope, FaLinkedin, FaGithub, FaTwitter, FaHackerNews } from "react-icons/fa"
+import { FaEnvelope, FaLinkedin, FaGithub, FaTwitter, FaHackerNews, FaGoodreadsG, FaSpotify, FaSteam, FaPlaystation } from "react-icons/fa"
 import { pageMetadata } from "@/lib/metadata"
 import { PERSON } from "@/lib/identity"
 
@@ -36,6 +36,30 @@ const contacts = [
     icon: FaHackerNews,
     description: "anshumankmr",
   },
+  {
+    name: "Goodreads",
+    href: PERSON.profiles.goodreads,
+    icon: FaGoodreadsG,
+    description: `@${PERSON.handle}`,
+  },
+  {
+    name: "Spotify",
+    href: PERSON.profiles.spotify,
+    icon: FaSpotify,
+    description: new URL(PERSON.profiles.spotify).pathname.split("/").at(-1),
+  },
+  {
+    name: "Steam",
+    href: PERSON.profiles.steam,
+    icon: FaSteam,
+    description: new URL(PERSON.profiles.steam).pathname.split("/").filter(Boolean).at(-1),
+  },
+  {
+    name: "PlayStation",
+    href: PERSON.profiles.playstation,
+    icon: FaPlaystation,
+    description: new URL(PERSON.profiles.playstation).pathname.split("/").filter(Boolean).at(-1),
+  },
 ]
 
 export default function ContactPage() {
@@ -45,6 +69,7 @@ export default function ContactPage() {
       <p className="page-intro">
         I read every message. Email is the quickest way to reach me; you can
         also find me in these places. I use @{PERSON.handle} as my main online handle.
+        (wherever I can)
       </p>
       <ul className="mt-8 border-t border-border-hairline">
         {contacts.map(({ name, href, description, icon: Icon }) => (

@@ -2,9 +2,10 @@ import now from '@/content/now.json';
 import { getActivity } from '@/lib/activity';
 import { pageMetadata } from '@/lib/metadata';
 import RecentFilms from '@/components/recent-films';
+import RecentBooks from '@/components/recent-books';
 import RecentRides from '@/components/recent-rides';
 
-export const metadata = pageMetadata('Now', 'What Anshuman Kumar is working on, training for, and watching.', '/now/');
+export const metadata = pageMetadata('Now', 'What Anshuman Kumar is working on, training for, reading, and watching.', '/now/');
 
 export default function NowPage() {
   const activity = getActivity();
@@ -24,7 +25,8 @@ export default function NowPage() {
         </section>
       )}
       <RecentFilms films={activity.films} />
-      {activity.fetchedAt && (activity.films.length > 0 || activity.nutrition) && <p className="meta mt-8">Last checked <time dateTime={activity.fetchedAt}>{new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(activity.fetchedAt))}</time>.</p>}
+      <RecentBooks books={activity.books} />
+      {activity.fetchedAt && (activity.films.length > 0 || activity.books.length > 0 || activity.nutrition) && <p className="meta mt-8">Last checked <time dateTime={activity.fetchedAt}>{new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(activity.fetchedAt))}</time>.</p>}
     </div>
   );
 }

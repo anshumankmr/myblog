@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Script from "next/script"
-import { FaGithub, FaLinkedin, FaTwitter, FaRss } from "react-icons/fa"
+import { FaGithub, FaLinkedin, FaTwitter, FaRss, FaHackerNews } from "react-icons/fa"
 import { PERSON, SITE_URL } from "@/lib/identity"
 
 export default function Footer() {
@@ -37,6 +37,14 @@ export default function Footer() {
             rel="me noopener noreferrer"
           >
             <FaTwitter aria-hidden="true" />
+          </a>
+          <a
+            href={PERSON.profiles.hackerNews}
+            aria-label="Hacker News"
+            target="_blank"
+            rel="me noopener noreferrer"
+          >
+            <FaHackerNews aria-hidden="true" />
           </a>
         </div>
       </div>

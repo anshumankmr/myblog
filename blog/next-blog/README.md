@@ -30,8 +30,9 @@ you update the Now page. The initial entries use existing facts from About.
 The visual system comes from **Anshuman's Blog Design System**: IBM Plex Serif,
 Sans, Mono, and Sans Devanagari; one blue accent; a 720px column; hairlines; light
 and dark mode. The header reads **अंशुमन कुमार**, with the accessible name
-“Anshuman Kumar”. Fonts use `next/font` and are self-hosted. The legacy site title
-“Les Pensées d'Anshuman” remains in metadata. `--font-size-meta` replaces the
+“Anshuman Kumar”. Fonts use `next/font` and are self-hosted. The homepage title is
+“Anshuman Kumar | Software Engineer in Bangalore”; other pages include his name
+and primary handle, `@anshuman_kmr`. `--font-size-meta` replaces the
 source system's duplicate size token so it cannot overwrite the meta color.
 
 - `/blogs/`: long-form posts grouped by year. A frontmatter `description` takes
@@ -44,6 +45,11 @@ source system's duplicate size token so it cannot overwrite the meta color.
 - `/rss.xml`: posts and notes, newest first, with stable permalink GUIDs. The
   footer and alternate-feed metadata link to it.
 - `/resume.pdf`: the supplied **Anshuman Kumar CV September 2026.pdf**.
+- `/sitemap.xml`: the homepage, public sections, and every published article and
+  note, generated from the same content as their routes. Excludes the empty-note
+  sentinel, 404s, and the noindex Keystone policy. Includes the portrait for image
+  discovery. No invented modification dates are added.
+- `/robots.txt`: allows crawling and points to the canonical non-www sitemap.
 
 Article and note previews have their own title, description, canonical URL, and
 PNG image. `next/og` renders the images during export with local Plex fonts in
@@ -51,6 +57,30 @@ PNG image. `next/og` renders the images during export with local Plex fonts in
 server; Shiki's `github-dark` highlighting runs during the build. Neither the
 Markdown renderer nor Shiki ships in browser JavaScript. Article footers link to
 the original source file's GitHub editor.
+
+## Identity and discovery
+
+`lib/identity.ts` holds the public name, primary handle (`anshuman_kmr`), role,
+employer, city, portrait, and profile URLs. GitHub and Hacker News retain
+`anshumankmr`, and LinkedIn retains `anshumankumarcs`; `sameAs` in the server-rendered
+Person JSON-LD connects them to the canonical domain. The homepage, About,
+Contact, footer, and article bylines display the primary handle. Profile links
+use `rel="me"`. Update the identity file when public work details change.
+
+The current GitHub portrait is checked into `public/images/anshuman-kumar.jpg`.
+The homepage, article bylines, Person data, image sitemap, and default social
+preview all use this local asset. Replace it here when updating the portrait.
+
+After deployment, submit `https://anshumankumar.net/sitemap.xml` in Google Search
+Console and inspect the homepage and portrait URLs. Profile edits outside this
+repo remain separate work: use “Anshuman Kumar (@anshuman_kmr)”, the same work
+description, and `https://anshumankumar.net/` in profile bios/website fields.
+
+Third-party recognition needs actual published work and links: document a
+current project with a working demo, highlight maintained contributions, and
+publish an original article under the same byline on a relevant external site
+with a link back. This repo cannot create independent coverage or guarantee
+search rankings.
 
 ## Writing notes
 
@@ -103,9 +133,12 @@ cd blog/next-blog
 npm test
 npx tsc --noEmit
 npm run build
+npm run check:seo
 ```
 
-The deployment workflow runs the diary and app tests before building. The content
+The deployment workflow runs the diary and app tests before building, then checks
+the exported HTML, canonicals, Person data, images, sitemap coverage, and robots
+before deploying. The content
 repo has a generator test, and the MCP repo covers note lifecycle and OAuth
 rejection before any GitHub requests. Preview the static export with any static
 server, or preview the existing nutrition Function from the repository root:

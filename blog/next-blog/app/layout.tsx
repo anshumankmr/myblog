@@ -4,7 +4,9 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
-import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/metadata"
+import { HOME_TITLE, SITE_DESCRIPTION, SITE_TITLE, SITE_URL, pageMetadata } from "@/lib/metadata"
+import { PERSON } from "@/lib/identity"
+import { personJsonLd, serializeJsonLd } from "@/lib/structured-data"
 
 const plexSerif = IBM_Plex_Serif({
   subsets: ["latin"],
@@ -29,35 +31,13 @@ const plexDevanagari = IBM_Plex_Sans_Devanagari({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://anshumankumar.net"),
+  ...pageMetadata(HOME_TITLE, SITE_DESCRIPTION, "/"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Les Pensées d'Anshuman",
-    template: "%s | Les Pensées d'Anshuman",
+    default: HOME_TITLE,
+    template: `%s | ${SITE_TITLE}`,
   },
-  description: SITE_DESCRIPTION,
-  alternates: {
-    canonical: "/",
-    types: { "application/rss+xml": [{ url: "/rss.xml", title: SITE_TITLE }] },
-  },
-  authors: [{ name: "Anshuman Kumar" }],
-  openGraph: {
-    title: "Les Pensées d'Anshuman",
-    description:
-      "Personal blog by Anshuman Kumar. Writing about tech, life, and everything in between.",
-    url: "https://anshumankumar.net",
-    siteName: "Les Pensées d'Anshuman",
-    locale: "en_US",
-    type: "website",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Anshuman Kumar" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    creator: "@anshuman_kmr",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  authors: [{ name: PERSON.name, url: SITE_URL }],
 }
 
 export default function RootLayout({
@@ -78,6 +58,7 @@ export default function RootLayout({
           color: "var(--text-body)",
         }}
       >
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(personJsonLd) }} />
         <ThemeProvider>
           <a href="#main-content" className="skip-link">
             Skip to content

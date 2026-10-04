@@ -3,9 +3,13 @@ import Link from "next/link"
 import { getAllPosts, getAllNotes } from "@/lib/content"
 import { PostListItem } from "@/components/blog/PostListItem"
 import Note from "@/components/note"
-import { pageMetadata, SITE_DESCRIPTION, SITE_TITLE } from "@/lib/metadata"
+import { pageMetadata, SITE_DESCRIPTION, HOME_TITLE } from "@/lib/metadata"
+import { PERSON } from "@/lib/identity"
 
-export const metadata = pageMetadata(SITE_TITLE, SITE_DESCRIPTION, "/")
+export const metadata = {
+  ...pageMetadata(HOME_TITLE, SITE_DESCRIPTION, "/"),
+  title: { absolute: HOME_TITLE },
+}
 
 export default function Home() {
   const allPosts = getAllPosts()
@@ -22,15 +26,18 @@ export default function Home() {
     <div className="page-container !pt-16">
       <div className="hero">
         <div className="flex-1 min-w-0">
-          <h1>Hi, I&apos;m Anshuman.</h1>
+          <h1>Hi, I&apos;m {PERSON.name}.</h1>
           <p className="lead">
-            I&apos;m a software engineer at Flexera in Bangalore, working on
-            FinOps AI.
+            I&apos;m a {PERSON.jobTitle.toLowerCase()} at {PERSON.employer} in {PERSON.city},
+            working on FinOps AI.
+          </p>
+          <p className="meta mt-3">
+            Online as <a href={PERSON.profiles.twitter} rel="me">@{PERSON.handle}</a>.
           </p>
         </div>
         <Image
-          src="https://avatars.githubusercontent.com/u/24219264?v=4"
-          alt="Anshuman Kumar"
+          src={PERSON.image}
+          alt={`Portrait of ${PERSON.name}, software engineer at ${PERSON.employer} in ${PERSON.city}`}
           width={96}
           height={96}
           className="hero-avatar"

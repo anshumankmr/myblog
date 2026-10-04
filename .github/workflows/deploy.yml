@@ -45,6 +45,10 @@ jobs:
         working-directory: blog/next-blog
         run: npm run build
 
+      - name: Check exported SEO metadata and discovery files
+        working-directory: blog/next-blog
+        run: npm run check:seo
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:

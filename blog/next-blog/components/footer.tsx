@@ -1,39 +1,40 @@
 import Link from "next/link"
 import Script from "next/script"
 import { FaGithub, FaLinkedin, FaTwitter, FaRss } from "react-icons/fa"
+import { PERSON, SITE_URL } from "@/lib/identity"
 
 export default function Footer() {
   return (
     <footer className="mt-12 border-t border-border-hairline">
       <div className="page-container !py-6 flex items-center justify-between gap-4 flex-wrap">
-        <p className="meta">© {new Date().getFullYear()} Anshuman Kumar</p>
+        <p className="meta">© {new Date().getFullYear()} {PERSON.name} · @{PERSON.handle}</p>
         <div className="flex items-center gap-4">
           <Link href="/contact" className="meta">Contact</Link>
-          <a href="https://anshumankumar.net" className="meta">
+          <a href={SITE_URL} className="meta">
             anshumankumar.net
           </a>
           <a href="/rss.xml" aria-label="RSS feed" title="RSS feed"><FaRss aria-hidden="true" /></a>
           <a
-            href="https://github.com/anshumankmr"
+            href={PERSON.profiles.github}
             aria-label="GitHub"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="me noopener noreferrer"
           >
             <FaGithub aria-hidden="true" />
           </a>
           <a
-            href="https://www.linkedin.com/in/anshumankumarcs/"
+            href={PERSON.profiles.linkedin}
             aria-label="LinkedIn"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="me noopener noreferrer"
           >
             <FaLinkedin aria-hidden="true" />
           </a>
           <a
-            href="https://twitter.com/anshuman_kmr"
+            href={PERSON.profiles.twitter}
             aria-label="Twitter"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="me noopener noreferrer"
           >
             <FaTwitter aria-hidden="true" />
           </a>

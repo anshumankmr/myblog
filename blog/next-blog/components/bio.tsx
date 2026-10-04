@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { PERSON } from "@/lib/identity"
 
 interface BioProps {
   showTwitter?: boolean
@@ -8,26 +9,26 @@ export default function Bio({ showTwitter = true }: BioProps) {
   return (
     <div className="bio">
       <Image
-        src="https://avatars.githubusercontent.com/u/24219264?v=4"
-        alt="Anshuman Kumar"
+        src={PERSON.image}
+        alt={`Portrait of ${PERSON.name}`}
         width={44}
         height={44}
         className="bio-avatar"
       />
       <div>
-        <p className="font-semibold text-text-heading">Anshuman Kumar</p>
+        <p className="font-semibold text-text-heading">{PERSON.name} <span className="meta">@{PERSON.handle}</span></p>
         <p className="text-sm text-text-meta">
-          Software engineer · Flexera · Bangalore
+          {PERSON.jobTitle} · {PERSON.employer} · {PERSON.city}
         </p>
         <p className="mt-2 text-base">
-          Building FinOps AI at Flexera. Into running, cycling, board games,
+          Building FinOps AI at {PERSON.employer}. Into running, cycling, board games,
           coffee, cooking when I can, and films.
         </p>
         {showTwitter && (
           <a
-            href="https://twitter.com/anshuman_kmr"
+            href={PERSON.profiles.twitter}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="me noopener noreferrer"
             className="inline-block mt-2 text-sm"
           >
             @anshuman_kmr

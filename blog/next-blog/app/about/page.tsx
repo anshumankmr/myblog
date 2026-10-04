@@ -3,8 +3,9 @@ import Image from "next/image"
 import { Button } from "@/components/ui/Button"
 import Link from "next/link"
 import { pageMetadata } from "@/lib/metadata"
+import { PERSON } from "@/lib/identity"
 
-export const metadata: Metadata = pageMetadata("About", "A little about Anshuman Kumar: software engineer at Flexera, runner, cyclist, and fan of board games, cooking, coffee, and films.", "/about/")
+export const metadata: Metadata = pageMetadata("About", `A little about ${PERSON.name}: ${PERSON.jobTitle.toLowerCase()} at ${PERSON.employer} in ${PERSON.city}, runner, cyclist, and fan of board games, cooking, coffee, and films.`, "/about/")
 
 const skills = [
   {
@@ -106,10 +107,10 @@ function Section({
 export default function AboutPage() {
   return (
     <div className="page-container">
-      <h1>About me</h1>
+      <h1>About {PERSON.name}</h1>
       <p className="lead">
-        I&apos;m a software engineer at Flexera in Bangalore, working on FinOps
-        AI: cloud-cost anomaly detection and the agents that explain it.
+        I&apos;m a {PERSON.jobTitle.toLowerCase()} at {PERSON.employer} in {PERSON.city},
+        working on FinOps AI: cloud-cost anomaly detection and the agents that explain it.
       </p>
       <p className="mt-5">
         Away from work, I&apos;m usually running or cycling, playing board
@@ -118,6 +119,10 @@ export default function AboutPage() {
       <p className="mt-5">
         I write about software, AI, movies, cycling, running, and whatever else
         catches my attention. This is where those interests end up.
+      </p>
+      <p className="mt-5">
+        Online, I go by <a href={PERSON.profiles.twitter} rel="me">@{PERSON.handle}</a>.
+        {" "}<Link href="/contact/">Find my profiles and get in touch →</Link>
       </p>
       <p className="mt-5">
         Proudly featured on {" "}
@@ -141,9 +146,9 @@ export default function AboutPage() {
         </a>{" "}
         DMs for a ride, or connect with me on{" "}
         <a
-          href="https://twitter.com/anshuman_kmr"
+          href={PERSON.profiles.twitter}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="me noopener noreferrer"
         >
           Twitter
         </a>{" "}

@@ -10,6 +10,8 @@ import { GET as rss } from '../app/rss.xml/route';
 import { renderToStaticMarkup } from 'react-dom/server';
 import Note from '../components/note';
 import { generateStaticParams, generateMetadata } from '../app/notes/[slug]/page';
+import sitemap from '../app/sitemap';
+import robots from '../app/robots';
 
 test('excerpts remove Markdown images, keep inline code, and end at sentences or words', () => {
   assert.equal(getExcerpt('![](https://example.com/image.png)\n\nA **real** paragraph with [a link](https://example.com).'), 'A real paragraph with a link.');
@@ -42,6 +44,20 @@ test('notes have stable permalinks, exclude drafts, and share an escaped RSS fee
     process.chdir(root);
     assert.equal(getAllPosts()[0].description, 'Custom summary.');
     assert.equal(getAllNotes().length, 1);
+    const entries = sitemap();
+    assert.equal(entries.length, 8);
+    assert.deepEqual(entries.map(entry => entry.url).sort(), [
+      'https://anshumankumar.net/',
+      'https://anshumankumar.net/about/',
+      'https://anshumankumar.net/blogs/',
+      'https://anshumankumar.net/notes/',
+      'https://anshumankumar.net/now/',
+      'https://anshumankumar.net/contact/',
+      'https://anshumankumar.net/article/2026-10-03/a-b/',
+      'https://anshumankumar.net/notes/permanent-note-address/',
+    ].sort());
+    assert.deepEqual(entries[0].images, ['https://anshumankumar.net/images/anshuman-kumar.jpg']);
+    assert.equal(robots().sitemap, 'https://anshumankumar.net/sitemap.xml');
     assert.equal(getNote('permanent-note-address')?.noteId, 'note-id');
     assert.equal(getNote('missing'), null);
     assert.deepEqual(generateStaticParams(), [{ slug: 'permanent-note-address' }]);
@@ -61,5 +77,15 @@ test('notes have stable permalinks, exclude drafts, and share an escaped RSS fee
     assert(!xml.includes('Private draft'));
     assert.equal((xml.match(/<item>/g) || []).length, 2);
     assert(xml.indexOf('/notes/') < xml.indexOf('/article/'));
+  } finally { process.chdir(previous); rmSync(root, { recursive: true }); }
+});
+
+test('an empty content store produces only public section URLs, without placeholder notes', () => {
+  const root = mkdtempSync(join(tmpdir(), 'anshuman-blog-empty-test-'));
+  const previous = process.cwd();
+  try {
+    process.chdir(root);
+    assert.equal(sitemap().length, 6);
+    assert(!JSON.stringify(sitemap()).includes('_empty'));
   } finally { process.chdir(previous); rmSync(root, { recursive: true }); }
 });

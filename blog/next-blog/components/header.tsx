@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { FaLinkedin, FaGithub, FaBars, FaTimes } from "react-icons/fa"
 import { ThemeToggle } from "./theme-toggle"
+import { PERSON } from "@/lib/identity"
 
 const navLinks = [
   { href: "/blogs", label: "Posts" },
@@ -14,11 +15,11 @@ const navLinks = [
 ]
 const externalLinks = [
   {
-    href: "https://www.linkedin.com/in/anshumankumarcs/",
+    href: PERSON.profiles.linkedin,
     label: "LinkedIn",
     icon: FaLinkedin,
   },
-  { href: "https://github.com/anshumankmr", label: "GitHub", icon: FaGithub },
+  { href: PERSON.profiles.github, label: "GitHub", icon: FaGithub },
 ]
 const resumeLink = "/resume.pdf"
 
@@ -46,7 +47,7 @@ export default function Header() {
       key={href}
       href={href}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="me noopener noreferrer"
       aria-label={label}
       className="nav-link"
     >

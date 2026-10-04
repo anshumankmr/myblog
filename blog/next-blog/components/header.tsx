@@ -12,7 +12,7 @@ const navLinks = [
   { href: "/notes", label: "Notes" },
   { href: "/now", label: "Now" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/contact", label: "Socials" },
 ]
 const externalLinks = [
   {

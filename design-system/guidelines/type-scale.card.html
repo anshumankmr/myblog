@@ -1,0 +1,29 @@
+<!-- @dsCard group="Type" viewport="700x270" name="Type scale" subtitle="Serif headings, sans body, mono meta. Ceiling is 48px." -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+body{margin:0;font-family:var(--font-ui);background:var(--surface-page)}
+.wrap{padding:18px 32px}
+.line{display:flex;align-items:baseline;gap:18px;padding:5px 0;border-bottom:1px solid var(--border-hairline)}
+.line:last-child{border-bottom:none}
+.tag{font-family:var(--font-mono);font-size:10px;color:var(--text-muted);min-width:88px}
+.h{font-family:var(--font-display);font-weight:600;letter-spacing:-0.015em;color:var(--text-heading)}
+.b{font-family:var(--font-ui);font-weight:400;color:var(--text-body)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="line"><span class="tag">5xl / 48</span><span class="h" style="font-size:48px">Home heading</span></div>
+<div class="line"><span class="tag">4xl / 36</span><span class="h" style="font-size:36px">Page heading</span></div>
+<div class="line"><span class="tag">3xl / 28</span><span class="h" style="font-size:28px">Section h2</span></div>
+<div class="line"><span class="tag">2xl / 23</span><span class="h" style="font-size:23px;font-weight:500">Post title</span></div>
+<div class="line"><span class="tag">lg / 17</span><span class="b" style="font-size:17px">Article prose (sans)</span></div>
+<div class="line"><span class="tag">base / 16</span><span class="b" style="font-size:16px">Body default (sans)</span></div>
+<div class="line"><span class="tag">meta / 13</span><span class="b" style="font-size:13px;font-family:var(--font-mono)">2023-08-09</span></div>
+<div class="line"><span class="tag">eyebrow / 12</span><span class="b" style="font-size:12px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted)">Recent posts</span></div>
+</div>
+</body>
+</html>

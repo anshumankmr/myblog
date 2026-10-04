@@ -1,0 +1,26 @@
+<!-- @dsCard group="Brand" viewport="700x150" name="Author avatar & bio" subtitle="Round profile photo on sunken bio strip" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; font-family: var(--font-ui); background: var(--surface-page); padding: var(--space-5); }
+  .bio { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4); background: var(--gray-50); border-radius: var(--radius-lg); }
+  .bio img { width: 72px; height: 72px; border-radius: var(--radius-full); object-fit: cover; }
+  .name { font-weight: 700; color: var(--ink-heading); }
+  .role { font-family: var(--font-body); font-size: 13px; color: var(--ink-text-light); margin-top: 3px; }
+  .handle { font-size: 13px; color: var(--blue-accent); margin-top: 3px; }
+</style>
+</head>
+<body>
+  <div class="bio">
+    <img src="../assets/profile-pic.jpg" alt="Anshuman Kumar">
+    <div>
+      <div class="name">Anshuman Kumar</div>
+      <div class="role">SWE III based in Bangalore, doing cool stuff with AI at scale.</div>
+      <div class="handle">@anshuman_kmr</div>
+    </div>
+  </div>
+</body>
+</html>

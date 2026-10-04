@@ -1,0 +1,26 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Ink — warm near-black ramp" subtitle="Heading / body / meta / hairline — all warm-tinted, not Tailwind gray" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; font-family: var(--font-ui); background: var(--surface-page); }
+  .row { display: flex; gap: 0; padding: var(--space-5); }
+  .sw { flex: 1; }
+  .chip { height: 84px; }
+  .meta { padding: var(--space-3) 0 0; }
+  .name { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-meta); font-weight: 500; }
+  .hex  { font-family: var(--font-mono); font-size: 12px; color: var(--text-heading); margin-top: 4px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background: var(--ink-1000);"></div><div class="meta"><div class="name">Ink · 1000</div><div class="hex">#0B0D10 — display</div></div></div>
+    <div class="sw"><div class="chip" style="background: var(--ink-900);"></div><div class="meta"><div class="name">Ink · 900</div><div class="hex">#16191D — heading</div></div></div>
+    <div class="sw"><div class="chip" style="background: var(--ink-800);"></div><div class="meta"><div class="name">Ink · 800</div><div class="hex">#24282E — body</div></div></div>
+    <div class="sw"><div class="chip" style="background: var(--ink-500);"></div><div class="meta"><div class="name">Ink · 500</div><div class="hex">#6B7280 — muted</div></div></div>
+    <div class="sw"><div class="chip" style="background: var(--ink-100);"></div><div class="meta"><div class="name">Ink · 100</div><div class="hex">#E3DDD1 — hairline</div></div></div>
+  </div>
+</body>
+</html>

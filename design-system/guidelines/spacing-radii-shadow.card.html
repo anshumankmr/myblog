@@ -1,0 +1,29 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Hairlines & rules" subtitle="The brand uses rules — not borders, cards, or shadows" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-ui); color: var(--text-heading); }
+  .wrap { padding: var(--space-6); }
+  .row { display: grid; grid-template-columns: 140px 1fr 80px; align-items: center; gap: var(--space-4); padding: var(--space-3) 0; }
+  .row + .row { border-top: 1px solid var(--border-hairline); }
+  .label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-meta); font-weight: 500; }
+  .preview { background: var(--text-heading); }
+  .h1 { height: 1px; }
+  .h2 { height: 2px; }
+  .h3 { height: 1px; background: var(--accent); }
+  .h4 { height: 1px; background: var(--border-hairline); }
+  .role { font-family: var(--font-mono); font-size: 11px; color: var(--text-meta); text-align: right; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="row"><span class="label">Heavy</span><div class="preview h2"></div><span class="role">2px ink-900</span></div>
+    <div class="row"><span class="label">Standard</span><div class="preview h1"></div><span class="role">1px ink-900</span></div>
+    <div class="row"><span class="label">Hairline</span><div class="preview h4"></div><span class="role">1px ink-100</span></div>
+    <div class="row"><span class="label">Accent</span><div class="preview h3"></div><span class="role">1px accent</span></div>
+  </div>
+</body>
+</html>

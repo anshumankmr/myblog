@@ -1,0 +1,135 @@
+/* ============================================================
+   COLORS — Anshuman's Blog
+   Restrained neutral greys, near-black text, one blue accent for
+   links and the single primary button. No gradients, no colour
+   beyond the accent. Dark mode is a plain, cool near-black.
+
+   This is deliberately an ordinary palette: white page, dark text,
+   blue links. It reads as a working engineer's blog rather than an
+   art-directed magazine, which is the point.
+   ============================================================ */
+
+:root {
+  /* ---- Page / surfaces ---- */
+  --paper-50:   #FFFFFF; /* card / raised */
+  --paper-100:  #FFFFFF; /* page background */
+  --paper-200:  #F6F7F8; /* sunken: bio strip, code, subtle fills */
+  --paper-300:  #ECEEF1;
+
+  /* ---- Neutral ramp (cool grey, very slight blue cast) ---- */
+  --ink-1000:   #0B0D10;
+  --ink-900:    #16191D; /* headings */
+  --ink-800:    #24282E; /* body text */
+  --ink-600:    #555C66; /* meta */
+  --ink-500:    #6B7280; /* muted */
+  --ink-400:    #909AA6;
+  --ink-300:    #B6BEC8;
+  --ink-200:    #D3D9DF;
+  --ink-100:    #E4E8EC; /* hairline */
+  --ink-50:     #F0F2F5;
+
+  /* ---- Accent — the blog's own blue. Links, focus, one button. ---- */
+  --accent:        #1F6FEB;
+  --accent-strong: #1A5FCC;
+  --accent-soft:   rgba(31, 111, 235, 0.08);
+  --accent-tint:   rgba(31, 111, 235, 0.16);
+
+  /* ---- Pure utility ---- */
+  --white: #FFFFFF;
+  --black: #000000;
+
+  /* ---- Code surfaces ---- */
+  --code-bg:        #16191D;
+  --code-fg:        #E4E8EC;
+  --code-inline-bg: var(--paper-200);
+  /* Syntax colours (GitHub Dark palette, matches Shiki 'github-dark').
+     Used ONLY inside code blocks; code-bg is dark in both themes. */
+  --code-keyword: #FF7B72;
+  --code-string:  #A5D6FF;
+  --code-number:  #79C0FF;
+  --code-fn:      #D2A8FF;
+  --code-comment: #8B949E;
+
+  /* ---- Status ---- */
+  --danger-bg:     #FDECEA;
+  --danger-border: #F0B4AE;
+  --danger-text:   #A62A1B;
+
+  /* ============================================================
+     SEMANTIC ALIASES — light theme (default)
+     ============================================================ */
+  --surface-page:    var(--paper-100);
+  --surface-card:    var(--paper-50);
+  --surface-sunken:  var(--paper-200);
+  --surface-chrome:  rgba(255, 255, 255, 0.85); /* sticky header, blurred */
+
+  --text-display:    var(--ink-900);
+  --text-heading:    var(--ink-900);
+  --text-body:       var(--ink-800);
+  --text-muted:      var(--ink-500);
+  --text-meta:       var(--ink-600);
+  --text-on-accent:  #FFFFFF;
+
+  --link:            var(--accent);
+  --link-hover:      var(--accent-strong);
+
+  --border-hairline: var(--ink-100);
+  --border-subtle:   var(--ink-200);
+  --border-strong:   var(--ink-300);
+
+  --focus-ring:      var(--accent);
+
+  /* legacy aliases kept so existing specimen cards keep resolving */
+  --blue-primary:    var(--accent-strong);
+  --blue-accent:     var(--accent);
+  --ink-dark:        var(--ink-1000);
+  --ink-dark-light:  var(--ink-900);
+  --ink-heading:     var(--ink-900);
+  --ink-text:        var(--ink-800);
+  --ink-text-light:  var(--ink-500);
+  --gray-50:  var(--paper-200);
+  --gray-100: var(--paper-300);
+  --gray-200: var(--ink-100);
+  --gray-300: var(--ink-200);
+  --gray-400: var(--ink-300);
+  --gray-500: var(--ink-400);
+  --gray-600: var(--ink-500);
+  --gray-700: var(--ink-600);
+  --gray-800: var(--ink-800);
+  --gray-900: var(--ink-900);
+}
+
+/* ============================================================
+   DARK THEME — plain cool near-black. Not pure #000; not warm.
+   ============================================================ */
+.dark {
+  --surface-page:    #0F1115;
+  --surface-card:    #14171C;
+  --surface-sunken:  #171B21;
+  --surface-chrome:  rgba(15, 17, 21, 0.85);
+
+  --text-display:    #E9ECF0;
+  --text-heading:    #E9ECF0;
+  --text-body:       #C4CAD3;
+  --text-muted:      #7C8593;
+  --text-meta:       #8C95A3;
+
+  --link:            #63A2FF;
+  --link-hover:       #8CBBFF;
+
+  --border-hairline: #232830;
+  --border-subtle:   #2E343E;
+  --border-strong:   #3C434E;
+
+  --code-inline-bg:  #1B2027;
+  --accent:          #63A2FF;
+  --accent-strong:   #8CBBFF;
+  --accent-soft:     rgba(99, 162, 255, 0.10);
+  --accent-tint:     rgba(99, 162, 255, 0.18);
+
+  /* legacy mirrors */
+  --blue-primary:    var(--accent-strong);
+  --blue-accent:     var(--accent);
+  --ink-dark:        #0F1115;
+  --ink-dark-light:  #14171C;
+}

@@ -1,0 +1,25 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Accent — blue" subtitle="The only colour in the system: links, focus, one button" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+body{margin:0;font-family:var(--font-ui);background:var(--surface-page)}
+.row{display:flex;gap:14px;padding:22px 24px}
+.sw{flex:1;border:1px solid var(--border-hairline);border-radius:6px;overflow:hidden}
+.chip{height:56px}
+.meta{padding:8px 12px}
+.name{font-size:12px;font-weight:600;color:var(--text-heading)}
+.hex{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);margin-top:2px}
+</style>
+</head>
+<body>
+<div class="row">
+<div class="sw"><div class="chip" style="background:var(--accent)"></div><div class="meta"><div class="name">Accent</div><div class="hex">#1F6FEB &mdash; links</div></div></div>
+<div class="sw"><div class="chip" style="background:var(--accent-strong)"></div><div class="meta"><div class="name">Accent strong</div><div class="hex">#1A5FCC &mdash; hover</div></div></div>
+<div class="sw"><div class="chip" style="background:var(--accent-tint)"></div><div class="meta"><div class="name">Tint</div><div class="hex">16% &mdash; selection</div></div></div>
+<div class="sw"><div class="chip" style="background:var(--accent-soft)"></div><div class="meta"><div class="name">Soft</div><div class="hex">8% &mdash; hover fills</div></div></div>
+</div>
+</body>
+</html>

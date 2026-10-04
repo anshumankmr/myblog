@@ -37,9 +37,12 @@ source system's duplicate size token so it cannot overwrite the meta color.
 
 - `/blogs/`: long-form posts grouped by year. A frontmatter `description` takes
   priority over a Markdown-free excerpt ending at a sentence or word boundary.
-- `/notes/`: untitled short Markdown posts in flat grey blocks. Timestamps show
-  Asia/Kolkata time and link to stable `/notes/{slug}/` addresses. The two latest
-  notes appear on the homepage. No sample notes are published.
+- `/notes/`: untitled short Markdown posts in a compact feed with an author
+  portrait, name, handle, and hairline dividers. Timestamps show Asia/Kolkata
+  time and link to stable `/notes/{slug}/` addresses. Permalink and share actions
+  work without an account; sharing copies the link when native sharing is
+  unavailable. The two latest notes appear on the homepage. No sample notes
+  are published.
 - `/now/`: dated updates, the supplied Strava latest-rides iframe, recently
   watched films from `jabwemetguy` on Letterboxd, and verified calorie totals.
 - `/rss.xml`: posts and notes, newest first, with stable permalink GUIDs. The
@@ -100,6 +103,38 @@ or timestamp keeps its slug unchanged. The MCP server defaults timestamps to
 Asia/Kolkata; an explicit timestamp must include its timezone. Multiple notes in
 the same minute get distinct addresses. The content repo's `notes/README.md`
 documents the Markdown format if you prefer writing files directly.
+
+### Images and other media in notes
+
+Keep writing ordinary Markdown; no extra feed fields are required:
+
+```md
+A photo from the ride.
+
+![Describe the photo for someone who cannot see it](https://example.com/ride.jpg)
+```
+
+One image keeps its proportions and fits the note. Adjacent images form a
+two-column gallery (blank lines between them are fine). Gallery thumbnails open
+the original images; descriptive alt text is preserved. Images load lazily and
+can use any browser-supported format, including animated GIFs. Use absolute
+URLs for content hosted elsewhere, or `/images/filename.jpg` for assets in this
+app's `public/images/` directory. Relative paths resolve against the page URL.
+
+Standalone links to `.mp4`, `.webm`, `.ogv`, or `.mov` files become native video
+players; `.mp3`, `.m4a`, `.ogg`, `.oga`, `.wav`, `.aac`, and `.flac` links become
+audio players. Playback depends on the browser's codec support. For a URL
+without an extension, use a Markdown title: `[Watch](https://example.com/media "video")`
+or `[Listen](https://example.com/media "audio")`. Links within sentences remain
+ordinary links. Players have controls and do not autoplay or preload files.
+Raw HTML remains excluded by the Markdown sanitizer.
+
+## Design-system reference
+
+The original Desktop design system is preserved in the repository's root
+`design-system/` folder. See its `INTEGRATION.md` for how it maps to production.
+Changes only to this reference folder do not trigger the deployment workflow;
+application changes, manual runs, and content updates still rebuild normally.
 
 ## Activity
 

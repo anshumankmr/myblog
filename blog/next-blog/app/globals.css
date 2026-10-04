@@ -271,12 +271,28 @@
   }
   .guide-row:hover .guide-label { color: var(--link); }
   .guide-description { color: var(--text-meta); font-size: 16px; }
-  .notes-list { display: flex; flex-direction: column; gap: 12px; }
-  .note { padding: 16px 18px; border-radius: 6px; background: var(--surface-sunken); }
-  .note-body { font-size: 17px; line-height: 1.6; }
-  .note-body > :first-child { margin-top: 0; }
-  .note-body > :last-child { margin-bottom: 0; }
-  .note-timestamp { display: inline-block; margin-top: 10px; font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+  .notes-list { display: flex; flex-direction: column; border-top: 1px solid var(--border-hairline); }
+  .note {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 12px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-hairline);
+  }
+  .note-avatar { align-self: start; border-radius: var(--radius-full); }
+  .note-avatar img { width: 40px; height: 40px; }
+  .note-content { min-width: 0; }
+  .note-header { display: flex; align-items: baseline; justify-content: space-between; gap: 4px 12px; flex-wrap: wrap; margin-bottom: 8px; }
+  .note-author { display: flex; align-items: baseline; flex-wrap: wrap; gap: 2px 8px; font-size: 14px; line-height: 1.5; }
+  .note-author-name { font-weight: 600; color: var(--text-heading); }
+  .note-author-handle { color: var(--text-meta); }
+  .note-author:hover .note-author-name { color: var(--link); }
+  .note-timestamp { font-family: var(--font-mono); font-size: 11px; line-height: 1.5; color: var(--text-meta); }
+  .note-actions { display: flex; align-items: start; gap: 24px; margin-top: 12px; }
+  .note-action { display: inline-flex; align-items: center; gap: 6px; padding: 6px 0; color: var(--text-meta); font-size: 12px; line-height: 1.5; }
+  .note-action:hover { color: var(--link); }
+  .note-share { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; }
+  .note-share-status { font-size: 12px; color: var(--text-meta); }
   .activity-heading { font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--text-meta); }
   .activity-list { margin-top: 12px; border-top: 1px solid var(--border-hairline); }
   .activity-list > li { border-bottom: 1px solid var(--border-hairline); }
@@ -507,7 +523,29 @@
 }
 .prose pre code { font-family: inherit; }
 
+.note-body { font-size: 16px; line-height: 1.6; }
+.note-body > :first-child { margin-top: 0; }
+.note-body > :last-child { margin-bottom: 0; }
+.note-body p { margin-top: 0; margin-bottom: 12px; }
+.note-body img { border-radius: var(--radius-md); }
+.note-body .note-media { margin: 12px 0; }
+.note-images { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; }
+.note-images:not([data-count="1"]) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.note-images:is([data-count="3"], [data-count="4"]) { aspect-ratio: 16 / 9; grid-template-rows: repeat(2, minmax(0, 1fr)); }
+.note-images[data-count="3"] > :first-child { grid-row: span 2; }
+.note-images a { display: block; min-width: 0; min-height: 0; overflow: hidden; border-radius: var(--radius-md); background: var(--surface-sunken); }
+.note-images img { display: block; width: 100%; max-height: 560px; margin: 0; object-fit: contain; }
+.note-images:not([data-count="1"]) img { height: 100%; max-height: none; aspect-ratio: 1; object-fit: cover; }
+.note-body video { display: block; width: 100%; aspect-ratio: 16 / 9; max-height: 560px; border-radius: var(--radius-md); background: var(--code-bg); }
+.note-body audio { display: block; width: 100%; }
+.note-body .note-audio { padding: 12px; border: 1px solid var(--border-hairline); border-radius: var(--radius-md); background: var(--surface-sunken); }
+.note-body figcaption { margin: 6px 0 0; font-family: var(--font-ui); font-size: 12px; line-height: 1.5; color: var(--text-meta); }
+.dark .note-body audio { color-scheme: dark; }
+
 @media (max-width: 600px) {
+  .note-header { flex-direction: column; gap: 4px; }
+  .note { grid-template-columns: 36px minmax(0, 1fr); gap: 10px; }
+  .note-avatar img { width: 36px; height: 36px; }
   .activity-row { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; }
   .activity-row time { grid-column: 1 / -1; }
   .guide-row { grid-template-columns: 64px minmax(0, 1fr) auto; gap: 12px; }

@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="mt-12 border-t border-border-hairline">
       <div className="page-container !py-6 flex items-center justify-between gap-4 flex-wrap">
         <p className="meta">© {new Date().getFullYear()} {PERSON.name} · @{PERSON.handle}</p>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 flex-wrap">
           <Link href="/contact" className="meta">Contact</Link>
           <a href={SITE_URL} className="meta">
             anshumankumar.net

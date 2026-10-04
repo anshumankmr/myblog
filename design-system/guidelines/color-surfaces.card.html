@@ -1,0 +1,39 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Surfaces — page, card, sunken, dark" subtitle="Semantic surface roles in both light and dark themes" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; font-family: var(--font-ui); background: var(--surface-page); }
+  .wrap { padding: var(--space-5); display: flex; gap: var(--space-5); }
+  .col { flex: 1; }
+  .label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-meta); font-weight: 500; margin-bottom: var(--space-3); }
+  .stack { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border-hairline); }
+  .layer { padding: 10px 12px; font-family: var(--font-mono); font-size: 11px; color: var(--text-heading); display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-hairline); }
+  .layer:last-child { border-bottom: none; }
+  .dark-preview { background: #0F1115; color: #DAD3C2; }
+  .dark-preview .layer { border-bottom-color: #2A2724; color: #F1ECDF; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="col">
+      <div class="label">Light</div>
+      <div class="stack">
+        <div class="layer" style="background: var(--surface-page);">surface-page <span>#FFFFFF</span></div>
+        <div class="layer" style="background: var(--surface-card);">surface-card <span>#FFFFFF</span></div>
+        <div class="layer" style="background: var(--surface-sunken);">surface-sunken <span>#F6F7F8</span></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="label">Dark — Midnight Paper</div>
+      <div class="stack dark-preview">
+        <div class="layer" style="background: #0F1115;">surface-page <span>#0F1115</span></div>
+        <div class="layer" style="background: #14171C;">surface-card <span>#14171C</span></div>
+        <div class="layer" style="background: #171B21;">surface-sunken <span>#171B21</span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

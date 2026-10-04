@@ -1,0 +1,26 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Paper — warm off-white scale" subtitle="The page is paper, not white. Background and sunken surfaces." -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; font-family: var(--font-ui); background: var(--surface-page); }
+  .row { display: flex; gap: 0; padding: var(--space-5); }
+  .sw { flex: 1; }
+  .chip { height: 84px; border: 1px solid var(--border-hairline); border-right: none; }
+  .sw:last-child .chip { border-right: 1px solid var(--border-hairline); }
+  .meta { padding: var(--space-3) 0 0; }
+  .name { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-meta); font-weight: 500; }
+  .hex  { font-family: var(--font-mono); font-size: 12px; color: var(--text-heading); margin-top: 4px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background: var(--paper-50);"></div><div class="meta"><div class="name">Paper · 50</div><div class="hex">#FFFFFF</div></div></div>
+    <div class="sw"><div class="chip" style="background: var(--paper-100);"></div><div class="meta"><div class="name">Paper · 100</div><div class="hex">#FFFFFF</div></div></div>
+    <div class="sw"><div class="chip" style="background: var(--paper-200);"></div><div class="meta"><div class="name">Paper · 200</div><div class="hex">#F6F7F8</div></div></div>
+    <div class="sw"><div class="chip" style="background: var(--paper-300);"></div><div class="meta"><div class="name">Paper · 300</div><div class="hex">#ECEEF1</div></div></div>
+  </div>
+</body>
+</html>

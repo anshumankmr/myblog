@@ -1,0 +1,15 @@
+/* ============================================================
+   Webfonts — Anshuman's Blog
+
+   One superfamily: IBM Plex, in three cuts.
+     · IBM Plex Serif (400/500/600)        — headings, post titles, hero
+     · IBM Plex Sans  (400/500/600)        — nav, meta, body prose
+     · IBM Plex Mono  (400/500)            — dates, code
+     · IBM Plex Sans Devanagari (400/500/600) — the अंशुमन कुमार wordmark
+
+   All from Google Fonts. To self-host, drop the .woff2 files in
+   assets/fonts/ and replace the @import with @font-face rules
+   pointing at them.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Devanagari:wght@400;500;600&display=swap');

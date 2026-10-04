@@ -1,0 +1,370 @@
+// Home, Blogs list, and Article screens · "Pensées" direction.
+// Voice = Instrument Serif italic. Body = Source Serif 4. Chrome/meta = Inter Tight tiny-caps.
+// Hairlines instead of cards. No gradients anywhere.
+const { Button, PostListItem, Bio } = window.AnshumanSBlogDesignSystem_ceace2;
+
+function Eyebrow({ children, style }) {
+  return (
+    <span style={{
+      fontFamily: 'var(--font-ui)',
+      fontSize: 'var(--text-eyebrow)',
+      letterSpacing: 'var(--tracking-caps)',
+      textTransform: 'uppercase',
+      color: 'var(--text-meta)',
+      fontWeight: 'var(--fw-medium)',
+      ...style,
+    }}>{children}</span>
+  );
+}
+
+function HomeScreen({ navigate, openPost }) {
+  const { author } = window.BLOG_DATA;
+  return (
+    <div style={{ maxWidth: 'var(--container-wide)', margin: '0 auto', padding: 'var(--space-24) var(--space-8) var(--space-16)' }}>
+
+      {/* —— hero: eyebrow → giant italic sentence → manifesto line —— */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-10)' }}>
+        <span style={{ width: '40px', height: '1px', background: 'var(--ink-400)' }} />
+        <Eyebrow>Vol. III · Pensées d'Anshuman</Eyebrow>
+      </div>
+
+      <h1 style={{
+        margin: 0,
+        fontFamily: 'var(--font-display)',
+        fontStyle: 'italic',
+        fontWeight: 400,
+        fontSize: 'clamp(64px, 11vw, 156px)',
+        lineHeight: 'var(--leading-display)',
+        letterSpacing: '-0.02em',
+        color: 'var(--text-display)',
+        textWrap: 'balance',
+      }}>
+        Notes on code,<br/>
+        culture, and<br/>
+        the spaces<br/>
+        <span style={{ color: 'var(--accent)' }}>in&nbsp;between.</span>
+      </h1>
+
+      {/* —— author strip: portrait + intro, asymmetric grid —— */}
+      <div style={{
+        marginTop: 'var(--space-24)',
+        display: 'grid',
+        gridTemplateColumns: '160px 1fr',
+        gap: 'var(--space-10)',
+        alignItems: 'start',
+        paddingTop: 'var(--space-10)',
+        borderTop: '1px solid var(--border-hairline)',
+      }}>
+        <img
+          src={author.avatar}
+          alt={author.name}
+          style={{
+            width: '160px', height: '200px',
+            objectFit: 'cover',
+            filter: 'grayscale(1) contrast(1.05)',
+            background: 'var(--surface-sunken)',
+          }}
+        />
+        <div>
+          <Eyebrow>The Author</Eyebrow>
+          <p style={{
+            margin: 'var(--space-3) 0 0',
+            fontFamily: 'var(--font-body)',
+            fontSize: 'var(--text-xl)',
+            lineHeight: 'var(--leading-snug)',
+            color: 'var(--text-heading)',
+            fontWeight: 400,
+            textWrap: 'pretty',
+            maxWidth: '40rem',
+          }}>
+            Anshuman Kumar — software engineer in Bangalore, building AI systems at scale at an ITAM &amp; FinOps company.
+            He writes here about the things between the commits: long-distance cycling, marathons, the films he keeps coming back to, and the slow work of paying attention.
+          </p>
+
+          <div style={{ marginTop: 'var(--space-8)', display: 'flex', gap: 'var(--space-6)', alignItems: 'center' }}>
+            <Button variant="primary" onClick={() => navigate('blogs')}>Read the essays</Button>
+            <a onClick={() => navigate('about')} style={{
+              cursor: 'pointer',
+              fontFamily: 'var(--font-ui)',
+              fontSize: 'var(--text-eyebrow)',
+              letterSpacing: 'var(--tracking-caps)',
+              textTransform: 'uppercase',
+              color: 'var(--text-meta)',
+              textDecoration: 'none',
+              borderBottom: '1px solid var(--border-subtle)',
+              paddingBottom: '2px',
+            }}>More about me →</a>
+          </div>
+        </div>
+      </div>
+
+      {/* —— latest: hairline-divided index —— */}
+      <LatestIndex navigate={navigate} openPost={openPost} />
+    </div>
+  );
+}
+
+function LatestIndex({ navigate, openPost }) {
+  const { posts } = window.BLOG_DATA;
+  const latest = posts.slice(0, 4);
+  return (
+    <div style={{ marginTop: 'var(--space-24)' }}>
+      <div style={{
+        display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
+        borderBottom: '1px solid var(--ink-900)',
+        paddingBottom: 'var(--space-3)',
+        marginBottom: 'var(--space-2)',
+      }}>
+        <h2 style={{
+          margin: 0, fontFamily: 'var(--font-ui)',
+          fontSize: 'var(--text-eyebrow)', letterSpacing: 'var(--tracking-caps)',
+          textTransform: 'uppercase', fontWeight: 'var(--fw-semibold)',
+          color: 'var(--text-heading)',
+        }}>The Index — Latest Pensées</h2>
+        <a onClick={() => navigate('blogs')} style={{
+          cursor: 'pointer', fontFamily: 'var(--font-display)', fontStyle: 'italic',
+          color: 'var(--accent)', fontSize: '18px', textDecoration: 'none',
+        }}>view all →</a>
+      </div>
+      <ol style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+        {latest.map((p, i) => (
+          <PostListItem
+            key={p.id}
+            n={i + 1}
+            title={p.title}
+            date={p.date}
+            excerpt={p.excerpt}
+            href="#"
+            onClick={() => openPost(p.id)}
+          />
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+function BlogsScreen({ navigate, openPost }) {
+  const { posts, author } = window.BLOG_DATA;
+  React.useEffect(() => { window.__openPost = openPost; }, [openPost]);
+  return (
+    <div style={{ maxWidth: 'var(--container-wide)', margin: '0 auto', padding: 'var(--space-16) var(--space-8) var(--space-24)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+        <span style={{ width: '40px', height: '1px', background: 'var(--ink-400)' }} />
+        <Eyebrow>The Index · {posts.length} essays</Eyebrow>
+      </div>
+      <h1 style={{
+        margin: 'var(--space-6) 0 var(--space-16)',
+        fontFamily: 'var(--font-display)', fontStyle: 'italic', fontWeight: 400,
+        fontSize: 'clamp(56px, 9vw, 120px)',
+        lineHeight: 'var(--leading-display)', letterSpacing: '-0.02em',
+        color: 'var(--text-display)',
+      }}>
+        All the writing,<br/>
+        chronological.
+      </h1>
+
+      <ol style={{ margin: 0, padding: 0, listStyle: 'none', borderTop: '1px solid var(--ink-900)' }}>
+        {posts.map((p, i) => (
+          <PostListItem
+            key={p.id}
+            n={i + 1}
+            title={p.title}
+            date={p.date}
+            excerpt={p.excerpt}
+            href="#"
+            onClick={() => openPost(p.id)}
+          />
+        ))}
+      </ol>
+
+      <div style={{ marginTop: 'var(--space-16)' }}>
+        <Bio avatar={author.avatar} name={author.name} role={author.role} handle={author.handle} />
+      </div>
+    </div>
+  );
+}
+
+function ArticleScreen({ post, openPost, navigate }) {
+  const { author, posts } = window.BLOG_DATA;
+  const idx = posts.findIndex((p) => p.id === post.id);
+  const prev = posts[idx + 1];
+  const next = posts[idx - 1];
+
+  const readingMinutes = Math.max(3, Math.round((post.body || []).reduce((n, b) => n + (b.text || '').split(/\s+/).length, 0) / 220));
+
+  const renderBlock = (b, i) => {
+    if (b.type === 'h2') return (
+      <h2 key={i} style={{
+        fontFamily: 'var(--font-display)', fontStyle: 'italic', fontWeight: 400,
+        fontSize: 'var(--text-3xl)', color: 'var(--text-heading)',
+        letterSpacing: '-0.01em',
+        marginTop: 'var(--space-16)', marginBottom: 'var(--space-4)',
+      }}>{b.text}</h2>
+    );
+    if (b.type === 'quote') return (
+      <blockquote key={i} style={{
+        margin: 'var(--space-12) 0',
+        padding: '0 var(--space-12)',
+        fontFamily: 'var(--font-display)', fontStyle: 'italic',
+        fontSize: 'var(--text-2xl)', lineHeight: 1.35,
+        color: 'var(--text-display)',
+        textAlign: 'center',
+        position: 'relative',
+      }}>
+        <span style={{
+          position: 'absolute', left: 0, top: '-12px',
+          fontSize: '64px', lineHeight: 1, color: 'var(--accent)',
+        }}>“</span>
+        {b.text}
+      </blockquote>
+    );
+    if (b.type === 'code') return (
+      <pre key={i} style={{
+        margin: 'var(--space-8) 0',
+        background: 'var(--code-bg)', color: 'var(--code-fg)',
+        padding: 'var(--space-6)', borderRadius: 0,
+        overflowX: 'auto',
+        fontFamily: 'var(--font-mono)', fontSize: 'var(--text-base)', lineHeight: 1.65,
+        border: '1px solid var(--ink-900)',
+      }}><code>{b.text}</code></pre>
+    );
+    return (
+      <p key={i} style={{
+        fontFamily: 'var(--font-body)',
+        fontSize: 'var(--text-lg)',
+        lineHeight: 'var(--leading-relaxed)',
+        color: 'var(--text-body)',
+        margin: 'var(--space-5) 0',
+        textWrap: 'pretty',
+      }}>{b.text}</p>
+    );
+  };
+
+  // first paragraph gets a drop cap, in the manner of a printed essay
+  const blocks = post.body || [];
+  const firstParaIdx = blocks.findIndex((b) => !b.type || b.type === 'p');
+
+  const renderWithDropCap = (b, i) => {
+    if (i === firstParaIdx && (!b.type || b.type === 'p')) {
+      const text = b.text || '';
+      const first = text.slice(0, 1);
+      const rest = text.slice(1);
+      return (
+        <p key={i} style={{
+          fontFamily: 'var(--font-body)',
+          fontSize: 'var(--text-lg)',
+          lineHeight: 'var(--leading-relaxed)',
+          color: 'var(--text-body)',
+          margin: 'var(--space-2) 0 var(--space-5)',
+          textWrap: 'pretty',
+        }}>
+          <span style={{
+            float: 'left',
+            fontFamily: 'var(--font-display)', fontStyle: 'italic', fontWeight: 400,
+            fontSize: '92px', lineHeight: '0.85',
+            color: 'var(--text-display)',
+            paddingRight: '12px', paddingTop: '6px',
+            marginBottom: '-6px',
+          }}>{first}</span>
+          {rest}
+        </p>
+      );
+    }
+    return renderBlock(b, i);
+  };
+
+  return (
+    <div style={{ maxWidth: 'var(--container-prose)', margin: '0 auto', padding: 'var(--space-16) var(--space-8) var(--space-24)' }}>
+
+      {/* breadcrumb / kicker */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-10)' }}>
+        <span style={{ width: '24px', height: '1px', background: 'var(--ink-400)' }} />
+        <a onClick={() => navigate('blogs')} style={{
+          cursor: 'pointer', fontFamily: 'var(--font-ui)',
+          fontSize: 'var(--text-eyebrow)', letterSpacing: 'var(--tracking-caps)',
+          textTransform: 'uppercase', color: 'var(--text-meta)',
+          textDecoration: 'none',
+        }}>← The Index</a>
+      </div>
+
+      <article>
+        <header style={{ marginBottom: 'var(--space-12)' }}>
+          <Eyebrow style={{ color: 'var(--accent)' }}>№ {String(posts.length - idx).padStart(2, '0')}</Eyebrow>
+          <h1 style={{
+            margin: 'var(--space-4) 0 0',
+            fontFamily: 'var(--font-display)', fontStyle: 'italic', fontWeight: 400,
+            fontSize: 'clamp(48px, 7vw, 88px)',
+            lineHeight: 'var(--leading-display)', letterSpacing: '-0.02em',
+            color: 'var(--text-display)',
+            textWrap: 'balance',
+          }}>{post.title}</h1>
+
+          <div style={{
+            marginTop: 'var(--space-10)',
+            display: 'flex', alignItems: 'center', gap: 'var(--space-4)',
+            paddingBottom: 'var(--space-6)',
+            borderBottom: '1px solid var(--border-hairline)',
+          }}>
+            <Eyebrow>{post.date}</Eyebrow>
+            <span style={{ width: '24px', height: '1px', background: 'var(--border-strong)' }} />
+            <Eyebrow>{readingMinutes} min read</Eyebrow>
+            <span style={{ flex: 1 }} />
+            <Eyebrow>By Anshuman Kumar</Eyebrow>
+          </div>
+        </header>
+
+        <div>{blocks.map(renderWithDropCap)}</div>
+      </article>
+
+      <hr style={{ margin: 'var(--space-16) 0 var(--space-10)', border: 0, borderTop: '1px solid var(--border-hairline)' }} />
+      <Bio avatar={author.avatar} name={author.name} role={author.role} handle={author.handle} />
+
+      <nav style={{
+        marginTop: 'var(--space-16)',
+        borderTop: '1px solid var(--ink-900)',
+        paddingTop: 'var(--space-6)',
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: 'var(--space-8)',
+      }}>
+        {prev ? <ArticleNav p={prev} dir="prev" openPost={openPost} /> : <span />}
+        {next ? <ArticleNav p={next} dir="next" openPost={openPost} /> : <span />}
+      </nav>
+    </div>
+  );
+}
+
+function ArticleNav({ p, dir, openPost }) {
+  const [hover, setHover] = React.useState(false);
+  return (
+    <a
+      onClick={() => openPost(p.id)}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      style={{
+        cursor: 'pointer', textDecoration: 'none',
+        display: 'block',
+        textAlign: dir === 'next' ? 'right' : 'left',
+      }}
+    >
+      <span style={{
+        display: 'block',
+        fontFamily: 'var(--font-ui)',
+        fontSize: 'var(--text-eyebrow)', letterSpacing: 'var(--tracking-caps)',
+        textTransform: 'uppercase', color: 'var(--text-meta)',
+        marginBottom: 'var(--space-3)',
+      }}>{dir === 'next' ? 'Next essay →' : '← Previous essay'}</span>
+      <span style={{
+        display: 'block',
+        fontFamily: 'var(--font-display)', fontStyle: 'italic', fontWeight: 400,
+        fontSize: 'var(--text-2xl)',
+        lineHeight: 1.15,
+        color: hover ? 'var(--accent)' : 'var(--text-heading)',
+        transition: 'color var(--dur-normal) var(--ease-standard)',
+        textWrap: 'balance',
+      }}>{p.title}</span>
+    </a>
+  );
+}
+
+Object.assign(window, { HomeScreen, BlogsScreen, ArticleScreen, Eyebrow });

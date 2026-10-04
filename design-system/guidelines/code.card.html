@@ -1,0 +1,33 @@
+<!-- @dsCard group="Colors" viewport="700x200" name="Code syntax" subtitle="GitHub Dark palette for Shiki; only inside code blocks" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+body{margin:0;background:var(--surface-page);font-family:var(--font-ui)}
+.wrap{padding:20px 24px;display:grid;grid-template-columns:minmax(0,1fr) 170px;gap:20px;align-items:start}
+pre{margin:0;padding:16px;background:var(--code-bg);color:var(--code-fg);border-radius:6px;font-family:var(--font-mono);font-size:13px;line-height:1.6;overflow:auto}
+.k{color:var(--code-keyword)}.s{color:var(--code-string)}.n{color:var(--code-number)}.f{color:var(--code-fn)}.c{color:var(--code-comment)}
+ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-family:var(--font-mono);font-size:11px;color:var(--text-muted)}
+li{display:flex;align-items:center;gap:8px}
+i{width:12px;height:12px;border-radius:2px;display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+<pre><span class="c">// refresh once an hour</span>
+<span class="k">export async function</span> <span class="f">getRecentRides</span>(limit = <span class="n">5</span>) {
+  <span class="k">const</span> res = <span class="k">await</span> <span class="f">fetch</span>(<span class="s">'/api/v3/athlete/activities'</span>);
+  <span class="k">return</span> res.<span class="f">json</span>();
+}</pre>
+<ul>
+<li><i style="background:var(--code-keyword)"></i>keyword #FF7B72</li>
+<li><i style="background:var(--code-string)"></i>string #A5D6FF</li>
+<li><i style="background:var(--code-number)"></i>number #79C0FF</li>
+<li><i style="background:var(--code-fn)"></i>function #D2A8FF</li>
+<li><i style="background:var(--code-comment)"></i>comment #8B949E</li>
+</ul>
+</div>
+</body>
+</html>

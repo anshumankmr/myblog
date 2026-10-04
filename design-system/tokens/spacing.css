@@ -1,0 +1,49 @@
+/* ============================================================
+   SPACING · RADII · SHADOWS · LAYOUT — Anshuman's Blog
+   Derived from the Tailwind utilities actually used across the
+   app (px/py, rounded-*, shadow-*, max-w-* containers).
+   ============================================================ */
+
+:root {
+  /* ---- Spacing scale (Tailwind 4px base) ---- */
+  --space-0:  0;
+  --space-1:  0.25rem; /*  4px */
+  --space-2:  0.5rem;  /*  8px */
+  --space-3:  0.75rem; /* 12px */
+  --space-4:  1rem;    /* 16px — base gutter */
+  --space-5:  1.25rem; /* 20px */
+  --space-6:  1.5rem;  /* 24px — section padding, nav gap */
+  --space-8:  2rem;    /* 32px — block rhythm */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px — page section spacing */
+  --space-16: 4rem;    /* 64px — hero vertical padding */
+  --space-24: 6rem;    /* 96px — hero (sm+) */
+
+  /* ---- Radii ---- */
+  --radius-sm:   0.25rem; /*  4px — inline code, small chips */
+  --radius-md:   0.375rem;/*  6px — buttons, inputs, code blocks, toggle */
+  --radius-lg:   0.375rem;/*  6px — alias; nothing is more rounded than this */
+  --radius-xl:   0.375rem;/*  6px — alias kept for back-compat */
+  --radius-full: 9999px;  /* avatars only */
+
+  /* ---- Shadows — DELIBERATELY NONE ----
+     This system has no elevation. Depth is communicated with 1px
+     hairlines and the sunken surface tint. The two tokens below are
+     kept only so older card HTML keeps resolving; both are `none`.
+     Do not introduce a real shadow value here. */
+  --shadow-md: none;
+  --shadow-lg: none;
+
+  /* ---- Layout containers (max-w-* used per page) ---- */
+  --container-prose: 48rem; /* 768px — blog post / blogs list (max-w-3xl) */
+  --container-text:  56rem; /* 896px — home + about (max-w-4xl) */
+  --container-wide:  72rem; /* 1152px — header/footer (max-w-6xl) */
+  --container-sm:    42rem; /* 672px — contact (max-w-2xl) */
+
+  --header-height:   4rem;  /* 64px — h-16 sticky header */
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */ /* Tailwind default */
+  --dur-fast:   150ms; /* @kind other */
+  --dur-normal: 200ms; /* @kind other */ /* transition-colors duration-200 — the app default */
+}

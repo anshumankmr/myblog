@@ -1,0 +1,82 @@
+<!-- @dsCard group="Blog" viewport="1200x700" name="Blog — full product" subtitle="Home · Posts · Notes · Now · Article · About · Contact, with dark mode" -->
+<!-- @startingPoint section="Blog" subtitle="Anshuman's Blog — full interactive product recreation" viewport="1200x700" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anshuman's Blog — UI Kit</title>
+<link rel="icon" href="../../assets/favicon.ico">
+<link rel="alternate" type="application/rss+xml" title="Anshuman Kumar" href="/rss.xml">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--surface-page);
+    color: var(--text-body);
+    font-family: var(--font-ui);
+    transition: background 150ms ease, color 150ms ease;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--link); }
+  a:hover { color: var(--link-hover); }
+  ::selection { background: var(--accent-tint); }
+  #app { min-height: 100vh; display: flex; flex-direction: column; }
+  main { flex: 1; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="Chrome.jsx"></script>
+<script type="text/babel" src="Screens.jsx"></script>
+<script type="text/babel" src="Screens2.jsx"></script>
+<script type="text/babel" src="Screens3.jsx"></script>
+<script type="text/babel">
+  const { useState, useEffect } = React;
+
+  function App() {
+    const [route, setRoute] = useState('home');
+    const [postId, setPostId] = useState(null);
+    const [theme, setTheme] = useState('light');
+
+    useEffect(() => {
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+    }, [theme]);
+
+    const navigate = (r) => { setRoute(r); window.scrollTo(0, 0); };
+    const openPost = (id) => { setPostId(id); setRoute('article'); window.scrollTo(0, 0); };
+
+    const post = window.BLOG_DATA.posts.find((p) => p.id === postId);
+
+    let screen;
+    if (route === 'home') screen = <window.HomeScreen navigate={navigate} openPost={openPost} />;
+    else if (route === 'blogs') screen = <window.BlogsScreen navigate={navigate} openPost={openPost} />;
+    else if (route === 'article' && post) screen = <window.ArticleScreen post={post} openPost={openPost} navigate={navigate} />;
+    else if (route === 'about') screen = <window.AboutScreen navigate={navigate} />;
+    else if (route === 'contact') screen = <window.ContactScreen />;
+    else if (route === 'notes') screen = <window.NotesScreen openPost={openPost} />;
+    else if (route === 'now') screen = <window.NowScreen />;
+    else screen = <window.HomeScreen navigate={navigate} />;
+
+    return (
+      <>
+        <window.Header route={route} navigate={navigate} theme={theme} setTheme={setTheme} />
+        <main>{screen}</main>
+        <window.Footer />
+      </>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('app')).render(<App />);
+</script>
+</body>
+</html>

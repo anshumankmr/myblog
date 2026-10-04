@@ -1,0 +1,285 @@
+// About and Contact screens · "Pensées" direction.
+// Two-column editorial layout. Hairline-divided sections, italic display heads,
+// body prose in Source Serif 4. No cards, no shadows.
+const { Button } = window.AnshumanSBlogDesignSystem_ceace2;
+
+function Eyebrow({ children, style }) {
+  return (
+    <span style={{
+      fontFamily: 'var(--font-ui)',
+      fontSize: 'var(--text-eyebrow)',
+      letterSpacing: 'var(--tracking-caps)',
+      textTransform: 'uppercase',
+      color: 'var(--text-meta)',
+      fontWeight: 'var(--fw-medium)',
+      ...style,
+    }}>{children}</span>
+  );
+}
+
+function Section({ label, children }) {
+  return (
+    <section style={{
+      padding: 'var(--space-12) 0',
+      borderTop: '1px solid var(--border-hairline)',
+      display: 'grid',
+      gridTemplateColumns: '180px 1fr',
+      gap: 'var(--space-12)',
+      alignItems: 'start',
+    }}>
+      <Eyebrow style={{ paddingTop: '6px' }}>{label}</Eyebrow>
+      <div>{children}</div>
+    </section>
+  );
+}
+
+function AboutScreen({ navigate }) {
+  const { skills, hobbies, author } = window.BLOG_DATA;
+  const achievements = [
+    { yr: '2023', text: 'Third prize at Jovian Hackathon for an open-source solution to automate coding tasks.' },
+    { yr: '2023', text: 'Ran the Bangalore Half Marathon.' },
+    { yr: '2022', text: 'Ran the Vedanta Delhi Half Marathon.' },
+    { yr: '2021', text: 'Shipped a COVID-19 unemployment-insurance chatbot during a critical period.' },
+    { yr: 'now',  text: 'Building and deploying AI systems — including Generative AI conversation agents.' },
+  ];
+
+  return (
+    <div style={{ maxWidth: 'var(--container-wide)', margin: '0 auto', padding: 'var(--space-16) var(--space-8) var(--space-24)' }}>
+
+      {/* hero */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-8)' }}>
+        <span style={{ width: '40px', height: '1px', background: 'var(--ink-400)' }} />
+        <Eyebrow>Colophon</Eyebrow>
+      </div>
+      <h1 style={{
+        margin: 0,
+        fontFamily: 'var(--font-display)', fontStyle: 'italic', fontWeight: 400,
+        fontSize: 'clamp(56px, 9vw, 128px)',
+        lineHeight: 'var(--leading-display)', letterSpacing: '-0.02em',
+        color: 'var(--text-display)',
+      }}>
+        About<br/>the author.
+      </h1>
+
+      {/* portrait + lede */}
+      <div style={{
+        marginTop: 'var(--space-16)',
+        display: 'grid',
+        gridTemplateColumns: '260px 1fr',
+        gap: 'var(--space-12)',
+        alignItems: 'start',
+        paddingBottom: 'var(--space-12)',
+      }}>
+        <img
+          src={author.avatar}
+          alt={author.name}
+          style={{
+            width: '260px', height: '340px', objectFit: 'cover',
+            filter: 'grayscale(1) contrast(1.05)',
+            background: 'var(--surface-sunken)',
+          }}
+        />
+        <div>
+          <p style={{
+            margin: 0,
+            fontFamily: 'var(--font-body)',
+            fontSize: 'var(--text-xl)',
+            lineHeight: 'var(--leading-snug)',
+            color: 'var(--text-heading)',
+            textWrap: 'pretty',
+          }}>
+            <span style={{
+              float: 'left',
+              fontFamily: 'var(--font-display)', fontStyle: 'italic', fontWeight: 400,
+              fontSize: '96px', lineHeight: '0.85',
+              paddingRight: '12px', paddingTop: '6px',
+              color: 'var(--text-display)',
+            }}>I</span>
+            ’m a software engineer in Bangalore, working at scale on AI systems at an ITAM &amp; FinOps company. The day job is generative AI and ML-driven conversation agents — the language models behind the conversations, the plumbing that makes them reliable.
+          </p>
+          <p style={{
+            margin: 'var(--space-5) 0 0',
+            fontFamily: 'var(--font-body)',
+            fontSize: 'var(--text-lg)',
+            lineHeight: 'var(--leading-relaxed)',
+            color: 'var(--text-body)',
+            textWrap: 'pretty',
+          }}>
+            The rest of the time I’m on a road bike or a marathon route, watching old films, or writing the pieces you’ll find here. This site is the quiet place between the commits.
+          </p>
+        </div>
+      </div>
+
+      {/* sections */}
+      <Section label="Stack">
+        <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
+          {skills.map((s) => (
+            <li key={s.category} style={{
+              display: 'grid',
+              gridTemplateColumns: '180px 1fr',
+              gap: 'var(--space-6)',
+              alignItems: 'baseline',
+              paddingBottom: 'var(--space-4)',
+              borderBottom: '1px solid var(--border-hairline)',
+            }}>
+              <span style={{
+                fontFamily: 'var(--font-display)', fontStyle: 'italic', fontWeight: 400,
+                fontSize: 'var(--text-xl)', color: 'var(--text-heading)',
+              }}>{s.category}</span>
+              <span style={{
+                fontFamily: 'var(--font-body)', fontSize: 'var(--text-base)',
+                color: 'var(--text-body)', lineHeight: 'var(--leading-snug)',
+              }}>{s.items}</span>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section label="Off the clock">
+        <ul style={{ margin: 0, padding: 0, listStyle: 'none', columns: 2, columnGap: 'var(--space-12)' }}>
+          {hobbies.map((h) => (
+            <li key={h} style={{
+              breakInside: 'avoid',
+              padding: 'var(--space-3) 0',
+              borderBottom: '1px solid var(--border-hairline)',
+              fontFamily: 'var(--font-body)', fontSize: 'var(--text-base)',
+              color: 'var(--text-body)',
+            }}>{h}</li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section label="Marginalia">
+        <ol style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+          {achievements.map((a, i) => (
+            <li key={i} style={{
+              display: 'grid',
+              gridTemplateColumns: '64px 1fr',
+              gap: 'var(--space-6)',
+              alignItems: 'baseline',
+              padding: 'var(--space-4) 0',
+              borderBottom: i === achievements.length - 1 ? 'none' : '1px solid var(--border-hairline)',
+            }}>
+              <span style={{
+                fontFamily: 'var(--font-ui)',
+                fontSize: 'var(--text-eyebrow)', letterSpacing: 'var(--tracking-caps)',
+                textTransform: 'uppercase', color: 'var(--accent)',
+                fontVariantNumeric: 'tabular-nums',
+              }}>{a.yr}</span>
+              <span style={{
+                fontFamily: 'var(--font-body)', fontSize: 'var(--text-lg)',
+                lineHeight: 'var(--leading-snug)', color: 'var(--text-body)',
+                textWrap: 'pretty',
+              }}>{a.text}</span>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      <div style={{ marginTop: 'var(--space-16)', textAlign: 'center' }}>
+        <Button variant="primary" onClick={() => navigate('contact')}>Get in touch</Button>
+      </div>
+    </div>
+  );
+}
+
+function ContactScreen() {
+  const { contacts } = window.BLOG_DATA;
+
+  return (
+    <div style={{ maxWidth: 'var(--container-text)', margin: '0 auto', padding: 'var(--space-16) var(--space-8) var(--space-24)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-8)' }}>
+        <span style={{ width: '40px', height: '1px', background: 'var(--ink-400)' }} />
+        <Eyebrow>Correspondence</Eyebrow>
+      </div>
+
+      <h1 style={{
+        margin: 0,
+        fontFamily: 'var(--font-display)', fontStyle: 'italic', fontWeight: 400,
+        fontSize: 'clamp(56px, 9vw, 128px)',
+        lineHeight: 'var(--leading-display)', letterSpacing: '-0.02em',
+        color: 'var(--text-display)',
+      }}>
+        Say hello.
+      </h1>
+
+      <p style={{
+        margin: 'var(--space-8) 0 0',
+        fontFamily: 'var(--font-body)',
+        fontSize: 'var(--text-xl)',
+        lineHeight: 'var(--leading-snug)',
+        color: 'var(--text-body)',
+        maxWidth: '38rem',
+        textWrap: 'pretty',
+      }}>
+        I read every message. The fastest reply is on email; the most interesting conversations tend to start on LinkedIn or in the open. Take your pick.
+      </p>
+
+      <ol style={{
+        margin: 'var(--space-16) 0 0',
+        padding: 0,
+        listStyle: 'none',
+        borderTop: '1px solid var(--ink-900)',
+      }}>
+        {contacts.map((c, i) => (
+          <ContactRow key={c.name} n={i + 1} contact={c} last={i === contacts.length - 1} />
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+function ContactRow({ n, contact, last }) {
+  const [hover, setHover] = React.useState(false);
+  return (
+    <li>
+      <a
+        href={contact.href}
+        onClick={(e) => { if (contact.href === '#') e.preventDefault(); }}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '56px 32px 1fr auto 24px',
+          alignItems: 'center',
+          gap: 'var(--space-6)',
+          padding: 'var(--space-6) var(--space-3)',
+          marginLeft: 'calc(var(--space-3) * -1)', marginRight: 'calc(var(--space-3) * -1)',
+          borderBottom: last ? 'none' : '1px solid var(--border-hairline)',
+          textDecoration: 'none',
+          background: hover ? 'var(--accent-soft)' : 'transparent',
+          transition: 'background var(--dur-normal) var(--ease-standard)',
+        }}
+      >
+        <span style={{
+          fontFamily: 'var(--font-ui)',
+          fontSize: 'var(--text-eyebrow)', letterSpacing: 'var(--tracking-caps)',
+          color: 'var(--text-meta)', fontVariantNumeric: 'tabular-nums',
+        }}>№ {String(n).padStart(2, '0')}</span>
+        <i className={contact.icon} aria-hidden="true" style={{
+          color: hover ? 'var(--accent)' : 'var(--text-meta)', fontSize: '18px',
+          transition: 'color var(--dur-normal) var(--ease-standard)',
+        }} />
+        <span style={{
+          fontFamily: 'var(--font-display)', fontStyle: 'italic', fontWeight: 400,
+          fontSize: 'var(--text-2xl)', lineHeight: 1.1,
+          color: hover ? 'var(--accent)' : 'var(--text-heading)',
+          transition: 'color var(--dur-normal) var(--ease-standard)',
+        }}>{contact.name}</span>
+        <span style={{
+          fontFamily: 'var(--font-body)', fontSize: 'var(--text-base)',
+          color: 'var(--text-muted)', textWrap: 'pretty', maxWidth: '20rem',
+        }}>{contact.description}</span>
+        <span style={{
+          fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: '22px',
+          color: hover ? 'var(--accent)' : 'var(--text-meta)',
+          transform: hover ? 'translateX(4px)' : 'translateX(0)',
+          transition: 'transform var(--dur-normal) var(--ease-standard), color var(--dur-normal) var(--ease-standard)',
+          justifySelf: 'end',
+        }}>→</span>
+      </a>
+    </li>
+  );
+}
+
+Object.assign(window, { AboutScreen, ContactScreen });

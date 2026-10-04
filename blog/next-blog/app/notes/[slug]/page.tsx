@@ -35,7 +35,7 @@ export default async function NotePage({ params }: { params: Promise<Params> }) 
     <div className="page-container">
       <Link href="/notes" className="text-sm">← All notes</Link>
       <h1 className="sr-only">Note from {formatNoteTimestamp(note.publishedAt)}</h1>
-      <div className="mt-6"><Note note={note} /></div>
+      <div className="notes-list mt-6"><Note note={note} /></div>
     </div>
   );
 }

@@ -11,6 +11,7 @@ const navLinks = [
   { href: "/blogs", label: "Posts" },
   { href: "/notes", label: "Notes" },
   { href: "/now", label: "Now" },
+  { href: "/keystone", label: "Keystone" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Socials" },
 ]

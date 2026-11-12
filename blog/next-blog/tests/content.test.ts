@@ -45,7 +45,7 @@ test('notes have stable permalinks, exclude drafts, and share an escaped RSS fee
     assert.equal(getAllPosts()[0].description, 'Custom summary.');
     assert.equal(getAllNotes().length, 1);
     const entries = sitemap();
-    assert.equal(entries.length, 8);
+    assert.equal(entries.length, 10);
     assert.deepEqual(entries.map(entry => entry.url).sort(), [
       'https://anshumankumar.net/',
       'https://anshumankumar.net/about/',
@@ -53,6 +53,8 @@ test('notes have stable permalinks, exclude drafts, and share an escaped RSS fee
       'https://anshumankumar.net/notes/',
       'https://anshumankumar.net/now/',
       'https://anshumankumar.net/contact/',
+      'https://anshumankumar.net/keystone/',
+      'https://anshumankumar.net/keystone/support/',
       'https://anshumankumar.net/article/2026-10-03/a-b/',
       'https://anshumankumar.net/notes/permanent-note-address/',
     ].sort());
@@ -85,7 +87,7 @@ test('an empty content store produces only public section URLs, without placehol
   const previous = process.cwd();
   try {
     process.chdir(root);
-    assert.equal(sitemap().length, 6);
+    assert.equal(sitemap().length, 8);
     assert(!JSON.stringify(sitemap()).includes('_empty'));
   } finally { process.chdir(previous); rmSync(root, { recursive: true }); }
 });

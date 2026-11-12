@@ -65,12 +65,26 @@ const sections = [
     content: (
       <>
         <p>
-          AI-based page classification is optional. If the user configures an
-          external AI provider, Keystone may send the active page&apos;s URL,
-          title, meta description, and—only when separately enabled—a short
-          visible-text excerpt to the selected provider. Depending on the
-          user&apos;s configuration, that provider may be OpenAI, Anthropic, or
-          a locally operated Ollama server.
+          AI-based page classification is optional. When the user selects
+          Chrome&apos;s built-in on-device AI, classification runs on the
+          user&apos;s device and nothing is sent anywhere.
+        </p>
+        <p>
+          If the user configures an external AI provider, Keystone sends the
+          active page&apos;s URL, title, meta description, and—only when
+          separately enabled—a short visible-text excerpt directly from the
+          browser to the selected provider. The request also includes the
+          user&apos;s stated focus intent, Keystone&apos;s classifier
+          instructions, a broad category hint derived locally from the site,
+          relevant parts of the persona the user has saved in Keystone, and,
+          where relevant, the address of one previously corrected page and
+          whether the user marked it as on-task or off-task. The user&apos;s
+          API key is sent to that provider to authenticate the request. Depending on the user&apos;s
+          configuration, that provider may be OpenAI, Anthropic, Google Gemini,
+          OpenRouter (including the &ldquo;Jev&rdquo; option, which runs
+          through OpenRouter), OpenJEV, a server running on the user&apos;s own
+          computer (such as Ollama), or another service at an address the user
+          enters.
         </p>
         <p>
           Requests to an external provider are governed by that provider&apos;s
@@ -108,6 +122,25 @@ const sections = [
         configures an external AI provider and requests functionality that
         requires sending the page context described above to that provider.
       </p>
+    ),
+  },
+  {
+    title: "Feedback and uninstall survey",
+    content: (
+      <>
+        <p>
+          The extension&apos;s support buttons open Keystone&apos;s support page
+          on this website, and Chrome opens a short survey page here when the
+          extension is removed. The extension passes only its version number
+          and, for support links, the kind of feedback selected. No browsing
+          data is included.
+        </p>
+        <p>
+          Both forms are hosted by Google Forms, so anything a person chooses
+          to type into them is handled under Google&apos;s privacy policy.
+          Neither form requires an email address.
+        </p>
+      </>
     ),
   },
   {
@@ -177,7 +210,7 @@ export default function KeystonePrivacyPage() {
           fontFamily: "var(--font-ui)",
         }}
       >
-        Last updated: July 11, 2026
+        Last updated: November 12, 2026
       </p>
 
       <p
@@ -251,12 +284,9 @@ export default function KeystonePrivacyPage() {
               lineHeight: 1.75,
             }}
           >
-            Questions or requests about this policy can be sent to{" "}
-            <a
-              href="mailto:anshumankumar.mail@gmail.com"
-              style={{ color: "var(--accent)" }}
-            >
-              anshumankumar.mail@gmail.com
+            Questions or requests about this policy can be sent through the{" "}
+            <a href="/keystone/support/" style={{ color: "var(--accent)" }}>
+              Keystone support page
             </a>
             .
           </p>

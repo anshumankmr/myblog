@@ -36,6 +36,12 @@ const sections = [
             AI-provider configuration entered by the user, such as the selected
             provider, endpoint, model, and API key.
           </li>
+          <li>
+            If the user chooses Sign in with ChatGPT, the sign-in tokens OpenAI
+            issues for that account, the account&apos;s email address, and the
+            list of models it can use. These are deleted when the user signs
+            out.
+          </li>
         </ul>
       </>
     ),
@@ -85,6 +91,17 @@ const sections = [
           through OpenRouter), OpenJEV, a server running on the user&apos;s own
           computer (such as Ollama), or another service at an address the user
           enters.
+        </p>
+        <p>
+          If the user chooses Sign in with ChatGPT (experimental), the user
+          signs in on OpenAI&apos;s own page and Keystone never sees the
+          password. Keystone sends OpenAI&apos;s sign-in service a random
+          installation identifier, the name &ldquo;Keystone&rdquo;, and
+          standard one-time sign-in values, then sends the page information
+          described above to OpenAI, billed to the user&apos;s ChatGPT plan.
+          OpenAI&apos;s sign-in response to <code>127.0.0.1</code> is caught
+          inside the browser and never reaches the network. On sign-out,
+          Keystone asks OpenAI to revoke access and deletes the stored tokens.
         </p>
         <p>
           Requests to an external provider are governed by that provider&apos;s
@@ -210,7 +227,7 @@ export default function KeystonePrivacyPage() {
           fontFamily: "var(--font-ui)",
         }}
       >
-        Last updated: November 12, 2026
+        Last updated: November 13, 2026
       </p>
 
       <p

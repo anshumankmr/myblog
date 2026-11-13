@@ -22,6 +22,7 @@ const dataFlow = [
   { title: 'By default: nothing', text: 'Your sessions, lists, history and settings are stored in your browser. Keystone has no account, no sign-in and no server, so there is nowhere for your browsing to be sent.' },
   { title: 'Chrome’s on-device AI', text: 'If your computer supports Chrome’s built-in AI, page checks run on your machine. Nothing leaves it.' },
   { title: 'A model on your own computer', text: 'You can point Keystone at a local server such as Ollama. Requests stay on your computer.' },
+  { title: 'Your ChatGPT plan (optional, experimental)', text: 'If you have ChatGPT Plus or Pro, you can sign in with ChatGPT instead of pasting a key. You sign in on OpenAI’s own page, and page checks go to OpenAI and count toward your plan’s usage, with the same page details as below.' },
   { title: 'An AI service you choose (optional)', text: 'Only if you add your own key for OpenAI, Anthropic, Google Gemini, OpenRouter or OpenJEV, Keystone sends that service the current page’s address, title and description, along with what you said you’re working on and any persona details you’ve saved, straight from your browser. A short excerpt of page text is included only if you turn that on separately.' },
 ];
 
@@ -34,7 +35,7 @@ const permissions = [
 
 const faqs = [
   { q: 'Is it free?', a: 'Yes. There’s no paid tier and nothing to sign up for.' },
-  { q: 'Do I need an AI key?', a: 'No. Blocking, sessions and the built-in rules work without any AI. During setup, Keystone recommends Chrome’s free on-device AI if your computer supports it. Adding your own key is optional.' },
+  { q: 'Do I need an AI key?', a: 'No. Blocking, sessions and the built-in rules work without any AI. During setup, Keystone recommends Chrome’s free on-device AI if your computer supports it. Adding your own key, or signing in with a ChatGPT Plus or Pro plan, is optional.' },
   { q: 'Does it read my browsing history?', a: 'No. During a session it looks at the page you’re currently on to decide whether it fits your intent. It doesn’t read your history, and it doesn’t check pages outside a session.' },
   { q: 'I saw telemetry switches in the settings. What are those?', a: 'Optional anonymous statistics, off by default. This version of Keystone has no server for them to send to, so even if you turn them on, nothing is transmitted.' },
   { q: 'Which browsers does it support?', a: 'Desktop Chrome. Other browsers aren’t supported yet.' },

@@ -38,18 +38,12 @@ export const UNINSTALL_FORM: GoogleForm = {
 };
 
 /**
- * One-time contribution tiers. Each `url` is a payment page for that amount
- * (most tip/payment-page tools let you make one link per amount, or one
- * pay-what-you-want link you can reuse for all three). The support section only
- * renders once at least one tier has a URL.
+ * Your Buy Me a Coffee page, e.g. https://buymeacoffee.com/<your-username>.
+ * Tips there are one-time by default. The button only renders once this is set.
  */
-export const SUPPORT_TIERS: { amount: string; label: string; url: string; featured?: boolean }[] = [
-  { amount: '$3', label: 'Coffee', url: '' },
-  { amount: '$5', label: 'Supporter', url: '', featured: true },
-  { amount: '$10', label: 'Generous', url: '' },
-];
+export const TIP_URL = '';
 
-export const hasSupportLinks = SUPPORT_TIERS.some(tier => tier.url);
+export const hasTipLink = TIP_URL.startsWith('https://');
 
 /** Builds the embeddable form URL, copying only known query parameters into their form fields. */
 export function embeddedFormUrl(form: GoogleForm, query: URLSearchParams): string {

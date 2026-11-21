@@ -594,3 +594,8 @@
   animation-duration: 1000ms;
   animation-timing-function: ease;
 }
+
+/* Keystone privacy policy: give paragraphs and lists their spacing back. */
+.policy-body > * + * { margin-top: var(--space-4); }
+.policy-body ul { list-style: disc; padding-inline-start: 1.25rem; }
+.policy-body li + li { margin-top: var(--space-2); }

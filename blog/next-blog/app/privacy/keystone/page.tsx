@@ -87,10 +87,18 @@ const sections = [
           whether the user marked it as on-task or off-task. The user&apos;s
           API key is sent to that provider to authenticate the request. Depending on the user&apos;s
           configuration, that provider may be OpenAI, Anthropic, Google Gemini,
-          OpenRouter (including the &ldquo;Jev&rdquo; option, which runs
-          through OpenRouter), OpenJEV, a server running on the user&apos;s own
-          computer (such as Ollama), or another service at an address the user
-          enters.
+          xAI, Groq, Mistral, DeepSeek, Together AI, Fireworks AI, OpenRouter
+          (including the &ldquo;Jev&rdquo; option, which runs through
+          OpenRouter), OpenJEV, a server running on the user&apos;s own
+          computer (such as Ollama or a LiteLLM proxy), or another service at
+          an address the user enters.
+        </p>
+        <p>
+          To show which models are available, Keystone&apos;s settings and setup
+          pages also ask the selected provider for its list of models. That
+          request carries only the user&apos;s API key (or nothing, for
+          services that don&apos;t need one), goes only to the provider the
+          user picked, and happens on the settings page, not while browsing.
         </p>
         <p>
           If the user chooses Sign in with ChatGPT (experimental), the user
@@ -156,6 +164,12 @@ const sections = [
           Both forms are hosted by Google Forms, so anything a person chooses
           to type into them is handled under Google&apos;s privacy policy.
           Neither form requires an email address.
+        </p>
+        <p>
+          The support page also has an optional &ldquo;Buy me a coffee&rdquo;
+          link for one-time tips. Payments happen on Buy Me a Coffee&apos;s own
+          site under its privacy policy; Keystone and this website never see
+          payment details. Tipping does not unlock anything in the extension.
         </p>
       </>
     ),
@@ -227,7 +241,7 @@ export default function KeystonePrivacyPage() {
           fontFamily: "var(--font-ui)",
         }}
       >
-        Last updated: November 13, 2026
+        Last updated: November 21, 2026
       </p>
 
       <p
@@ -264,6 +278,7 @@ export default function KeystonePrivacyPage() {
               {section.title}
             </h2>
             <div
+              className="policy-body"
               style={{
                 marginTop: "var(--space-4)",
                 fontFamily: "var(--font-body)",

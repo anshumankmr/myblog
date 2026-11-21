@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 export default function KeystoneByePage() {
   return (
     <div className="page-container">
-      <p className="meta">Keystone</p>
       <h1 className="mt-3">Sorry to see you go</h1>
       <p className="page-intro">
         Keystone has been removed, and everything it stored was removed with it. If you have 30 seconds, telling me why is the most useful thing you can do. It’s anonymous.

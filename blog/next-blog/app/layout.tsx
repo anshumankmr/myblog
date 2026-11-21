@@ -3,6 +3,7 @@ import { IBM_Plex_Serif, IBM_Plex_Sans, IBM_Plex_Mono, IBM_Plex_Sans_Devanagari 
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
+import { BlogOnly } from "@/components/blog-only"
 import "./globals.css"
 import { HOME_TITLE, SITE_DESCRIPTION, SITE_TITLE, SITE_URL, pageMetadata } from "@/lib/metadata"
 import { PERSON } from "@/lib/identity"
@@ -63,11 +64,11 @@ export default function RootLayout({
           <a href="#main-content" className="skip-link">
             Skip to content
           </a>
-          <Header />
+          <BlogOnly><Header /></BlogOnly>
           <main id="main-content" className="flex-1">
             {children}
           </main>
-          <Footer />
+          <BlogOnly><Footer /></BlogOnly>
         </ThemeProvider>
       </body>
     </html>

@@ -1,8 +1,11 @@
 import type { Metadata } from "next"
 import { pageMetadata } from "@/lib/metadata"
+import { PERSON } from "@/lib/identity"
 
 export const metadata: Metadata = {
-  ...pageMetadata("Keystone Privacy Policy", "Privacy policy for the Keystone browser extension.", "/privacy/keystone/"),
+  ...pageMetadata("Privacy policy", "Privacy policy for the Keystone browser extension.", "/privacy/keystone/"),
+  // Same folder as its layout, so the layout's title template doesn't reach it.
+  title: { absolute: `Privacy policy · Keystone by ${PERSON.name}` },
   robots: {
     index: false,
     follow: false,

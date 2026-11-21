@@ -599,3 +599,22 @@
 .policy-body > * + * { margin-top: var(--space-4); }
 .policy-body ul { list-style: disc; padding-inline-start: 1.25rem; }
 .policy-body li + li { margin-top: var(--space-2); }
+
+/* The Keystone mini-site uses Keystone's amber instead of the blog's blue. */
+.keystone-site {
+  --accent: #b45309;
+  --accent-strong: #92400e;
+  --accent-soft: rgba(217, 119, 6, 0.08);
+  --accent-tint: rgba(217, 119, 6, 0.16);
+  /* --link is resolved on :root, so it has to be set here too. */
+  --link: #b45309;
+  --link-hover: #92400e;
+}
+.dark .keystone-site {
+  --accent: #fbbf24;
+  --accent-strong: #f59e0b;
+  --accent-soft: rgba(251, 191, 36, 0.1);
+  --accent-tint: rgba(251, 191, 36, 0.18);
+  --link: #fbbf24;
+  --link-hover: #fcd34d;
+}

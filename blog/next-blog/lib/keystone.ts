@@ -61,3 +61,13 @@ export function embeddedFormUrl(form: GoogleForm, query: URLSearchParams): strin
   if (prefilled) url.searchParams.set('usp', 'pp_url');
   return url.toString();
 }
+
+/**
+ * The Keystone pages are a small site of their own inside the blog: they get
+ * Keystone's own header and footer, and the blog's are hidden there. The
+ * privacy page keeps its old address because the Web Store listing links to it.
+ */
+export function isKeystonePath(pathname: string | null | undefined): boolean {
+  if (!pathname) return false;
+  return /^\/keystone(\/|$)/.test(pathname) || /^\/privacy\/keystone(\/|$)/.test(pathname);
+}

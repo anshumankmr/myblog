@@ -12,7 +12,7 @@ export function KeystoneShell({ children }: { children: ReactNode }) {
         <nav className="page-container !py-4 flex items-center justify-between gap-4" aria-label="Keystone">
           <Link href="/keystone/support/" className="flex items-center gap-2 no-underline" style={{ color: 'var(--text-heading)' }}>
             {/* eslint-disable-next-line @next/next/no-img-element -- static export, tiny fixed-size icon */}
-            <img src="/keystone/icon128.png" alt="" width={28} height={28} className="rounded-md" />
+            <img src="/keystone/icon128-v2.png" alt="" width={28} height={28} className="rounded-md" />
             <span className="text-lg font-semibold" style={{ fontFamily: 'var(--font-display)' }}>Keystone</span>
           </Link>
           <div className="flex items-center gap-5">

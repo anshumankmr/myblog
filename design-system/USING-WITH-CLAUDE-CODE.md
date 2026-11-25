@@ -1,5 +1,11 @@
 # Use the Anshuman's Blog design system (prompt for Claude Code)
 
+> **Deprecated (2026-11-25).** This design system is superseded by
+> [`design-system-2/`](../design-system-2/), which defines the Now, About and
+> Socials layouts that production now uses. Kept for reference only; do not build
+> new pages against it. The tokens, type and components below remain what the rest
+> of the site (home, posts, notes) still uses until it is redesigned.
+
 Paste the block below to Claude Code at the start of any session where you want it
 to build or edit UI against this brand. It assumes the design system lives in
 `./design-system/` — change that path if you put it elsewhere.

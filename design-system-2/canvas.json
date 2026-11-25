@@ -1,0 +1,48 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 1240,
+      "title": "/now — widgets",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    {
+      "file": "About.dc.html",
+      "x": 1360,
+      "y": 0,
+      "w": 1280,
+      "h": 1420,
+      "title": "/about — widgets",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    {
+      "file": "Socials.dc.html",
+      "x": 2720,
+      "y": 0,
+      "w": 1280,
+      "h": 860,
+      "title": "/contact (Socials) — grid",
+      "expand": "fill",
+      "is_interactive": true
+    }
+  ],
+  "annotations": [
+    {
+      "id": "t1",
+      "x": 0,
+      "y": -260,
+      "w": 240,
+      "maxW": 4000,
+      "text": "Bento layouts — Now · About · Socials",
+      "kind": "title1"
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}

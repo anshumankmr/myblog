@@ -1,22 +1,35 @@
+import type { CSSProperties } from 'react';
+import Image from 'next/image';
 import type { Film } from '@/lib/activity';
+import { PERSON } from '@/lib/identity';
 
-export default function RecentFilms({ films }: { films: Film[] }) {
+export default function RecentFilms({ films, style }: { films: Film[]; style?: CSSProperties }) {
   if (!films.length) return null;
   return (
-    <section className="section" aria-labelledby="films-heading">
-      <h2 id="films-heading" className="activity-heading">Recently watched</h2>
-      <ul className="activity-list">
+    <section className="tile" style={style} aria-labelledby="films-heading">
+      <div className="tile-head">
+        <h2 id="films-heading" className="tile-label">Recently watched</h2>
+        <a href={PERSON.profiles.letterboxd} target="_blank" rel="me noopener noreferrer">Letterboxd →</a>
+      </div>
+      <ul className="film-grid">
         {films.map(film => (
-          <li key={film.href}>
-            <a href={film.href} target="_blank" rel="noopener noreferrer" className="activity-row">
-              <time className="meta" dateTime={film.date}>{film.date}</time>
-              <span className="activity-name">{film.title} <span className="meta">{film.year}{film.rewatch ? ' · rewatch' : ''}</span></span>
-              {film.rating !== null && <span className="meta" aria-label={`${film.rating} out of 5 stars`}>{'★'.repeat(Math.floor(film.rating))}{film.rating % 1 >= 0.5 ? '½' : ''}</span>}
+          <li key={film.href} className="flex">
+            <a href={film.href} target="_blank" rel="noopener noreferrer" className="film-card w-full">
+              {film.poster ? (
+                <Image src={film.poster} alt="" width={200} height={300} className="film-poster" unoptimized />
+              ) : (
+                <span className="film-poster film-poster-empty" aria-hidden="true" />
+              )}
+              <span className="film-title">{film.title}</span>
+              <span className="meta" aria-label={film.rating !== null ? `${film.rating} out of 5 stars` : undefined}>
+                {film.year}
+                {film.rating !== null && <> · {'★'.repeat(Math.floor(film.rating))}{film.rating % 1 >= 0.5 ? '½' : ''}</>}
+                {film.rewatch ? ' · rewatch' : ''}
+              </span>
             </a>
           </li>
         ))}
       </ul>
-      <a className="meta inline-block mt-3" href="https://letterboxd.com/jabwemetguy/" target="_blank" rel="noopener noreferrer">via Letterboxd →</a>
     </section>
   );
 }

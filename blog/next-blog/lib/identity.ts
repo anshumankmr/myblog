@@ -13,6 +13,8 @@ export const PERSON = {
     twitter: 'https://twitter.com/anshuman_kmr',
     hackerNews: 'https://news.ycombinator.com/user?id=anshumankmr',
     goodreads: 'https://www.goodreads.com/anshuman_kmr',
+    strava: 'https://www.strava.com/athletes/34639203',
+    letterboxd: 'https://letterboxd.com/jabwemetguy/',
     spotify: 'https://open.spotify.com/user/anshumankmr80',
     steam: 'https://steamcommunity.com/id/anshuman97/',
     playstation: 'https://my.playstation.com/profile/Anshumankmr',

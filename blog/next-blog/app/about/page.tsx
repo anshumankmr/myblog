@@ -1,234 +1,130 @@
 import type { Metadata } from "next"
-import Image from "next/image"
-import { Button } from "@/components/ui/Button"
 import Link from "next/link"
 import { pageMetadata } from "@/lib/metadata"
 import { PERSON } from "@/lib/identity"
 
 export const metadata: Metadata = pageMetadata("About", `A little about ${PERSON.name}: ${PERSON.jobTitle.toLowerCase()} at ${PERSON.employer} in ${PERSON.city}, runner, cyclist, and fan of board games, cooking, coffee, and films.`, "/about/")
 
-const skills = [
-  {
-    category: "AI/ML",
-    items:
-      "Generative AI, Prompt Engineering, Machine Learning (Scikit-learn, Keras)",
-  },
-  { category: "Cloud", items: "AWS, GCP, Vertex AI, Kubernetes" },
-  { category: "Languages", items: "Python, SQL, JavaScript" },
-  { category: "CI/CD", items: "GitLab CI, GitHub Actions" },
-  { category: "Databases", items: "Postgres, MySQL, Firestore" },
+const cells = [
+  { label: "AI / ML", chips: ["Generative AI", "Prompt eng.", "Scikit-learn", "Keras"] },
+  { label: "Cloud", chips: ["AWS", "GCP", "Vertex AI", "Kubernetes"] },
+  { label: "Languages", chips: ["Python", "SQL", "JavaScript"] },
+  { label: "CI/CD · Databases", chips: ["GitLab CI", "GitHub Actions", "Postgres", "MySQL", "Firestore"] },
+  { label: "Coffee", title: "De’Longhi EC685", text: "+ a professional grinder. Cannot recommend enough." },
+  { label: "Films", title: "Horror & thrillers", text: "Watching and analysing.", link: { href: PERSON.profiles.letterboxd, label: "Letterboxd →" } },
+  { label: "On the table", title: "Board games", text: "And cooking, when I can." },
+  { label: "Also", title: "Memes & new tech", text: "Pop culture, trying out whatever just shipped." },
 ]
 
-const hobbies = [
-  "Running and cycling, with the occasional race or very long ride.",
-  "Board games.",
-  "Cooking, when I can.",
-  "Coffee. I have a professional grinder and a De’Longhi EC685 that I cannot recommend enough.",
-  "Watching and analysing films, especially horror and thrillers.",
-  "Memes, pop culture, and trying out new tech.",
-]
-
-const highlights = [
-  {
-    name: "September half marathon",
-    when: "27 September 2026",
-    distance: "21.30 km",
-    movingTime: "2:46:48",
-    description: "My first half marathon back.",
-  },
-  {
-    name: "30 in 30 ride",
-    when: "15 February 2026",
-    distance: "29.67 km",
-    movingTime: "1:00:50",
-    description:
-      "Set personal bests over 10 km (19:45), 20 km (40:11), and 10 miles (31:59).",
-  },
-  {
-    name: "Joined Flexera",
-    when: "December 2025",
-  },
-  {
-    name: "Billu",
-    when: "20 July 2024",
-    description: "Adopted this orange furball.",
-    photo: {
-      src: "/billu.jpg",
-      alt: "Billu, my orange cat, lying down and looking at the camera",
-      href: "https://unsplash.com/photos/GuK3U7typ18",
-    },
-  },
-  {
-    name: "Temple Run",
-    when: "7 July 2024",
-    distance: "208.55 km",
-    movingTime: "10:38:51",
-    description:
-      "A long-distance cycling event with checkpoints and a time limit. Did it for the heck of it.",
-  },
-  {
-    name: "Mysore Half Marathon",
-    when: "23 June 2024",
-    distance: "21.26 km",
-    movingTime: "2:39:12",
-    description: "Ran this one completely untrained.",
-  },
-  {
-    name: "Ride to Nandi Hills",
-    when: "15 June 2024",
-    distance: "131.32 km",
-    movingTime: "7:04:53",
-    description: "Brutal heat and some crazy climbs.",
-  },
-  {
-    name: "Bangalore Half Marathon",
-    when: "8 October 2023",
-    distance: "22.85 km",
-    movingTime: "2:54:22",
-    description: "Overtrained, with a lot to learn about pacing and racing.",
-  },
-]
-
-function Section({
-  label,
-  children,
-}: {
-  label: string
-  children: React.ReactNode
-}) {
-  return (
-    <section className="section">
-      <h2 className="section-title">{label}</h2>
-      {children}
-    </section>
-  )
+type Highlight = {
+  when: string
+  name: string
+  kind: "activity" | "work" | "pet"
+  stats?: string
+  text?: string
+  link?: { href: string; label: string }
 }
+
+// Newest first. Activities mirror the Strava entries they were logged under.
+const highlights: Highlight[] = [
+  { when: "27 Sep 2026", name: "September half marathon", kind: "activity", stats: "21.30 km · 2:46:48 · first one back" },
+  { when: "15 Feb 2026", name: "30 in 30 ride", kind: "activity", stats: "29.67 km · PBs 10k 19:45 · 10mi 31:59 · 20k 40:11" },
+  { when: "Dec 2025", name: "Joined Flexera", kind: "work" },
+  { when: "20 Jul 2024", name: "Adopted Billu", kind: "pet", text: "This orange furball.", link: { href: "https://unsplash.com/photos/GuK3U7typ18", label: "Obligatory pic →" } },
+  { when: "7 Jul 2024", name: "Temple Run", kind: "activity", stats: "208.55 km · 10:38:51 · for the heck of it" },
+  { when: "23 Jun 2024", name: "Mysore Half Marathon", kind: "activity", stats: "21.26 km · 2:39:12 · untrained" },
+  { when: "15 Jun 2024", name: "Ride to Nandi Hills", kind: "activity", stats: "131.32 km · 7:04:53 · brutal heat" },
+  { when: "8 Oct 2023", name: "Bangalore Half Marathon", kind: "activity", stats: "22.85 km · 2:54:22 · overtrained" },
+]
 
 export default function AboutPage() {
   return (
-    <div className="page-container">
-      <h1>About {PERSON.name}</h1>
-      <p className="lead">
-        I&apos;m a {PERSON.jobTitle.toLowerCase()} at {PERSON.employer} in {PERSON.city},
-        working on FinOps AI: cloud-cost anomaly detection and the agents that explain it.
-      </p>
-      <p className="mt-5">
-        Away from work, I&apos;m usually running or cycling, playing board
-        games, watching films, or making coffee. I like cooking too, when I can.
-      </p>
-      <p className="mt-5">
-        I write about software, AI, movies, cycling, running, and whatever else
-        catches my attention. This is where those interests end up.
-      </p>
-      <p className="mt-5">
-        Online, I go by <a href={PERSON.profiles.twitter} rel="me">@{PERSON.handle}</a>.
-        {" "}<Link href="/contact/">Find my profiles and get in touch →</Link>
-      </p>
-      <p className="mt-5">
-        Proudly featured on {" "}
-        <a
-          href="https://web.archive.org/web/20230613205935/https://1mb.club/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          1mb.club
-        </a>
-        , for keeping this site lightweight and fast.
-      </p>
-      <p className="mt-5">
-        Feel free to slide into my{" "}
-        <a
-          href="https://www.strava.com/athletes/34639203"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Strava
-        </a>{" "}
-        DMs for a ride, or connect with me on{" "}
-        <a
-          href={PERSON.profiles.twitter}
-          target="_blank"
-          rel="me noopener noreferrer"
-        >
-          Twitter
-        </a>{" "}
-        (never calling it X).
-      </p>
-      <Section label="What I work with">
-        <dl className="definition-list border-t border-border-hairline">
-          {skills.map(skill => (
-            <div key={skill.category}>
-              <dt>{skill.category}</dt>
-              <dd>{skill.items}</dd>
-            </div>
-          ))}
-        </dl>
-      </Section>
-      <Section label="Off the clock">
-        <p className="mb-5">
-          I got back to running and cycling in February 2026 after a long break.
-        </p>
-        <ul className="ruled-list border-t border-border-hairline">
-          {hobbies.map(hobby => (
-            <li key={hobby}>{hobby}</li>
-          ))}
-        </ul>
-      </Section>
-      <Section label="A few highlights">
-        <ol
-          className="highlight-timeline"
-          aria-label="Highlights, newest first"
-        >
-          {highlights.map(highlight => (
-            <li key={highlight.name} className="timeline-entry">
-              <span className="timeline-marker" aria-hidden="true" />
-              <h3 className="text-lg mb-1">{highlight.name}</h3>
-              <p className="meta">
-                {highlight.when}
-                {highlight.distance && highlight.movingTime && (
-                  <>
-                    {" "}
-                    · {highlight.distance} · {highlight.movingTime} moving time
-                  </>
+    <div className="page-container page-wider">
+      <div className="about-split">
+        <section className="about-main">
+          <h1 className="page-title mb-5">About {PERSON.name}</h1>
+          <p className="lead !mt-0">
+            I&apos;m a {PERSON.jobTitle.toLowerCase()} at {PERSON.employer} in {PERSON.city},
+            working on FinOps AI: cloud-cost anomaly detection and the agents that explain it.
+          </p>
+          <p className="mt-5">
+            Away from work, I&apos;m usually running or cycling, playing board
+            games, watching films, or making coffee. I like cooking too, when I can.
+          </p>
+          <p className="mt-5">
+            I write about software, AI, movies, cycling, running, and whatever else
+            catches my attention. This is where those interests end up.
+          </p>
+          <p className="mt-5">
+            Online, I go by <a href={PERSON.profiles.twitter} rel="me">@{PERSON.handle}</a>.
+            {" "}<Link href="/contact/">Find my profiles and get in touch →</Link>
+          </p>
+          <p className="mt-5">
+            Proudly featured on {" "}
+            <a
+              href="https://web.archive.org/web/20230613205935/https://1mb.club/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              1mb.club
+            </a>
+            , for keeping this site lightweight and fast.
+          </p>
+          <p className="mt-5">
+            Feel free to slide into my{" "}
+            <a href={PERSON.profiles.strava} target="_blank" rel="me noopener noreferrer">
+              Strava
+            </a>{" "}
+            DMs for a ride, or connect with me on{" "}
+            <a href={PERSON.profiles.twitter} target="_blank" rel="me noopener noreferrer">
+              Twitter
+            </a>{" "}
+            (never calling it X).
+          </p>
+        </section>
+        <aside className="about-aside" aria-labelledby="highlights-heading">
+          <div className="tile-head mb-5">
+            <h2 id="highlights-heading" className="tile-label">A few highlights</h2>
+            <a href={PERSON.profiles.strava} target="_blank" rel="me noopener noreferrer" className="text-[12px] font-semibold !text-[var(--strava-text)]">Strava →</a>
+          </div>
+          <ol aria-label="Highlights, newest first">
+            {highlights.map(highlight => (
+              <li key={highlight.name} className="event">
+                <span className="event-dot" data-kind={highlight.kind} aria-hidden="true" />
+                <p className="meta">{highlight.when}</p>
+                <p className="event-name">{highlight.name}</p>
+                {highlight.stats && <p className="event-stats">{highlight.stats}</p>}
+                {highlight.text && (
+                  <p className="tile-note">
+                    {highlight.text}
+                    {highlight.link && <> <a href={highlight.link.href} target="_blank" rel="noopener noreferrer">{highlight.link.label}</a></>}
+                  </p>
                 )}
-              </p>
-              {highlight.description && (
-                <p className="mt-2">{highlight.description}</p>
-              )}
-              {highlight.photo && (
-                <figure className="mt-4 max-w-md">
-                  <a
-                    href={highlight.photo.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Image
-                      src={highlight.photo.src}
-                      alt={highlight.photo.alt}
-                      width={960}
-                      height={640}
-                      className="w-full h-auto"
-                    />
-                  </a>
-                  <figcaption className="meta mt-2">
-                    <a
-                      href={highlight.photo.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Obligatory Billu pic. View on Unsplash →
-                    </a>
-                  </figcaption>
-                </figure>
-              )}
-            </li>
-          ))}
-        </ol>
-      </Section>
-      <p className="section"><Link href="/now">What I&apos;m up to now →</Link></p>
-      <div className="section">
-        <Button href="/contact">Get in touch</Button>
+              </li>
+            ))}
+          </ol>
+        </aside>
       </div>
+      <h2 className="tile-label mt-16 mb-4">What I work with · off the clock</h2>
+      <div className="cells">
+        {cells.map(cell => (
+          <div key={cell.label} className="cell">
+            <h3 className="tile-label">{cell.label}</h3>
+            {cell.chips ? (
+              <div className="chips">{cell.chips.map(chip => <span key={chip} className="chip">{chip}</span>)}</div>
+            ) : (
+              <>
+                <p className="cell-title">{cell.title}</p>
+                <p className="tile-note">
+                  {cell.text}
+                  {cell.link && <> <a href={cell.link.href} target="_blank" rel="me noopener noreferrer">{cell.link.label}</a></>}
+                </p>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+      <p className="mt-7 text-sm"><Link href="/now">What I&apos;m up to now →</Link></p>
     </div>
   )
 }

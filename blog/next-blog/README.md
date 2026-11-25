@@ -27,7 +27,8 @@ you update the Now page. The initial entries use existing facts from About.
 
 ## Design and pages
 
-The visual system comes from **Anshuman's Blog Design System**: IBM Plex Serif,
+The visual system started as **Anshuman's Blog Design System** (now deprecated in
+favour of `design-system-2`, which redesigned Now, About and Socials): IBM Plex Serif,
 Sans, Mono, and Sans Devanagari; one blue accent; a 720px column; hairlines; light
 and dark mode. The header reads **अंशुमन कुमार**, with the accessible name
 “Anshuman Kumar”. Fonts use `next/font` and are self-hosted. The homepage title is
@@ -37,15 +38,20 @@ source system's duplicate size token so it cannot overwrite the meta color.
 
 - `/blogs/`: long-form posts grouped by year. A frontmatter `description` takes
   priority over a Markdown-free excerpt ending at a sentence or word boundary.
-- `/notes/`: untitled short Markdown posts in a compact feed with an author
-  portrait, name, handle, and hairline dividers. Timestamps show Asia/Kolkata
-  time and link to stable `/notes/{slug}/` addresses. Permalink and share actions
-  work without an account; sharing copies the link when native sharing is
-  unavailable. The two latest notes appear on the homepage. No sample notes
-  are published.
-- `/now/`: dated updates, the supplied Strava latest-rides iframe, recently
-  watched films from `jabwemetguy` on Letterboxd, books from `anshuman_kmr` on
-  Goodreads, and verified calorie totals.
+- `/notes/`: untitled short Markdown posts in a compact feed with hairline
+  dividers; the single author needs no per-note portrait or handle. Timestamps
+  show Asia/Kolkata time and link to stable `/notes/{slug}/` addresses. Permalink
+  and share actions work without an account; sharing copies the link when native
+  sharing is unavailable. The homepage shows the two latest notes as a date and a
+  short excerpt that links to the note. No sample notes are published.
+- `/now/`: a bento of tiles (`design-system-2`): work, training, the supplied
+  Strava latest-rides iframe, books from `anshuman_kmr` on Goodreads and verified
+  calorie totals when available, this site, the Website Carbon footprint, and
+  recently watched films from `jabwemetguy` on Letterboxd. The text tiles read
+  `content/now.json`.
+- `/about/` and `/contact/`: the split About layout with a highlights timeline,
+  and the Socials grid of profile tiles. Every profile in `lib/identity.ts`
+  appears on Socials.
 - `/rss.xml`: posts and notes, newest first, with stable permalink GUIDs. The
   footer and alternate-feed metadata link to it.
 - `/resume.pdf`: the supplied **Anshuman Kumar CV September 2026.pdf**.
@@ -132,9 +138,11 @@ Raw HTML remains excluded by the Markdown sanitizer.
 
 ## Design-system reference
 
-The original Desktop design system is preserved in the repository's root
-`design-system/` folder. See its `INTEGRATION.md` for how it maps to production.
-Changes only to this reference folder do not trigger the deployment workflow;
+The current reference is the repository's root `design-system-2/` folder: bento
+layouts for Now, About and Socials. See its `INTEGRATION.md` for how it maps to
+production. The original `design-system/` folder is deprecated but kept; the home
+page, posts and notes still use its column and tokens until they are redesigned.
+Changes only to either reference folder do not trigger the deployment workflow;
 application changes, manual runs, and content updates still rebuild normally.
 
 ## Activity

@@ -2,7 +2,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { getAllPosts, getAllNotes } from "@/lib/content"
 import { PostListItem } from "@/components/blog/PostListItem"
-import Note from "@/components/note"
+import { getExcerpt } from "@/lib/markdown"
+import { formatNoteTimestamp } from "@/lib/utils"
 import { pageMetadata, SITE_DESCRIPTION, HOME_TITLE } from "@/lib/metadata"
 import { PERSON } from "@/lib/identity"
 
@@ -15,24 +16,15 @@ export default function Home() {
   const allPosts = getAllPosts()
   const posts = allPosts.slice(0, 3)
   const notes = getAllNotes().slice(0, 2)
-  const guide = [
-    { href: "/blogs", label: "Posts", text: `Long-form writing, mostly tech. ${allPosts.length} so far.` },
-    { href: "/notes", label: "Notes", text: "Short things that don’t need a whole post." },
-    { href: "/now", label: "Now", text: "Work, training, and what I’ve been watching." },
-    { href: "/about", label: "About", text: "Work, what I use, and a few highlights." },
-    { href: "/resume.pdf", label: "Résumé", text: "The PDF version." },
-  ]
   return (
     <div className="page-container !pt-16">
       <div className="hero">
         <div className="flex-1 min-w-0">
-          <h1>Hi, I&apos;m {PERSON.name}.</h1>
+          {/* Keep the name on one line so the surname never wraps alone. */}
+          <h1>Hi, I&apos;m <span className="whitespace-nowrap">{PERSON.name}.</span></h1>
           <p className="lead">
             I&apos;m a {PERSON.jobTitle.toLowerCase()} at {PERSON.employer} in {PERSON.city},
             working on FinOps AI.
-          </p>
-          <p className="meta mt-3">
-            Online as <a href={PERSON.profiles.twitter} rel="me">@{PERSON.handle}</a>.
           </p>
         </div>
         <Image
@@ -49,15 +41,6 @@ export default function Home() {
         keyboard: running, cycling, board games, cooking when I can, coffee, and
         films.
       </p>
-      <nav className="section-guide" aria-label="Sections">
-        {guide.map(item => (
-          <Link key={item.href} href={item.href} className="guide-row">
-            <span className="guide-label">{item.label}</span>
-            <span className="guide-description">{item.text}</span>
-            <span aria-hidden="true">→</span>
-          </Link>
-        ))}
-      </nav>
       <section className="section" aria-labelledby="recent-posts">
         <h2 id="recent-posts" className="section-title">
           Recent posts
@@ -86,7 +69,18 @@ export default function Home() {
       {notes.length > 0 && (
         <section className="section" aria-labelledby="recent-notes">
           <h2 id="recent-notes" className="section-title">Recent notes</h2>
-          <div className="notes-list">{notes.map(note => <Note key={note.noteId} note={note} />)}</div>
+          <ol className="post-list">
+            {notes.map((note, index) => (
+              <li key={note.noteId} className={index === notes.length - 1 ? "" : "border-b border-border-hairline"}>
+                <Link href={`/notes/${note.slug}/`} className="post-row">
+                  <time dateTime={note.publishedAt} className="meta">
+                    {formatNoteTimestamp(note.publishedAt)}
+                  </time>
+                  <p className="note-excerpt">{getExcerpt(note.content, 200) || "View note"}</p>
+                </Link>
+              </li>
+            ))}
+          </ol>
           <Link href="/notes" className="inline-block mt-4">All notes →</Link>
         </section>
       )}

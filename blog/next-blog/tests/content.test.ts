@@ -18,6 +18,8 @@ test('excerpts remove Markdown images, keep inline code, and end at sentences or
   assert.equal(getExcerpt('Use `npm run build` to build it.'), 'Use npm run build to build it.');
   assert.equal(getExcerpt('First sentence. A second sentence that exceeds the limit.', 22), 'First sentence.');
   assert.equal(getExcerpt('A sentence without punctuation that is rather long', 23), 'A sentence without…');
+  assert.equal(getExcerpt('**A bold opening line**\n\nThen the body, which runs on', 40), 'A bold opening line.');
+  assert.equal(getExcerpt('Words, more words, and then', 18), 'Words, more words…');
 });
 
 test('Markdown highlights code into HTML and removes dangerous links and raw HTML', async () => {

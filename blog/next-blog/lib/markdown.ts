@@ -23,7 +23,11 @@ export async function renderMarkdown(content: string): Promise<string> {
 export function getExcerpt(content: string, maxLength = 160): string {
   const tree = parser.parse(content);
   const paragraphs = tree.children.filter(node => node.type === 'paragraph');
-  const text = paragraphs.map(node => toString(node, { includeImageAlt: false }))
+  // A paragraph without closing punctuation, such as a bold opening line, ends
+  // its own sentence so it does not run into the next one.
+  const text = paragraphs.map(node => toString(node, { includeImageAlt: false }).trim())
+    .filter(Boolean)
+    .map(paragraph => /[.!?:…]$/.test(paragraph) ? paragraph : `${paragraph}.`)
     .join(' ').replace(/\s+/g, ' ').trim();
   if (text.length <= maxLength) return text;
   const candidate = text.slice(0, maxLength + 1);
@@ -31,5 +35,5 @@ export function getExcerpt(content: string, maxLength = 160): string {
   const lastSentence = sentences.at(-1)?.index;
   if (lastSentence !== undefined) return text.slice(0, lastSentence + 1);
   const lastSpace = candidate.lastIndexOf(' ');
-  return `${text.slice(0, lastSpace > 0 ? lastSpace : maxLength).trimEnd()}…`;
+  return `${text.slice(0, lastSpace > 0 ? lastSpace : maxLength).replace(/[\s,;:]+$/, '')}…`;
 }

@@ -1,14 +1,18 @@
+import type { CSSProperties } from 'react';
 import Image from 'next/image';
 import { FaBook } from 'react-icons/fa';
 import type { Book } from '@/lib/activity';
 import { PERSON } from '@/lib/identity';
 
-export default function RecentBooks({ books }: { books: Book[] }) {
+export default function RecentBooks({ books, style }: { books: Book[]; style?: CSSProperties }) {
   if (!books.length) return null;
   return (
-    <section className="section" aria-labelledby="books-heading">
-      <h2 id="books-heading" className="activity-heading">Books read</h2>
-      <ul className="activity-list">
+    <section className="tile" style={style} aria-labelledby="books-heading">
+      <div className="tile-head">
+        <h2 id="books-heading" className="tile-label">Books read</h2>
+        <a href={PERSON.profiles.goodreads} target="_blank" rel="me noopener noreferrer">Goodreads →</a>
+      </div>
+      <ul className="activity-list book-list">
         {books.map(book => (
           <li key={book.href}>
             <a href={book.href} target="_blank" rel="noopener noreferrer" className="book-row">
@@ -27,7 +31,6 @@ export default function RecentBooks({ books }: { books: Book[] }) {
           </li>
         ))}
       </ul>
-      <a className="meta inline-block mt-3" href={PERSON.profiles.goodreads} target="_blank" rel="me noopener noreferrer">via Goodreads →</a>
     </section>
   );
 }

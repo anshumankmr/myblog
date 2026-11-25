@@ -1,5 +1,11 @@
 # Anshuman's Blog — Design System
 
+> **Deprecated (2026-11-25).** This design system is superseded by
+> [`design-system-2/`](../design-system-2/), which defines the Now, About and
+> Socials layouts that production now uses. Kept for reference only; do not build
+> new pages against it. The tokens, type and components below remain what the rest
+> of the site (home, posts, notes) still uses until it is redesigned.
+
 A design system for **anshumankumar.net**, the personal blog of Anshuman Kumar.
 The site title is still "Les Pensées d'Anshuman" (browser tab and link previews);
 the header shows his name.

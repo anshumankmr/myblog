@@ -1,5 +1,6 @@
 import Script from "next/script"
-import { FaGithub, FaLinkedin, FaTwitter, FaRss, FaHackerNews } from "react-icons/fa"
+import { FaGithub, FaLinkedin, FaRss, FaHackerNews } from "react-icons/fa"
+import { FaXTwitter } from "react-icons/fa6"
 import { PERSON, SITE_URL } from "@/lib/identity"
 
 export default function Footer() {
@@ -15,6 +16,7 @@ export default function Footer() {
           <a
             href={PERSON.profiles.github}
             aria-label="GitHub"
+            title="GitHub"
             target="_blank"
             rel="me noopener noreferrer"
           >
@@ -23,6 +25,7 @@ export default function Footer() {
           <a
             href={PERSON.profiles.linkedin}
             aria-label="LinkedIn"
+            title="LinkedIn"
             target="_blank"
             rel="me noopener noreferrer"
           >
@@ -31,14 +34,16 @@ export default function Footer() {
           <a
             href={PERSON.profiles.twitter}
             aria-label="Twitter"
+            title="Twitter"
             target="_blank"
             rel="me noopener noreferrer"
           >
-            <FaTwitter aria-hidden="true" />
+            <FaXTwitter aria-hidden="true" />
           </a>
           <a
             href={PERSON.profiles.hackerNews}
             aria-label="Hacker News"
+            title="Hacker News"
             target="_blank"
             rel="me noopener noreferrer"
           >

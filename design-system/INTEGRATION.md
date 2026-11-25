@@ -1,5 +1,11 @@
 # Design system in this repository
 
+> **Deprecated (2026-11-25).** This design system is superseded by
+> [`design-system-2/`](../design-system-2/), which defines the Now, About and
+> Socials layouts that production now uses. Kept for reference only; do not build
+> new pages against it. The tokens, type and components below remain what the rest
+> of the site (home, posts, notes) still uses until it is redesigned.
+
 This folder is a reference copy of **Anshuman's Blog Design System** from the
 Desktop. Start with [readme.md](readme.md) and [SKILL.md](SKILL.md) for the visual
 rules, tokens, component examples, and interactive UI kit. The source files are

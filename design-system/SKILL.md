@@ -1,8 +1,15 @@
 ---
 name: anshuman-blog-design
-description: Use this skill to generate well-branded interfaces and assets for Anshuman Kumar's blog (anshumankumar.net), either for production or throwaway prototypes/mocks/etc. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for prototyping.
-user-invocable: true
+description: DEPRECATED, superseded by design-system-2. Do not use for new work. Formerly - use this skill to generate well-branded interfaces and assets for Anshuman Kumar's blog (anshumankumar.net), either for production or throwaway prototypes/mocks/etc. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for prototyping.
+user-invocable: false
 ---
+
+> **Deprecated (2026-11-25).** This design system is superseded by
+> [`design-system-2/`](../design-system-2/), which defines the Now, About and
+> Socials layouts that production now uses. Kept for reference only; do not build
+> new pages against it. The tokens, type and components below remain what the rest
+> of the site (home, posts, notes) still uses until it is redesigned.
+
 
 Read the README.md file within this skill, and explore the other available files.
 
